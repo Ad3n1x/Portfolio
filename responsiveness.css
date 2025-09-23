@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width:768px) {
+    .ade {
+        flex-wrap: wrap;
+    }
+
+    .ade2 {
+        font-size: 3.5vw;
+    }
+
+    .contain {
+        flex-wrap: wrap;
+    }
+
+    .great {
+        flex-wrap: wrap;
+    }
+
+    .gre {
+        flex-wrap: wrap;
+    }
+
+    .at {
+        flex-wrap: wrap;
+    }
+
+    .img10 {
+        height: 10%;
+    }
+
+    .hr2 {
+        flex-wrap: wrap;
+    }
+
+    .img12 {
+        height: 35%;
+        gap: 10px;
+    }
+
+    .TEXT5 {
+        font-size: 4.5vw;
+    }
+
+    .contain {
+        gap: 50px;
+    }
+
+    .cont6 {
+        width: 100vw;
+        height: 100px;
+        font-size: 10vw;
+    }
+
+    .cont7 {
+        width: 100vw;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 100vw;
+        height: 32vh;
+    }
+
+    .card1 {
+        height: 30vh;
+    }
+
+    #card2 {
+        right: 0vw;
+    }
+
+    #card3 {
+        right: 0vw;
+    }
+
+    #card4 {
+        right: 0vw;
+    }
+
+    #card1:hover~#card2,
+    #card1:hover~#card3,
+    #card1:hover~#card4 {
+        transform: translateX(30px);
+    }
+
+
+    #card2:hover~#card3,
+    #card2:hover~#card4 {
+        transform: translateX(30px);
+    }
+
+    #card3:hover~#card4 {
+        transform: translateX(30px);
+    }
+}
+
+@media (width:1024px) {
+    .cont6 {
+        width: 100vw;
+    }
+
+    .cont7 {
+        width: 100vw;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 43vw;
+        height: 32vh;
+    }
+
+    .card1 {
+        height: 30vh;
+    }
+
+    #card2 {
+        right: 0vw;
+    }
+
+    #card3 {
+        right: 0vw;
+    }
+
+    #card4 {
+        right: 0vw;
+    }
+
+    #card1:hover~#card2,
+    #card1:hover~#card3,
+    #card1:hover~#card4 {
+        transform: translateX(30px);
+    }
+
+
+    #card2:hover~#card3,
+    #card2:hover~#card4 {
+        transform: translateX(30px);
+    }
+
+    #card3:hover~#card4 {
+        transform: translateX(30px);
+    }
+}
+
+@media (width:768px) {
+    .cont6 {
+        width: 100vw;
+    }
+
+    .cont7 {
+        width: 100vw;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 40vw;
+        height: 32vh;
+    }
+
+    .card1 {
+        height: 30vh;
+    }
+}
+
+@media (width:320px) {
+    .img10 {
+        height: 0.5%;
+    }
+}
+
+@media (width:375px) {
+    .img10 {
+        height: 0.7%;
+    }
+}
+
+@media (width:425px) {
+    .img10 {
+        height: 0.7%;
+    }
+}
+
+@media (width:768px) {
+    .img10 {
+        height: 1.5%;
+    }
+}
