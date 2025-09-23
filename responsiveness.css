@@ -103,9 +103,12 @@
 }
 
 @media (min-width:1024px) {
-    .img10{
+    .img10 {
         height: 1.8%;
     }
+}
+
+@media (width:1024px) {
     .cont6 {
         width: 100vw;
     }
