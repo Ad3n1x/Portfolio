@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-@media (max-width:1024px) {
+@media (max-width:768px) {
     .ade {
         flex-wrap: wrap;
     }
@@ -102,7 +102,10 @@
     }
 }
 
-@media (width:1024px) {
+@media (min-width:1024px) {
+    .img10{
+        height: 1.8%;
+    }
     .cont6 {
         width: 100vw;
     }
