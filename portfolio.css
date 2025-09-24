@@ -9,32 +9,32 @@ body {
     position: absolute;
     width: 100%;
     background: black;
-    animation: slideRotateExpand 3s ease;
+    animation: slideRotateExpand 5s ease;
     transform-origin: top;
 }
 
 @keyframes slideRotateExpand {
     0% {
-        transform: translateY(100vh) scale3d(0.1) rotate(0deg);
+        transform: translateY(100vh) scale3d(0.3) rotate(0deg);
         opacity: 0;
     }
 
     25% {
-        transform: translateY(100vh) scale(0.1) rotate(0deg);
+        transform: translateY(100vh) scale(0.3) rotate(0deg);
         opacity: 0;
     }
 
     50% {
-        transform: translateY(60vh) scale(0.1) rotate(0deg);
+        transform: translateY(25vh) scale(0.3) rotate(0deg);
         opacity: 1;
     }
 
     75% {
-        transform: translateY(60vh) scale(0.1) rotate(360deg);
+        transform: translateY(25vh) scale3d(0.3) rotate(-720deg);
     }
 
     100% {
-        transform: translateY(0) scale(1) rotate(360deg);
+        transform: translateY(0) scale(1) rotate(-720deg);
     }
 }
 
