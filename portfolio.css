@@ -9,7 +9,7 @@ body {
     width: 100%;
     background: black;
     animation: slideRotateExpand 5s ease;
-    transform-origin: top;
+    transform-origin: center top;
 }
 
 @keyframes slideRotateExpand {
