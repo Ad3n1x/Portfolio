@@ -26,12 +26,12 @@ body {
     }
 
     50% {
-        transform: translateY(25vh) scale(0.3) rotate(0deg);
+        transform: translateY(35vh) scale(0.3) rotate(0deg);
         opacity: 1;
     }
 
     75% {
-        transform: translateY(25vh) scale3d(0.3) rotate(-720deg);
+        transform: translateY(35vh) scale3d(0.3) rotate(-720deg);
     }
 
     100% {
