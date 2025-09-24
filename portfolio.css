@@ -40,7 +40,7 @@ body {
 }
 
 .navbar {
-    background-color: #E5D8CC !important;
+    background-image: url(https://uploads-ssl.webflow.com/5f2429f172d117fcee10e819/614f353f1e11a6a7afdd8b74_6059a3e2b9ae6d2bd508685c_pt-texture-2.jpg) !important;
 }
 
 .head-mid {
@@ -98,7 +98,7 @@ body {
 }
 
 .head {
-    background-color: #E5D8CC;
+    background-image: url(https://uploads-ssl.webflow.com/5f2429f172d117fcee10e819/614f353f1e11a6a7afdd8b74_6059a3e2b9ae6d2bd508685c_pt-texture-2.jpg);
 }
 
 .link,
@@ -129,7 +129,7 @@ body {
 }
 
 main {
-    background-color: #E5D8CC;
+    background-image: url(https://uploads-ssl.webflow.com/5f2429f172d117fcee10e819/614f353f1e11a6a7afdd8b74_6059a3e2b9ae6d2bd508685c_pt-texture-2.jpg);
     height: 200%;
 }
 
@@ -378,7 +378,7 @@ main {
 }
 
 .wd {
-    background-color: #E5D8CC;
+    background-image: url(https://uploads-ssl.webflow.com/5f2429f172d117fcee10e819/614f353f1e11a6a7afdd8b74_6059a3e2b9ae6d2bd508685c_pt-texture-2.jpg);
 }
 
 .wd>div>h5 {
