@@ -102,10 +102,11 @@
     }
 }
 
-@media (min-width:1024px) and (max-width:1200px) {
+@media (min-width:950px) and (max-width:1200px) {
     .img10 {
         height: 2.5%;
     }
+
     .img12 {
         height: 35%;
         gap: 10px;
