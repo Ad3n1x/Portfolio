@@ -34,8 +34,8 @@ const Project = mongoose.models.Project || mongoose.model("Project", projectSche
 const Message = mongoose.models.Message || mongoose.model("Message", messageSchema);
 
 const initialProjects = [
-  { number: "001", title: "PiggyVest UI study", kind: "INTERFACE RECREATION", description: "Practising interface structure, spacing, and visual consistency through a front-end recreation.", technologies: ["HTML", "CSS", "BOOTSTRAP"], url: "https://ad3n1x.github.io/PIGGYVEST/", image: "/multimedia/Screenshot%202025-09-18%20221344.png" },
-  { number: "002", title: "Humankind", kind: "VISUAL WEB PROJECT", description: "A themed web experience focused on content hierarchy and presenting a clear visual idea.", technologies: ["HTML", "CSS", "LAYOUT"], url: "https://ad3n1x.github.io/HUMANKIND/", image: "/multimedia/Screenshot%202025-09-18%20235509.png" },
+  { number: "001", title: "PiggyVest UI study", kind: "INTERFACE RECREATION", description: "Practising interface structure, spacing, and visual consistency through a front-end recreation.", technologies: ["HTML", "CSS", "BOOTSTRAP"], url: "https://ad3n1x.github.io/PIGGYVEST/", image: "https://raw.githubusercontent.com/Ad3n1x/Portfolio/main/multimedia/Screenshot%202025-09-18%20221344.png" },
+  { number: "002", title: "Humankind", kind: "VISUAL WEB PROJECT", description: "A themed web experience focused on content hierarchy and presenting a clear visual idea.", technologies: ["HTML", "CSS", "LAYOUT"], url: "https://ad3n1x.github.io/HUMANKIND/", image: "https://raw.githubusercontent.com/Ad3n1x/Portfolio/main/multimedia/Screenshot%202025-09-18%20235509.png" },
   { number: "003", title: "Thoughtbot-inspired page", kind: "WEB DESIGN RECREATION", description: "A practice build exploring section rhythm, typography, and responsive page composition.", technologies: ["HTML", "CSS", "JAVASCRIPT"], url: "https://ad3n1x.github.io/Thought-Bot-11/" }
 ];
 
