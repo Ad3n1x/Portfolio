@@ -4,7 +4,6 @@ const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 const fallbackProjects = [
   { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack" },
   { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE MVP", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
-  { _id: "flowpilot", number: "003", title: "FlowPilot AI", kind: "AI WORKFLOW PRODUCT", description: "An AI-assisted workflow concept focused on turning natural-language requests into useful, structured actions.", technologies: ["REACT", "API DESIGN", "AI INTEGRATION"], url: "https://github.com/Ad3n1x/FlowPilot-AI" },
   { _id: "westciti", number: "004", title: "WestCiti Restaurant & Lounge", kind: "CLIENT WEBSITE CONCEPT", description: "A digital presence concept for an upscale restaurant and lounge, designed around menus, occasions, and enquiries.", technologies: ["RESPONSIVE UI", "UX", "WEB DESIGN"], url: "https://westciti.vercel.app" }
 ];
 
@@ -19,8 +18,8 @@ const skills = [
 
 function ProjectCard({ project, index }) {
   const number = String(index + 1).padStart(3, "0");
-  return <a className={`project-card ${index === 2 ? "project-card-wide" : ""}`} href={project.url} target="_blank" rel="noreferrer">
-    <div className={`project-visual ${index === 2 ? "visual-thought" : ""}`}>
+  return <a className="project-card" href={project.url} target="_blank" rel="noreferrer">
+    <div className="project-visual">
       {project.image ? <img src={project.image} alt={`${project.title} preview`} loading="lazy" onError={(event) => { event.currentTarget.style.display = "none"; }} /> : <div className="thought-art"><span>IDEAS</span><span className="thought-arrow">↘</span><span>INTO<br />INTERFACES<span className="accent">.</span></span></div>}
       <span className="project-index">PROJECT / {project.number || number}</span><span className="project-open">↗</span><span className="project-overlay">OPEN PROJECT ↗</span>
     </div>
