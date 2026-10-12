@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const GITHUB = "https://github.com/Ad3n1x";
-const featured = [
+const featuredOverrides = [
   {
     name: "UNI-TRACK",
     type: "PRODUCTIVITY / WEB APP",
@@ -55,7 +55,7 @@ function ProjectCard({ project }) {
       <div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
       <button className="case-study-toggle" type="button" aria-expanded={detailsOpen} onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "CLOSE CASE STUDY −" : "EXPLORE CASE STUDY +"}<span>{detailsOpen ? "LESS" : "OVERVIEW"}</span></button>
       {detailsOpen && <div className="case-study-details"><p>{project.details}</p><h4>PROJECT FOCUS</h4><ul>{project.focus.map((item) => <li key={item}>{item}</li>)}</ul></div>}
-      <div className="project-links"><a href={project.live} target="_blank" rel="noreferrer">OPEN PROJECT <Arrow /></a><a href={project.repo} target="_blank" rel="noreferrer">VIEW SOURCE <Arrow /></a></div>
+      <div className="project-links">{project.live && <a href={project.live} target="_blank" rel="noreferrer">OPEN PROJECT <Arrow /></a>}<a href={project.repo} target="_blank" rel="noreferrer">VIEW SOURCE <Arrow /></a></div>
     </div>
   </article>;
 }
@@ -91,6 +91,29 @@ export default function App() {
 
   const allContactInfo = "AD3N1X — CONTACT INFORMATION\\nEmail: adenix271@gmail.com\\nAlternate email: adeniranabe@outlook.com\\nPhone: 0703 923 7610\\nPhone: 0901 695 3597\\nWhatsApp: 0703 923 7610\\nWhatsApp link: https://wa.me/2347039237610\\nGitHub: https://github.com/Ad3n1x";
 
+  const pinnedRepoNames = new Set(featuredOverrides.map((project) => project.repo.split("/").pop().toLowerCase()));
+  const autoFeatured = repositories
+    .filter((repo) => !repo.fork && !repo.archived && !/west\\s*citi|portfolio/i.test(repo.name))
+    .filter((repo) => !pinnedRepoNames.has(repo.name.toLowerCase()))
+    .filter((repo) => typeof repo.homepage === "string" && /^https?:\\/\\//i.test(repo.homepage.trim()))
+    .filter((repo) => Boolean(repo.description && repo.description.trim()))
+    .map((repo, index) => ({
+      name: repo.name.replace(/[-_]+/g, " ").replace(/\\b\\w/g, (letter) => letter.toUpperCase()),
+      type: `${repo.language || "WEB"} / COMMUNITY PROJECT`,
+      description: repo.description.trim(),
+      details: `${repo.description.trim()} This project was discovered automatically from the public AD3N1X GitHub repositories. Visit the live project to explore it, or inspect the source to see how it was built.`,
+      focus: ["Automatically discovered from GitHub", repo.language ? `${repo.language} development` : "Web development", "Independent project"],
+      stack: repo.language ? [repo.language] : ["Web project"],
+      live: repo.homepage.trim(),
+      repo: repo.html_url,
+      code: String(featuredOverrides.length + index + 1).padStart(2, "0"),
+      autoDiscovered: true,
+      updatedAt: repo.updated_at
+    }));
+  const projectsToFeature = [
+    ...featuredOverrides,
+    ...autoFeatured.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+  ];
   const projectsToShow = showAll ? repositories : repositories.slice(0, 8);
 
   return <div className="site-shell">
@@ -127,7 +150,8 @@ export default function App() {
 
       <section id="work" className="section page-width">
         <div className="section-head"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Made to be<br /><span>explored.</span></h2></div><p className="section-note">A few projects that reflect what I'm learning and building. Open the live experience or inspect the source — the work should speak for itself.</p></div>
-        <div className="featured-grid">{featured.map((project) => <ProjectCard key={project.code} project={project} />)}</div>
+        <div className="featured-grid">{projectsToFeature.map((project) => <ProjectCard key={project.repo} project={project} />)}</div>
+        <p className="section-note auto-feature-note">{repoState === "ready" ? `${featuredOverrides.length} curated projects · ${autoFeatured.length} additional projects discovered from GitHub` : "Curated projects are shown while GitHub projects load."}</p>
       </section>
 
       <section id="approach" className="approach-section">
