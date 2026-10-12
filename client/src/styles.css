@@ -174,3 +174,17 @@ h2{letter-spacing:-4px}
 .project-action-primary:hover{background:#ddff94;color:#11140b}
 .project-card .project-info{flex:1}
 @media(max-width:640px){.project-actions{gap:8px}.project-action{flex:1;gap:12px;padding:11px 10px;font-size:8px}.project-visual{height:230px}}
+
+
+/* Full project directory: compact rows keep the page useful without repeating the featured screenshot cards. */
+.live-web-section{padding-top:clamp(52px,7vw,100px);border-top:1px solid var(--line,#293027)}
+.live-web-list{border-top:1px solid #30372c}
+.live-web-item{display:grid;grid-template-columns:54px minmax(0,1fr) auto;align-items:center;gap:20px;padding:22px 0;border-bottom:1px solid #30372c}
+.live-web-number{font:10px var(--mono,monospace);color:var(--acid,#c8ff39)}
+.live-web-copy{min-width:0}
+.live-web-copy h3{margin:0 0 7px;font-size:clamp(17px,2vw,22px);font-weight:600}
+.live-web-copy p{margin:0;max-width:720px;color:var(--muted,#9a9f92);font-size:13px;line-height:1.65}
+.live-web-actions{display:flex;justify-content:flex-end;gap:16px;flex-wrap:wrap}
+.live-web-actions a{font:9px var(--mono,monospace);letter-spacing:.3px;color:var(--acid,#c8ff39);white-space:nowrap}
+.live-web-actions a:hover{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:640px){.live-web-item{grid-template-columns:30px minmax(0,1fr);gap:12px;padding:18px 0}.live-web-actions{grid-column:2;justify-content:flex-start;gap:18px}.live-web-copy p{font-size:12px}}
