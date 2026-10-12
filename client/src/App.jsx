@@ -36,7 +36,6 @@ export default function App() {
   const [githubRepos, setGithubRepos] = useState([]);
   const [githubStatus, setGithubStatus] = useState("syncing");
   const [githubLastSynced, setGithubLastSynced] = useState("");
-  const [githubSyncTrigger, setGithubSyncTrigger] = useState(0);
 
   useEffect(() => {
     let active = true;
@@ -89,7 +88,7 @@ export default function App() {
     syncPublicRepos();
     const interval = window.setInterval(syncPublicRepos, 5 * 60 * 1000);
     return () => { active = false; window.clearInterval(interval); };
-  }, [githubSyncTrigger]);
+  }, []);
 
   const updateField = (event) => setForm({ ...form, [event.target.name]: event.target.value });
 
@@ -144,7 +143,7 @@ export default function App() {
         <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING LOCAL FALLBACK" : "CONNECTING TO API"}</p>
       </section>
       <section id="github" className="section-wrap section-block github-section">
-        <div className="section-heading"><div><p className="eyebrow">LIVE WEBSITES / GITHUB AUTO-SYNC</p><h2>Live on<br /><span className="muted-heading">the web.</span></h2></div><div className="github-sync-tools"><p className="section-side">Live website links are synced from your public GitHub repositories and refreshed automatically every five minutes. WestCiti is excluded.</p><button className="button github-sync-button" type="button" onClick={() => setGithubSyncTrigger((value) => value + 1)} disabled={githubStatus === "syncing"}>{githubStatus === "syncing" ? "SYNCING..." : "SYNC NOW"} <span>↻</span></button></div></div>
+        <div className="section-heading"><div><p className="eyebrow">LIVE WEBSITES / GITHUB AUTO-SYNC</p><h2>Live on<br /><span className="muted-heading">the web.</span></h2></div><div className="github-sync-tools"><p className="section-side">Live website links are synced from your public GitHub repositories and refreshed automatically every five minutes. WestCiti is excluded.</p></div></div>
         <p className="api-note"><span className={`api-dot ${githubStatus === "synced" ? "connected" : githubStatus === "offline" ? "offline" : ""}`} /> WEBSITE SYNC: {githubStatus === "synced" ? `UPDATED · LAST CHECK ${githubLastSynced}` : githubStatus === "offline" ? "UNAVAILABLE · TRY AGAIN" : "FETCHING LIVE WEBSITE LINKS"}</p>
         {githubRepos.length ? <div className="project-grid github-project-grid">{githubRepos.map((project, index) => <ProjectCard key={project._id} project={project} index={index} />)}</div> : <p className="github-empty">{githubStatus === "offline" ? "GitHub couldn't be reached right now. Your selected live projects above remain available." : "Loading public repositories from GitHub…"}</p>}
         <p className="project-note"><span>*</span> Only configured live-site URLs and the two verified live projects are shown here. WestCiti is intentionally excluded; private repositories are never displayed.</p>
