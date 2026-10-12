@@ -71,7 +71,7 @@
   }
 
   async function syncProjects() {
-    const response = await fetch('https://api.github.com/users/' + username + '/repos?type=public&sort=updated&per_page=100', {
+    const response = await fetch('https://api.github.com/users/' + username + '/repos?sort=updated&per_page=100', {
       headers: { Accept: 'application/vnd.github+json' }
     });
     if (!response.ok) throw new Error('GitHub returned ' + response.status);
