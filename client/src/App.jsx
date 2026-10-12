@@ -57,7 +57,6 @@ export default function App() {
         if (!active || !Array.isArray(repos)) return;
         const visibleProjects = repos
           .filter((repo) => !/west\\s*citi/i.test(repo.name || ""))
-          .filter((repo) => !repo.fork)
           .map((repo) => ({
             _id: String(repo.id),
             title: repo.name,
@@ -141,7 +140,7 @@ export default function App() {
         <div className="section-heading"><div><p className="eyebrow">01 / SELECTED BUILDS</p><h2>Proof of work<span className="accent">.</span><br /><span className="muted-heading">Not just talk.</span></h2></div><p className="section-side">Two selected builds, shown with live-site screenshots. Open the preview to explore each website, or inspect its source code on GitHub.</p></div>
         <div className="project-grid">{projects.map((project, index) => <ProjectCard key={project._id || project.url || project.title} project={project} index={index} />)}</div>
         <p className="project-note"><span>*</span> These are independent practice projects and recreations, not official products or brand affiliations.</p>
-        <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING SELECTED PROJECTS" : "LOADING SELECTED PROJECTS"}</p>
+        <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "GITHUB SYNCED" : apiStatus === "offline" ? "SHOWING PROJECT DIRECTORY FALLBACK" : "LOADING GITHUB PROJECTS"}</p>
       </section>
       <section id="live-web" className="section-wrap section-block live-web-section">
         <div className="section-heading"><div><p className="eyebrow">01B / PROJECT DIRECTORY</p><h2>Live on the web<span className="accent">.</span></h2></div><p className="section-side">Every public GitHub project, with live links where a deployed homepage is configured. WestCiti is intentionally excluded.</p></div>
