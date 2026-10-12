@@ -154,3 +154,23 @@ h2{letter-spacing:-4px}
 @media(max-width:850px){.hero{min-height:0;padding-top:78px;padding-bottom:85px}.hero-console{height:445px}}
 @media(max-width:620px){h1{font-size:clamp(54px,12.5vw,78px);letter-spacing:-3.8px}.hero{padding-top:68px;padding-bottom:65px}.hero-console{height:415px}.console-body{padding:30px 20px}.section-block{padding-top:90px;padding-bottom:92px}.project-grid{gap:42px}.project-visual,.project-card-wide .project-visual{height:clamp(230px,67vw,340px)}.project-info h3{font-size:21px}.contact-inner h2{letter-spacing:-3px}}
 @media(prefers-reduced-motion:reduce){.ticker div{animation:none}}
+
+
+/* Curated project previews: real website snapshots with a graceful visual fallback. */
+.project-card{min-width:0;display:flex;flex-direction:column}
+.project-visual{isolation:isolate}
+.project-preview-fallback{position:absolute;inset:0;z-index:0;justify-content:center;padding:30px;background:radial-gradient(circle at 78% 22%,#c8ff3920,transparent 35%),linear-gradient(145deg,#171d13,#0b0d0b)}
+.project-preview-fallback>span:last-child{max-width:85%;overflow-wrap:anywhere;font-size:clamp(30px,4vw,54px)}
+.project-preview-image{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:top center;display:block;background:#101310;transition:transform .45s,filter .25s}
+.project-card:hover .project-preview-image{transform:scale(1.025);filter:saturate(1.08)}
+.project-index,.project-open{z-index:3}
+.project-overlay{z-index:2;opacity:1;transform:none;padding:34px 15px 14px;color:#d7ff70;background:linear-gradient(transparent,#070907ef)}
+.project-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.project-action{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:42px;padding:12px 14px;border:1px solid #3a4434;color:#c5cebb;font:9px var(--mono);letter-spacing:.35px;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.project-action span{color:var(--acid);font-size:14px}
+.project-action:hover{border-color:var(--acid);color:var(--acid);transform:translateY(-2px)}
+.project-action-primary{background:var(--acid);border-color:var(--acid);color:#11140b}
+.project-action-primary span{color:#11140b}
+.project-action-primary:hover{background:#ddff94;color:#11140b}
+.project-card .project-info{flex:1}
+@media(max-width:640px){.project-actions{gap:8px}.project-action{flex:1;gap:12px;padding:11px 10px;font-size:8px}.project-visual{height:230px}}
