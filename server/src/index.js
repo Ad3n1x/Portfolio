@@ -35,9 +35,9 @@ const Message = mongoose.models.Message || mongoose.model("Message", messageSche
 
 const initialProjects = [
   { number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack" },
-  { number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE MVP", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB"], url: "https://quick-cart-1m279f695-adeniran-victor-adebowales-projects.vercel.app" },
+  { number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE MVP", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
   { number: "003", title: "FlowPilot AI", kind: "AI WORKFLOW PRODUCT", description: "An AI-assisted workflow concept focused on turning natural-language requests into useful, structured actions.", technologies: ["REACT", "API DESIGN", "AI INTEGRATION"], url: "https://github.com/Ad3n1x/FlowPilot-AI" },
-  { number: "004", title: "WestCiti Restaurant & Lounge", kind: "CLIENT WEBSITE CONCEPT", description: "A digital presence concept for an upscale restaurant and lounge, designed around menus, occasions, and enquiries.", technologies: ["RESPONSIVE UI", "UX", "WEB DESIGN"], url: "https://westciti-bq5zb82q9-adeniran-victor-adebowales-projects.vercel.app" }
+  { number: "004", title: "WestCiti Restaurant & Lounge", kind: "CLIENT WEBSITE CONCEPT", description: "A digital presence concept for an upscale restaurant and lounge, designed around menus, occasions, and enquiries.", technologies: ["RESPONSIVE UI", "UX", "WEB DESIGN"], url: "https://westciti.vercel.app" }
 ];
 
 app.get("/api/health", (_req, res) => res.json({ status: "ok", database: mongoose.connection.readyState === 1 ? "connected" : "disconnected", app: "AD3N1X Portfolio API" }));
