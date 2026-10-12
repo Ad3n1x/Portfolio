@@ -5,8 +5,8 @@ const featured = [
   {
     name: "UNI-TRACK",
     type: "PRODUCTIVITY / WEB APP",
-    description: "A productivity-focused web app designed to help users organise activities, track progress, and keep daily goals visible. Its direction centres on practical workflows, a clear user experience, and privacy-conscious design.",
-    details: "UNI-TRACK explores how everyday tracking and productivity workflows can live together in one accessible digital experience. The goal is to help users organise activities, review progress, and approach daily goals with more structure, while keeping the interface straightforward and the product privacy-conscious. This project reflects an interest in building useful tools around real routines rather than adding complexity for its own sake.",
+    description: "A privacy-first productivity and tracking ecosystem designed to help users organise activities, keep daily goals visible, and build a clearer picture of their progress through a straightforward digital experience.",
+    details: "UNI-TRACK brings everyday tracking and productivity workflows into one accessible web experience. Its aim is to help users organise activities, review progress, and approach daily goals with more structure, while keeping the interface practical and the product privacy-conscious. Rather than adding complexity for its own sake, the project explores how useful tools can support real routines and make personal productivity easier to manage. It reflects an interest in building digital experiences that balance clarity, usefulness, and thoughtful product design."
     focus: ["Productivity workflows", "Progress tracking", "Privacy-conscious design", "User experience"],
     stack: ["React", "JavaScript", "Vite"],
     live: "https://unitrack-app.vercel.app/unitrack",
@@ -16,8 +16,8 @@ const featured = [
   {
     name: "QuickCart",
     type: "FULL-STACK LEARNING PROJECT",
-    description: "A commerce MVP exploring how online storefronts and product catalogues can support businesses that sell through WhatsApp. It connects familiar messaging-based selling with a more organised shopping and ordering experience.",
-    details: "QuickCart explores a practical bridge between messaging-based commerce and a structured online storefront. Its full-stack direction brings together a React interface and a Node.js, Express, and MongoDB backend, creating a foundation for product data, API-driven workflows, and commerce features. The concept is centred on reducing friction between discovering a product and starting an order, with room to grow seller-side tools as the project develops.",
+    description: "A WhatsApp-first commerce MVP exploring how digital storefronts and product catalogues can help businesses organise online selling and make it easier for customers to move from product discovery to an order.",
+    details: "QuickCart explores a practical bridge between messaging-based commerce and a structured online shopping experience. The project’s full-stack direction combines a React-based interface with a Node.js, Express, and MongoDB backend, creating a foundation for product data, API-driven workflows, and commerce functionality. Its central idea is to reduce friction between discovering a product and starting a purchase, especially for businesses that already communicate with customers through WhatsApp. The concept also leaves room for future seller-side tools and more organised order management as the project develops."
     focus: ["E-commerce workflows", "WhatsApp-first commerce", "API development", "Full-stack architecture"],
     stack: ["React", "Node.js", "Express", "MongoDB"],
     live: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app",
