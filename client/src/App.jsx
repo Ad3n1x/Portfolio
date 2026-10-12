@@ -93,12 +93,12 @@ export default function App() {
 
   const pinnedRepoNames = new Set(featuredOverrides.map((project) => project.repo.split("/").pop().toLowerCase()));
   const autoFeatured = repositories
-    .filter((repo) => !repo.fork && !repo.archived && !/west\\s*citi|portfolio/i.test(repo.name))
+    .filter((repo) => !repo.fork && !repo.archived && !/west\s*citi|portfolio/i.test(repo.name))
     .filter((repo) => !pinnedRepoNames.has(repo.name.toLowerCase()))
-    .filter((repo) => typeof repo.homepage === "string" && /^https?:\\/\\//i.test(repo.homepage.trim()))
+    .filter((repo) => typeof repo.homepage === "string" && /^https?:\/\//i.test(repo.homepage.trim()))
     .filter((repo) => Boolean(repo.description && repo.description.trim()))
     .map((repo, index) => ({
-      name: repo.name.replace(/[-_]+/g, " ").replace(/\\b\\w/g, (letter) => letter.toUpperCase()),
+      name: repo.name.replace(/[-_]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()),
       type: `${repo.language || "WEB"} / COMMUNITY PROJECT`,
       description: repo.description.trim(),
       details: `${repo.description.trim()} This project was discovered automatically from the public AD3N1X GitHub repositories. Visit the live project to explore it, or inspect the source to see how it was built.`,
