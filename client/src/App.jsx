@@ -20,15 +20,6 @@ const featured = [
     repo: "https://github.com/Ad3n1x/QuickCart",
     code: "02"
   },
-  {
-    name: "AD3N1X / Portfolio",
-    type: "PERSONAL WEB / DESIGN SYSTEM",
-    description: "A personal portfolio rebuilt to present selected work, real repositories, current skills, and a direct contact path.",
-    stack: ["React", "Vite", "CSS"],
-    live: "https://portfolio-adeniran-victor-adebowales-projects.vercel.app",
-    repo: "https://github.com/Ad3n1x/Portfolio",
-    code: "03"
-  }
 ];
 
 const capabilities = [
@@ -43,7 +34,7 @@ function Arrow() { return <span aria-hidden="true" className="arrow">↗</span>;
 function ProjectCard({ project }) {
   return <article className="project-card">
     <div className="project-card-top"><span>SELECTED BUILD / {project.code}</span><span className="project-signal"><i /> PROJECT</span></div>
-    <div className="project-art" aria-hidden="true"><span className="art-orbit orbit-one" /><span className="art-orbit orbit-two" /><span className="art-mark">{project.name === "UNI-TRACK" ? "U/" : project.name === "QuickCart" ? "Q+" : "Aₓ"}</span><span className="art-index">{project.code}</span></div>
+    <div className="project-art" aria-hidden="true"><span className="art-orbit orbit-one" /><span className="art-orbit orbit-two" /><span className="art-mark">{project.name === "UNI-TRACK" ? "U/" : "Q+"}</span><span className="art-index">{project.code}</span></div>
     <div className="project-content"><p className="eyebrow">{project.type}</p><h3>{project.name}</h3><p className="project-description">{project.description}</p>
       <div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
       <div className="project-links"><a href={project.live} target="_blank" rel="noreferrer">OPEN PROJECT <Arrow /></a><a href={project.repo} target="_blank" rel="noreferrer">VIEW SOURCE <Arrow /></a></div>
