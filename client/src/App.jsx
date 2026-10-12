@@ -57,21 +57,28 @@ export default function App() {
         });
         if (!response.ok) throw new Error("GitHub API request failed");
         const data = await response.json();
-        const repos = data
-          .filter((repo) => !repo.fork && !repo.archived && repo.name.toLowerCase() !== "portfolio")
-          .slice(0, 8)
-          .map((repo, index) => ({
-            _id: `github-${repo.id}`,
-            number: String(index + 1).padStart(3, "0"),
+        const knownLiveSites = [
+          { _id: "live-unitrack", title: "UNI-TRACK", url: "https://unitrack-app.vercel.app/unitrack", description: "A privacy-first tracking and productivity ecosystem.", technologies: ["JAVASCRIPT", "PRODUCTIVITY", "LIVE WEBSITE"], kind: "LIVE PRODUCT / PRODUCTIVITY" },
+          { _id: "live-quickcart", title: "QuickCart", url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB", "LIVE WEBSITE"], kind: "FULL-STACK COMMERCE / LIVE WEBSITE" }
+        ];
+        const homepageSites = data
+          .filter((repo) => !repo.fork && !repo.archived && repo.name.toLowerCase() !== "portfolio" && repo.name.toLowerCase() !== "westciti" && typeof repo.homepage === "string" && /^https?:\/\//i.test(repo.homepage.trim()))
+          .map((repo) => ({
+            _id: `github-live-${repo.id}`,
             title: repo.name.replace(/[-_]/g, " "),
-            kind: repo.language ? `GITHUB REPOSITORY / ${repo.language.toUpperCase()}` : "GITHUB REPOSITORY",
-            description: repo.description || "Public repository by AD3N1X. Open the repository to explore its source code and latest updates.",
-            technologies: [repo.language, repo.stargazers_count ? `${repo.stargazers_count} STARS` : null, "SOURCE CODE"].filter(Boolean),
-            url: repo.html_url,
+            kind: repo.language ? `LIVE WEBSITE / ${repo.language.toUpperCase()}` : "LIVE WEBSITE",
+            description: repo.description || `A public AD3N1X project. Visit the live website.`,
+            technologies: [repo.language, "LIVE WEBSITE"].filter(Boolean),
+            url: repo.homepage.trim(),
             updatedAt: repo.updated_at
           }));
+        const combined = [...knownLiveSites];
+        for (const site of homepageSites) {
+          if (!combined.some((known) => known.url.replace(/\/$/, "").toLowerCase() === site.url.replace(/\/$/, "").toLowerCase())) combined.push(site);
+        }
+        const liveSites = combined.map((site, index) => ({ ...site, number: String(index + 1).padStart(3, "0") }));
         if (active) {
-          setGithubRepos(repos);
+          setGithubRepos(liveSites);
           setGithubStatus("synced");
           setGithubLastSynced(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
         }
@@ -137,10 +144,10 @@ export default function App() {
         <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING LOCAL FALLBACK" : "CONNECTING TO API"}</p>
       </section>
       <section id="github" className="section-wrap section-block github-section">
-        <div className="section-heading"><div><p className="eyebrow">GITHUB / LIVE REPOSITORY SYNC</p><h2>Fresh from<br /><span className="muted-heading">the source.</span></h2></div><div className="github-sync-tools"><p className="section-side">Public repositories are pulled directly from GitHub and refreshed automatically every five minutes.</p><button className="button github-sync-button" type="button" onClick={() => setGithubSyncTrigger((value) => value + 1)} disabled={githubStatus === "syncing"}>{githubStatus === "syncing" ? "SYNCING..." : "SYNC NOW"} <span>↻</span></button></div></div>
-        <p className="api-note"><span className={`api-dot ${githubStatus === "synced" ? "connected" : githubStatus === "offline" ? "offline" : ""}`} /> GITHUB: {githubStatus === "synced" ? `SYNCED · LAST CHECK ${githubLastSynced}` : githubStatus === "offline" ? "UNAVAILABLE · TRY AGAIN" : "FETCHING PUBLIC REPOSITORIES"}</p>
+        <div className="section-heading"><div><p className="eyebrow">LIVE WEBSITES / GITHUB AUTO-SYNC</p><h2>Live on<br /><span className="muted-heading">the web.</span></h2></div><div className="github-sync-tools"><p className="section-side">Live website links are synced from your public GitHub repositories and refreshed automatically every five minutes. WestCiti is excluded.</p><button className="button github-sync-button" type="button" onClick={() => setGithubSyncTrigger((value) => value + 1)} disabled={githubStatus === "syncing"}>{githubStatus === "syncing" ? "SYNCING..." : "SYNC NOW"} <span>↻</span></button></div></div>
+        <p className="api-note"><span className={`api-dot ${githubStatus === "synced" ? "connected" : githubStatus === "offline" ? "offline" : ""}`} /> WEBSITE SYNC: {githubStatus === "synced" ? `UPDATED · LAST CHECK ${githubLastSynced}` : githubStatus === "offline" ? "UNAVAILABLE · TRY AGAIN" : "FETCHING LIVE WEBSITE LINKS"}</p>
         {githubRepos.length ? <div className="project-grid github-project-grid">{githubRepos.map((project, index) => <ProjectCard key={project._id} project={project} index={index} />)}</div> : <p className="github-empty">{githubStatus === "offline" ? "GitHub couldn't be reached right now. Your selected live projects above remain available." : "Loading public repositories from GitHub…"}</p>}
-        <p className="project-note"><span>*</span> Repository cards link to source code, not necessarily to a live deployment. Private repositories are never displayed.</p>
+        <p className="project-note"><span>*</span> Only configured live-site URLs and the two verified live projects are shown here. WestCiti is intentionally excluded; private repositories are never displayed.</p>
       </section>
       <section id="about" className="about-section"><div className="section-wrap about-layout">
         <div className="about-heading"><p className="eyebrow">02 / HOW I THINK</p><h2>Curiosity is<br />my starting<br /><span className="accent">point.</span></h2><div className="about-index">[ HUMAN.EXE ]</div></div>
