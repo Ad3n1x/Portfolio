@@ -58,3 +58,27 @@ button,a{ -webkit-tap-highlight-color:transparent }
   .contact-social>.arrow{grid-column:2;grid-row:1 / span 2}
   .principles{grid-template-columns:1fr}
 }
+
+
+/* Interaction upgrades: compact mobile navigation and searchable repository shelf */
+.header-actions{display:flex;align-items:center;gap:10px}
+.menu-toggle{display:none;background:transparent;border:1px solid #414a3e;color:var(--acid);padding:11px 12px;font:9px var(--mono);letter-spacing:.06em;cursor:pointer}
+.menu-toggle:hover,.menu-toggle:focus-visible{border-color:var(--acid);background:#171d14}
+.nav a:focus-visible,.header-contact:focus-visible,.btn:focus-visible,.project-links a:focus-visible,.case-study-toggle:focus-visible,.copy-email:focus-visible,.show-more:focus-visible,.repo-row:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
+.repo-search-wrap{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:14px 16px;border-bottom:1px solid #30382c;background:#151a12;align-items:center}
+.repo-search-wrap label{font:9px var(--mono);color:#a5b09a;letter-spacing:.06em}
+.repo-search-wrap>span{font:8px var(--mono);color:var(--acid)}
+.repo-search{grid-column:1 / -1;width:100%;min-width:0;background:#0c100b;color:#eef2e8;border:1px solid #3b4635;padding:12px 13px;font:11px var(--mono);outline:none;border-radius:0}
+.repo-search::placeholder{color:#697563}
+.repo-search:focus{border-color:var(--acid);box-shadow:0 0 0 2px #d5ff4518}
+.repo-no-results{margin:0;padding:24px 16px;color:#a5b09a;font-size:12px;line-height:1.7}
+@media(max-width:650px){
+  .header-actions{gap:8px}
+  .menu-toggle{display:inline-flex;align-items:center;justify-content:center;min-height:38px}
+  .header-contact{padding:10px 11px}
+  .nav.nav-open{display:flex;position:absolute;left:0;right:0;top:68px;padding:12px 18px 18px;background:rgba(11,13,12,.98);border-bottom:1px solid var(--line);flex-direction:column;gap:0;box-shadow:0 20px 28px #0006}
+  .nav.nav-open a{padding:15px 3px;border-bottom:1px solid #252d24;display:flex;justify-content:space-between;font-size:11px}
+  .nav.nav-open a:last-child{border-bottom:0}
+  .repo-search-wrap{padding:13px 11px}
+}
+@media(prefers-reduced-motion:reduce){.project-card,.btn,.arrow,.case-study-details{animation:none!important;transition:none!important}}
