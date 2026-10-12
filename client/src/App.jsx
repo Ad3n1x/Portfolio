@@ -35,9 +35,6 @@ export default function App() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);
   const [notice, setNotice] = useState("");
-  const [githubRepos, setGithubRepos] = useState([]);
-  const [githubStatus, setGithubStatus] = useState("syncing");
-  const [githubLastSynced, setGithubLastSynced] = useState("");
 
   useEffect(() => {
     let active = true;
@@ -48,35 +45,7 @@ export default function App() {
     return () => { active = false; };
   }, []);
 
-  useEffect(() => {
-    let active = true;
-    const syncPublicRepos = async () => {
-      if (active) setGithubStatus("syncing");
-      try {
-        const response = await fetch("https://api.github.com/users/Ad3n1x/repos?type=public&sort=updated&per_page=100", {
-          headers: { Accept: "application/vnd.github+json" }
-        });
-        if (!response.ok) throw new Error("GitHub API request failed");
-        const data = await response.json();
-        const knownLiveSites = [
-          { _id: "live-unitrack", title: "UNI-TRACK", url: "https://unitrack-app.vercel.app/unitrack", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app/unitrack", description: "A privacy-first tracking and productivity ecosystem.", technologies: ["JAVASCRIPT", "PRODUCTIVITY", "LIVE WEBSITE"], kind: "LIVE PRODUCT / PRODUCTIVITY" },
-          { _id: "live-quickcart", title: "QuickCart", url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", description: "A WhatsApp-first storefront for independent sellers with catalogues, orders, customer flows, and seller tools.", technologies: ["REACT", "NODE.JS", "MONGODB", "LIVE WEBSITE"], kind: "FULL-STACK COMMERCE / SAAS" }
-        ];
-        const combined = [...knownLiveSites];
-        const liveSites = combined.map((site, index) => ({ ...site, number: String(index + 1).padStart(3, "0") }));
-        if (active) {
-          setGithubRepos(liveSites);
-          setGithubStatus("synced");
-          setGithubLastSynced(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
-        }
-      } catch {
-        if (active) setGithubStatus("offline");
-      }
-    };
-    syncPublicRepos();
-    const interval = window.setInterval(syncPublicRepos, 5 * 60 * 1000);
-    return () => { active = false; window.clearInterval(interval); };
-  }, []);
+
 
   const updateField = (event) => setForm({ ...form, [event.target.name]: event.target.value });
 
@@ -103,7 +72,7 @@ export default function App() {
     <div className="ambient-grid" aria-hidden="true" />
     <header className="site-header">
       <a className="wordmark" href="#home" aria-label="AD3N1X home">AD<span>3</span>N1X<span className="wordmark-cursor">_</span></a>
-      <nav aria-label="Main navigation"><a href="#work">WORK<span>01</span></a><a href="#github">GITHUB<span>02</span></a><a href="#about">MINDSET<span>03</span></a><a href="#skills">STACK<span>03</span></a></nav>
+      <nav aria-label="Main navigation"><a href="#work">WORK<span>01</span></a><a href="#work">PROJECTS<span>02</span></a><a href="#about">MINDSET<span>03</span></a><a href="#skills">STACK<span>03</span></a></nav>
       <a className="header-cta" href="#contact">LET'S CONNECT <span>↗</span></a>
     </header>
     <main id="home">
@@ -125,16 +94,10 @@ export default function App() {
       </section>
       <div className="ticker"><div>BUILD WITH INTENT <b>✳</b> HTML5 <b>✳</b> CSS3 <b>✳</b> BOOTSTRAP <b>✳</b> JAVASCRIPT <b>✳</b> DEBUG / LEARN / REPEAT <b>✳</b> BUILD WITH INTENT <b>✳</b> HTML5 <b>✳</b> CSS3 <b>✳</b> BOOTSTRAP <b>✳</b> JAVASCRIPT <b>✳</b></div></div>
       <section id="work" className="section-wrap section-block">
-        <div className="section-heading"><div><p className="eyebrow">01 / SELECTED BUILDS</p><h2>Proof of work<span className="accent">.</span><br /><span className="muted-heading">Not just talk.</span></h2></div><p className="section-side">Small projects. Real practice. Each build teaches me something new about layout, responsiveness, and how the web behaves.</p></div>
+        <div className="section-heading"><div><p className="eyebrow">01 / SELECTED BUILDS</p><h2>Proof of work<span className="accent">.</span><br /><span className="muted-heading">Not just talk.</span></h2></div><p className="section-side">Two selected builds, shown with live-site screenshots. Open the preview to explore each website, or inspect its source code on GitHub.</p></div>
         <div className="project-grid">{projects.map((project, index) => <ProjectCard key={project._id || project.url || project.title} project={project} index={index} />)}</div>
         <p className="project-note"><span>*</span> These are independent practice projects and recreations, not official products or brand affiliations.</p>
-        <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING LOCAL FALLBACK" : "CONNECTING TO API"}</p>
-      </section>
-      <section id="github" className="section-wrap section-block github-section">
-        <div className="section-heading"><div><p className="eyebrow">LIVE WEBSITES / GITHUB AUTO-SYNC</p><h2>Live on<br /><span className="muted-heading">the web.</span></h2></div><div className="github-sync-tools"><p className="section-side">I judged the live projects for product usefulness, technical range, and how well they represent your current skills. These are the two I would lead with.</p></div></div>
-        <p className="api-note"><span className={`api-dot ${githubStatus === "synced" ? "connected" : githubStatus === "offline" ? "offline" : ""}`} /> FEATURED SHORTLIST: {githubStatus === "synced" ? `UPDATED · LAST CHECK ${githubLastSynced}` : githubStatus === "offline" ? "UNAVAILABLE · TRY AGAIN" : "FETCHING LIVE WEBSITE LINKS"}</p>
-        {githubRepos.length ? <div className="project-grid github-project-grid">{githubRepos.map((project, index) => <ProjectCard key={project._id} project={project} index={index} />)}</div> : <p className="github-empty">{githubStatus === "offline" ? "GitHub couldn't be reached right now. Your selected live projects above remain available." : "Loading public repositories from GitHub…"}</p>}
-        <p className="project-note"><span>*</span> Only configured live-site URLs and the two verified live projects are shown here. WestCiti is intentionally excluded; private repositories are never displayed.</p>
+        <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING SELECTED PROJECTS" : "LOADING SELECTED PROJECTS"}</p>
       </section>
       <section id="about" className="about-section"><div className="section-wrap about-layout">
         <div className="about-heading"><p className="eyebrow">02 / HOW I THINK</p><h2>Curiosity is<br />my starting<br /><span className="accent">point.</span></h2><div className="about-index">[ HUMAN.EXE ]</div></div>
