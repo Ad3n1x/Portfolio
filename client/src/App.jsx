@@ -46,11 +46,25 @@ const capabilities = [
 
 function Arrow() { return <span aria-hidden="true" className="arrow">↗</span>; }
 
+function getProjectMark(name = "") {
+  const normalized = name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  if (normalized === "unitrack") return "U/";
+  if (normalized === "quickcart") return "Q+";
+  if (normalized.includes("piggyvest")) return "PV";
+  if (normalized.includes("mixlr")) return "MX";
+  if (normalized.includes("blog")) return "B/";
+  if (normalized.includes("quiz")) return "QZ";
+  const words = name.trim().split(/[\\s_-]+/).filter(Boolean);
+  return words.length > 1
+    ? words.slice(0, 2).map((word) => word[0]).join("").toUpperCase()
+    : (words[0] || "PR").slice(0, 2).toUpperCase();
+}
+
 function ProjectCard({ project }) {
   const [detailsOpen, setDetailsOpen] = useState(false);
   return <article className="project-card">
     <div className="project-card-top"><span>SELECTED BUILD / {project.code}</span><span className="project-signal"><i /> PROJECT</span></div>
-    <div className="project-art" aria-hidden="true"><span className="art-orbit orbit-one" /><span className="art-orbit orbit-two" /><span className="art-mark">{project.name === "UNI-TRACK" ? "U/" : project.name === "QuickCart" ? "Q+" : "Q?"}</span><span className="art-index">{project.code}</span></div>
+    <div className="project-art" aria-hidden="true"><span className="art-orbit orbit-one" /><span className="art-orbit orbit-two" /><span className="art-mark">{getProjectMark(project.name)}</span><span className="art-index">{project.code}</span></div>
     <div className="project-content"><p className="eyebrow">{project.type}</p><h3>{project.name}</h3><p className="project-description">{project.description}</p>
       <div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
       <button className="case-study-toggle" type="button" aria-expanded={detailsOpen} onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "CLOSE CASE STUDY −" : "EXPLORE CASE STUDY +"}<span>{detailsOpen ? "LESS" : "OVERVIEW"}</span></button>
