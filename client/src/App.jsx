@@ -75,27 +75,6 @@ function ProjectCard({ project }) {
 }
 
 
-function LivePreviewCard({ project, index }) {
-  const [previewState, setPreviewState] = useState("loading");
-  const waitForQuickCart = /quickcart/i.test(project.name);
-  const screenshotUrl = "https://image.thum.io/get/width/1200/crop/720/" + (waitForQuickCart ? "wait/15/" : "") + project.live;
-
-  return <article className="live-preview-card">
-    <a className="live-preview-image" href={project.live} target="_blank" rel="noreferrer" aria-label={"Open " + project.name + " live website"}>
-      {previewState !== "error" && <img src={screenshotUrl} alt={project.name + " website preview"} loading={waitForQuickCart ? "eager" : "lazy"} onLoad={() => setPreviewState("ready")} onError={() => setPreviewState("error")} />}
-      {previewState === "loading" && <span className="preview-state">CAPTURING LIVE PREVIEW<span className="preview-dots">…</span></span>}
-      {previewState === "error" && <span className="preview-fallback"><b>{getProjectMark(project.name)}</b><small>Preview unavailable</small></span>}
-      {previewState === "ready" && <span className="preview-ready">PREVIEW READY <i /></span>}
-      <span className="preview-open">OPEN LIVE ↗</span>
-    </a>
-    <div className="live-preview-info">
-      <div><span className="preview-number">{String(index + 1).padStart(2, "0")}</span><h3>{project.name}</h3></div>
-      <p>{project.description}</p>
-      <div className="live-preview-bottom"><span>{project.stack?.slice(0, 3).join(" · ") || "WEB PROJECT"}</span><a href={project.repo} target="_blank" rel="noreferrer">SOURCE ↗</a></div>
-    </div>
-  </article>;
-}
-
 export default function App() {
   const [repositories, setRepositories] = useState([]);
   const [repoState, setRepoState] = useState("loading");
@@ -125,34 +104,6 @@ export default function App() {
     }
   };
 
-  const copyEmail = () => copyContact("adenix271@gmail.com");
-
-  const allContactInfo = "AD3N1X — CONTACT INFORMATION\\nEmail: adenix271@gmail.com\\nAlternate email: adeniranabe@outlook.com\\nPhone: 0703 923 7610\\nPhone: 0901 695 3597\\nWhatsApp: 0703 923 7610\\nWhatsApp link: https://wa.me/2347039237610\\nGitHub: https://github.com/Ad3n1x";
-
-  const pinnedRepoNames = new Set(featuredOverrides.map((project) => project.repo.split("/").pop().toLowerCase()));
-  const autoFeatured = repositories
-    .filter((repo) => !repo.fork && !repo.archived && !/west\s*citi|portfolio/i.test(repo.name))
-    .filter((repo) => !pinnedRepoNames.has(repo.name.toLowerCase()))
-    .filter((repo) => typeof repo.homepage === "string" && /^https?:\/\//i.test(repo.homepage.trim()))
-    .filter((repo) => Boolean(repo.description && repo.description.trim()))
-    .map((repo, index) => ({
-      name: repo.name.replace(/[-_]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()),
-      type: `${repo.language || "WEB"} / COMMUNITY PROJECT`,
-      description: repo.description.trim(),
-      details: `${repo.description.trim()} This project was discovered automatically from the public AD3N1X GitHub repositories. Visit the live project to explore it, or inspect the source to see how it was built.`,
-      focus: ["Automatically discovered from GitHub", repo.language ? `${repo.language} development` : "Web development", "Independent project"],
-      stack: repo.language ? [repo.language] : ["Web project"],
-      live: repo.homepage.trim(),
-      repo: repo.html_url,
-      code: String(featuredOverrides.length + index + 1).padStart(2, "0"),
-      autoDiscovered: true,
-      updatedAt: repo.updated_at
-    }));
-  const projectsToFeature = [
-    ...featuredOverrides,
-    ...autoFeatured.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
-  ];
-  const liveProjects = [...new Map(projectsToFeature.filter((project) => project.live && !/west\s*citi|portfolio/i.test(project.name)).map((project) => [project.live.replace(/\/$/, ""), project])).values()];
   const projectsToShow = showAll ? repositories : repositories.slice(0, 8);
   const filteredRepositories = projectsToShow.filter((repo) => `${repo.name} ${repo.description || ""} ${repo.language || ""}`.toLowerCase().includes(repoQuery.trim().toLowerCase()));
 
@@ -190,11 +141,7 @@ export default function App() {
 
       <section id="work" className="section page-width">
         <div className="section-head"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Made to be<br /><span>explored.</span></h2></div><p className="section-note">Two featured builds, chosen to lead with product thinking and practical engineering. Open the live experience or inspect the source.</p></div>
-        <div className="featured-grid featured-grid-top">{projectsToFeature.slice(0, 2).map((project) => <ProjectCard key={project.repo} project={project} />)}</div>
-        <p className="section-note auto-feature-note">Featured work is curated; the live gallery below discovers public projects from GitHub automatically.</p>
-        <div className="live-work-head"><div><p className="eyebrow">LIVE ON THE WEB</p><h3>See it in action<span>.</span></h3></div><p>Real site previews, live links, and source code in one place. WestCiti and the portfolio itself are intentionally excluded.</p></div>
-        <div className="live-preview-grid">{liveProjects.map((project, index) => <LivePreviewCard key={project.live} project={project} index={index} />)}</div>
-        {repoState === "ready" && <p className="live-gallery-footnote">{liveProjects.length} live project link{liveProjects.length === 1 ? "" : "s"} found from curated builds and public GitHub repositories. Preview availability is checked in your browser as each screenshot loads.</p>}
+        <div className="featured-grid">{featuredOverrides.map((project) => <ProjectCard key={project.repo} project={project} />)}</div>
       </section>
 
       <section id="approach" className="approach-section">
@@ -220,7 +167,7 @@ export default function App() {
       </section>
 
       <section id="contact" className="contact-section"><div className="page-width contact-layout"><div><p className="eyebrow">05 / OPEN CHANNEL</p><h2>Have a useful<br />problem to solve<span>?</span></h2><p className="contact-intro">Open to junior opportunities, internships, thoughtful collaborations, and projects where I can contribute while learning.</p></div>
-        <div className="contact-card"><span className="contact-label">START A CONVERSATION</span><a className="contact-email" href="mailto:adenix271@gmail.com">adenix271@gmail.com <Arrow /></a><button className="copy-email" onClick={() => copyContact("adenix271@gmail.com")}>COPY EMAIL <span>⧉</span></button><a className="contact-social" href="mailto:adeniranabe@outlook.com"><span>ALTERNATE EMAIL</span><strong>adeniranabe@outlook.com</strong><Arrow /></a><button className="copy-email" onClick={() => copyContact("adeniranabe@outlook.com")}>COPY ALTERNATE EMAIL <span>⧉</span></button><div className="contact-divider" /><a className="contact-social" href="tel:+2347039237610"><span>PHONE</span><strong>0703 923 7610</strong><Arrow /></a><button className="copy-email" onClick={() => copyContact("0703 923 7610")}>COPY PHONE NUMBER <span>⧉</span></button><a className="contact-social" href="tel:+2349016953597"><span>PHONE</span><strong>0901 695 3597</strong><Arrow /></a><button className="copy-email" onClick={() => copyContact("0901 695 3597")}>COPY PHONE NUMBER <span>⧉</span></button><a className="contact-social" href="https://wa.me/2347039237610" target="_blank" rel="noreferrer"><span>WHATSAPP</span><strong>0703 923 7610</strong><Arrow /></a><button className="copy-email" onClick={() => copyContact("0703 923 7610")}>COPY WHATSAPP NUMBER <span>⧉</span></button><div className="contact-divider" /><a className="contact-social" href={GITHUB} target="_blank" rel="noreferrer"><span>GITHUB</span><strong>@Ad3n1x</strong><Arrow /></a><a className="contact-social" href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><span>LINKEDIN</span><strong>Find me professionally</strong><Arrow /></a><button className="copy-email copy-all-contact" onClick={() => copyContact(allContactInfo)}>COPY ALL CONTACT INFO <span>⧉</span></button></div>
+        <div className="contact-card"><span className="contact-label">START A CONVERSATION</span><a className="contact-email" href="mailto:adenix271@gmail.com">adenix271@gmail.com <Arrow /></a><div className="contact-divider" /><a className="contact-social" href="https://wa.me/2347039237610" target="_blank" rel="noreferrer"><span>WHATSAPP</span><strong>0703 923 7610</strong><Arrow /></a><div className="contact-divider" /><a className="contact-social" href={GITHUB} target="_blank" rel="noreferrer"><span>GITHUB</span><strong>@Ad3n1x</strong><Arrow /></a></div>
       </div></section>
     </main>
     <footer className="footer page-width"><a className="brand" href="#home">AD<span>3</span>N1X<span className="brand-cursor">_</span></a><p>Built with curiosity. Refined through practice.</p><a href="#home">BACK TO TOP ↑</a><span>© AD3N1X · 2026</span></footer>
