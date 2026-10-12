@@ -5,7 +5,9 @@ const featured = [
   {
     name: "UNI-TRACK",
     type: "PRODUCTIVITY / WEB APP",
-    description: "A public-facing productivity and tracking experience focused on practical workflows, useful daily progress, and a privacy-first direction.",
+    description: "A productivity-focused web app designed to help users organise activities, track progress, and keep daily goals visible. Its direction centres on practical workflows, a clear user experience, and privacy-conscious design.",
+    details: "UNI-TRACK explores how everyday tracking and productivity workflows can live together in one accessible digital experience. The goal is to help users organise activities, review progress, and approach daily goals with more structure, while keeping the interface straightforward and the product privacy-conscious. This project reflects an interest in building useful tools around real routines rather than adding complexity for its own sake.",
+    focus: ["Productivity workflows", "Progress tracking", "Privacy-conscious design", "User experience"],
     stack: ["React", "JavaScript", "Vite"],
     live: "https://unitrack-app.vercel.app/unitrack",
     repo: "https://github.com/Ad3n1x/UNI-TRACK",
@@ -14,7 +16,9 @@ const featured = [
   {
     name: "QuickCart",
     type: "FULL-STACK LEARNING PROJECT",
-    description: "A WhatsApp-first commerce MVP exploring storefronts, product catalogues, order flows, and seller tools.",
+    description: "A commerce MVP exploring how online storefronts and product catalogues can support businesses that sell through WhatsApp. It connects familiar messaging-based selling with a more organised shopping and ordering experience.",
+    details: "QuickCart explores a practical bridge between messaging-based commerce and a structured online storefront. Its full-stack direction brings together a React interface and a Node.js, Express, and MongoDB backend, creating a foundation for product data, API-driven workflows, and commerce features. The concept is centred on reducing friction between discovering a product and starting an order, with room to grow seller-side tools as the project develops.",
+    focus: ["E-commerce workflows", "WhatsApp-first commerce", "API development", "Full-stack architecture"],
     stack: ["React", "Node.js", "Express", "MongoDB"],
     live: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app",
     repo: "https://github.com/Ad3n1x/QuickCart",
@@ -32,11 +36,14 @@ const capabilities = [
 function Arrow() { return <span aria-hidden="true" className="arrow">↗</span>; }
 
 function ProjectCard({ project }) {
+  const [detailsOpen, setDetailsOpen] = useState(false);
   return <article className="project-card">
     <div className="project-card-top"><span>SELECTED BUILD / {project.code}</span><span className="project-signal"><i /> PROJECT</span></div>
     <div className="project-art" aria-hidden="true"><span className="art-orbit orbit-one" /><span className="art-orbit orbit-two" /><span className="art-mark">{project.name === "UNI-TRACK" ? "U/" : "Q+"}</span><span className="art-index">{project.code}</span></div>
     <div className="project-content"><p className="eyebrow">{project.type}</p><h3>{project.name}</h3><p className="project-description">{project.description}</p>
       <div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
+      <button className="case-study-toggle" type="button" aria-expanded={detailsOpen} onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "CLOSE CASE STUDY −" : "EXPLORE CASE STUDY +"}<span>{detailsOpen ? "LESS" : "OVERVIEW"}</span></button>
+      {detailsOpen && <div className="case-study-details"><p>{project.details}</p><h4>PROJECT FOCUS</h4><ul>{project.focus.map((item) => <li key={item}>{item}</li>)}</ul></div>}
       <div className="project-links"><a href={project.live} target="_blank" rel="noreferrer">OPEN PROJECT <Arrow /></a><a href={project.repo} target="_blank" rel="noreferrer">VIEW SOURCE <Arrow /></a></div>
     </div>
   </article>;
