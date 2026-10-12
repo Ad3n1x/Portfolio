@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 const fallbackProjects = [
-  { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack" },
-  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE MVP", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
+  { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app/unitrack" },
+  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE / SAAS", description: "A WhatsApp-first storefront for independent sellers, with product catalogues, orders, customers, seller tools, and a MongoDB-backed API.", technologies: ["REACT", "NODE.JS", "EXPRESS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
 ];
 
 const skills = [
@@ -41,7 +41,7 @@ export default function App() {
     let active = true;
     fetch(`${API_URL}/api/projects`)
       .then((response) => { if (!response.ok) throw new Error("API unavailable"); return response.json(); })
-      .then((data) => { if (active && Array.isArray(data.projects) && data.projects.length) setProjects(data.projects); if (active) setApiStatus("connected"); })
+      .then((data) => { if (active && Array.isArray(data.projects) && data.projects.length) { setProjects(fallbackProjects.map((featured) => { const match = data.projects.find((item) => (item.title || "").toLowerCase() === featured.title.toLowerCase() || item.url === featured.url); return { ...featured, ...(match || {}), image: match?.image || featured.image, sourceUrl: match?.sourceUrl || featured.sourceUrl }; })); } if (active) setApiStatus("connected"); })
       .catch(() => { if (active) setApiStatus("offline"); });
     return () => { active = false; };
   }, []);
@@ -57,8 +57,8 @@ export default function App() {
         if (!response.ok) throw new Error("GitHub API request failed");
         const data = await response.json();
         const knownLiveSites = [
-          { _id: "live-unitrack", title: "UNI-TRACK", url: "https://unitrack-app.vercel.app/unitrack", description: "A privacy-first tracking and productivity ecosystem.", technologies: ["JAVASCRIPT", "PRODUCTIVITY", "LIVE WEBSITE"], kind: "LIVE PRODUCT / PRODUCTIVITY" },
-          { _id: "live-quickcart", title: "QuickCart", url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB", "LIVE WEBSITE"], kind: "FULL-STACK COMMERCE / LIVE WEBSITE" }
+          { _id: "live-unitrack", title: "UNI-TRACK", url: "https://unitrack-app.vercel.app/unitrack", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app/unitrack", description: "A privacy-first tracking and productivity ecosystem.", technologies: ["JAVASCRIPT", "PRODUCTIVITY", "LIVE WEBSITE"], kind: "LIVE PRODUCT / PRODUCTIVITY" },
+          { _id: "live-quickcart", title: "QuickCart", url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", description: "A WhatsApp-first storefront for independent sellers with catalogues, orders, customer flows, and seller tools.", technologies: ["REACT", "NODE.JS", "MONGODB", "LIVE WEBSITE"], kind: "FULL-STACK COMMERCE / SAAS" }
         ];
         const homepageSites = data
           .filter((repo) => !repo.fork && !repo.archived && repo.name.toLowerCase() !== "portfolio" && repo.name.toLowerCase() !== "westciti" && typeof repo.homepage === "string" && /^https?:\/\//i.test(repo.homepage.trim()))
@@ -143,8 +143,8 @@ export default function App() {
         <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING LOCAL FALLBACK" : "CONNECTING TO API"}</p>
       </section>
       <section id="github" className="section-wrap section-block github-section">
-        <div className="section-heading"><div><p className="eyebrow">LIVE WEBSITES / GITHUB AUTO-SYNC</p><h2>Live on<br /><span className="muted-heading">the web.</span></h2></div><div className="github-sync-tools"><p className="section-side">Live website links are synced from your public GitHub repositories and refreshed automatically every five minutes. WestCiti is excluded.</p></div></div>
-        <p className="api-note"><span className={`api-dot ${githubStatus === "synced" ? "connected" : githubStatus === "offline" ? "offline" : ""}`} /> WEBSITE SYNC: {githubStatus === "synced" ? `UPDATED · LAST CHECK ${githubLastSynced}` : githubStatus === "offline" ? "UNAVAILABLE · TRY AGAIN" : "FETCHING LIVE WEBSITE LINKS"}</p>
+        <div className="section-heading"><div><p className="eyebrow">LIVE WEBSITES / GITHUB AUTO-SYNC</p><h2>Live on<br /><span className="muted-heading">the web.</span></h2></div><div className="github-sync-tools"><p className="section-side">I judged the live projects for product usefulness, technical range, and how well they represent your current skills. These are the two I would lead with.</p></div></div>
+        <p className="api-note"><span className={`api-dot ${githubStatus === "synced" ? "connected" : githubStatus === "offline" ? "offline" : ""}`} /> FEATURED SHORTLIST: {githubStatus === "synced" ? `UPDATED · LAST CHECK ${githubLastSynced}` : githubStatus === "offline" ? "UNAVAILABLE · TRY AGAIN" : "FETCHING LIVE WEBSITE LINKS"}</p>
         {githubRepos.length ? <div className="project-grid github-project-grid">{githubRepos.map((project, index) => <ProjectCard key={project._id} project={project} index={index} />)}</div> : <p className="github-empty">{githubStatus === "offline" ? "GitHub couldn't be reached right now. Your selected live projects above remain available." : "Loading public repositories from GitHub…"}</p>}
         <p className="project-note"><span>*</span> Only configured live-site URLs and the two verified live projects are shown here. WestCiti is intentionally excluded; private repositories are never displayed.</p>
       </section>
