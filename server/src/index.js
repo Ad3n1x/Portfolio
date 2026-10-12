@@ -34,9 +34,10 @@ const Project = mongoose.models.Project || mongoose.model("Project", projectSche
 const Message = mongoose.models.Message || mongoose.model("Message", messageSchema);
 
 const initialProjects = [
-  { number: "001", title: "PiggyVest UI study", kind: "INTERFACE RECREATION", description: "Practising interface structure, spacing, and visual consistency through a front-end recreation.", technologies: ["HTML", "CSS", "BOOTSTRAP"], url: "https://ad3n1x.github.io/PIGGYVEST/", image: "https://raw.githubusercontent.com/Ad3n1x/Portfolio/main/multimedia/Screenshot%202025-09-18%20221344.png" },
-  { number: "002", title: "Humankind", kind: "VISUAL WEB PROJECT", description: "A themed web experience focused on content hierarchy and presenting a clear visual idea.", technologies: ["HTML", "CSS", "LAYOUT"], url: "https://ad3n1x.github.io/HUMANKIND/", image: "https://raw.githubusercontent.com/Ad3n1x/Portfolio/main/multimedia/Screenshot%202025-09-18%20235509.png" },
-  { number: "003", title: "Thoughtbot-inspired page", kind: "WEB DESIGN RECREATION", description: "A practice build exploring section rhythm, typography, and responsive page composition.", technologies: ["HTML", "CSS", "JAVASCRIPT"], url: "https://ad3n1x.github.io/Thought-Bot-11/" }
+  { number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack" },
+  { number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE MVP", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB"], url: "https://github.com/Ad3n1x/QuickCart" },
+  { number: "003", title: "FlowPilot AI", kind: "AI WORKFLOW PRODUCT", description: "An AI-assisted workflow concept focused on turning natural-language requests into useful, structured actions.", technologies: ["REACT", "API DESIGN", "AI INTEGRATION"], url: "https://github.com/Ad3n1x/FlowPilot-AI" },
+  { number: "004", title: "WestCiti Restaurant & Lounge", kind: "CLIENT WEBSITE CONCEPT", description: "A digital presence concept for an upscale restaurant and lounge, designed around menus, occasions, and enquiries.", technologies: ["RESPONSIVE UI", "UX", "WEB DESIGN"], url: "https://github.com/Ad3n1x/westciti" }
 ];
 
 app.get("/api/health", (_req, res) => res.json({ status: "ok", database: mongoose.connection.readyState === 1 ? "connected" : "disconnected", app: "AD3N1X Portfolio API" }));
