@@ -188,3 +188,5 @@ h2{letter-spacing:-4px}
 .live-web-actions a{font:9px var(--mono,monospace);letter-spacing:.3px;color:var(--acid,#c8ff39);white-space:nowrap}
 .live-web-actions a:hover{text-decoration:underline;text-underline-offset:4px}
 @media(max-width:640px){.live-web-item{grid-template-columns:30px minmax(0,1fr);gap:12px;padding:18px 0}.live-web-actions{grid-column:2;justify-content:flex-start;gap:18px}.live-web-copy p{font-size:12px}}
+
+.live-web-not-live{font:9px var(--mono,monospace);letter-spacing:.3px;color:#8d9484;white-space:nowrap}
