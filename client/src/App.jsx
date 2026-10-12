@@ -24,6 +24,17 @@ const featured = [
     repo: "https://github.com/Ad3n1x/QuickCart",
     code: "02"
   },
+  {
+    name: "Quiz App",
+    type: "EDUCATION / INTERACTIVE WEB APP",
+    description: "An interactive quiz experience for testing knowledge across different subjects, with a simple way for learners to challenge themselves and practise what they know.",
+    details: "Quiz App is a subject-based learning project built around quick knowledge checks. It gives users a place to explore questions across topics and test their understanding through an interactive web experience. The project reflects an interest in building useful, accessible tools for learning and engagement.",
+    focus: ["Interactive learning", "Knowledge checks", "Subject-based quizzes", "User experience"],
+    stack: ["HTML", "CSS", "JavaScript"],
+    live: "https://quiz-app-henna-omega.vercel.app",
+    repo: "https://github.com/Ad3n1x/Quiz-App",
+    code: "03"
+  },
 ];
 
 const capabilities = [
@@ -39,7 +50,7 @@ function ProjectCard({ project }) {
   const [detailsOpen, setDetailsOpen] = useState(false);
   return <article className="project-card">
     <div className="project-card-top"><span>SELECTED BUILD / {project.code}</span><span className="project-signal"><i /> PROJECT</span></div>
-    <div className="project-art" aria-hidden="true"><span className="art-orbit orbit-one" /><span className="art-orbit orbit-two" /><span className="art-mark">{project.name === "UNI-TRACK" ? "U/" : "Q+"}</span><span className="art-index">{project.code}</span></div>
+    <div className="project-art" aria-hidden="true"><span className="art-orbit orbit-one" /><span className="art-orbit orbit-two" /><span className="art-mark">{project.name === "UNI-TRACK" ? "U/" : project.name === "QuickCart" ? "Q+" : "Q?"}</span><span className="art-index">{project.code}</span></div>
     <div className="project-content"><p className="eyebrow">{project.type}</p><h3>{project.name}</h3><p className="project-description">{project.description}</p>
       <div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
       <button className="case-study-toggle" type="button" aria-expanded={detailsOpen} onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "CLOSE CASE STUDY −" : "EXPLORE CASE STUDY +"}<span>{detailsOpen ? "LESS" : "OVERVIEW"}</span></button>
