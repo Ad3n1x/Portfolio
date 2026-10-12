@@ -78,6 +78,8 @@ export default function App() {
   const [repositories, setRepositories] = useState([]);
   const [repoState, setRepoState] = useState("loading");
   const [showAll, setShowAll] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [repoQuery, setRepoQuery] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -129,13 +131,14 @@ export default function App() {
     ...autoFeatured.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
   ];
   const projectsToShow = showAll ? repositories : repositories.slice(0, 8);
+  const filteredRepositories = projectsToShow.filter((repo) => `${repo.name} ${repo.description || ""} ${repo.language || ""}`.toLowerCase().includes(repoQuery.trim().toLowerCase()));
 
   return <div className="site-shell">
     <div className="ambient" aria-hidden="true" />
     <header className="header">
       <a className="brand" href="#home" aria-label="AD3N1X home">AD<span>3</span>N1X<span className="brand-cursor">_</span></a>
-      <nav className="nav" aria-label="Main navigation"><a href="#work">WORK <span>01</span></a><a href="#approach">APPROACH <span>02</span></a><a href="#stack">STACK <span>03</span></a></nav>
-      <a className="header-contact" href="#contact">CONTACT <Arrow /></a>
+      <nav id="main-navigation" className={`nav ${mobileMenuOpen ? "nav-open" : ""}`} aria-label="Main navigation"><a onClick={() => setMobileMenuOpen(false)} href="#work">WORK <span>01</span></a><a onClick={() => setMobileMenuOpen(false)} href="#approach">APPROACH <span>02</span></a><a onClick={() => setMobileMenuOpen(false)} href="#stack">STACK <span>03</span></a></nav>
+      <div className="header-actions"><a className="header-contact" onClick={() => setMobileMenuOpen(false)} href="#contact">CONTACT <Arrow /></a><button className="menu-toggle" type="button" aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-controls="main-navigation" aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>{mobileMenuOpen ? "CLOSE −" : "MENU +"}</button></div>
     </header>
 
     <main id="home">
@@ -184,7 +187,7 @@ export default function App() {
 
       <section className="github-section"><div className="page-width github-layout"><div><p className="eyebrow">04 / THE REPOSITORY SHELF</p><h2>Open tabs.<br /><span>Open source.</span></h2><p className="github-intro">A live directory pulled from my public GitHub profile. Some repositories are experiments and practice projects; not every repository is a finished product.</p><a className="btn btn-primary" href={GITHUB} target="_blank" rel="noreferrer">ALL REPOSITORIES <Arrow /></a><p className="sync-state"><i className={repoState === "ready" ? "online" : ""} /> {repoState === "ready" ? "GITHUB DATA CONNECTED" : repoState === "offline" ? "GITHUB TEMPORARILY UNAVAILABLE" : "CONNECTING TO GITHUB"}</p></div>
           <div className="repo-panel"><div className="repo-panel-head"><span>AD3N1X / PUBLIC REPOSITORIES</span><span>{repoState === "ready" ? String(repositories.length).padStart(2, "0") : "—"}</span></div>
-            {repoState === "ready" && projectsToShow.length > 0 ? <div className="repo-list">{projectsToShow.map((repo) => <a className="repo-row" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span className="repo-glyph">⌘</span><span className="repo-name"><strong>{repo.name}</strong><small>{repo.description || "Independent project / experiment"}</small></span><span className="repo-language">{repo.language || "PROJECT"}</span><Arrow /></a>)}</div> : <div className="repo-empty"><span>⌁</span><p>{repoState === "offline" ? "Couldn't load the live list right now. You can still browse the GitHub profile directly." : "Loading public repositories…"}</p><a href={GITHUB} target="_blank" rel="noreferrer">OPEN GITHUB PROFILE ↗</a></div>}
+            {repoState === "ready" && projectsToShow.length > 0 ? <><div className="repo-search-wrap"><label htmlFor="repo-search">FIND A REPOSITORY</label><input id="repo-search" className="repo-search" type="search" placeholder="Search name, description, language…" value={repoQuery} onChange={(event) => setRepoQuery(event.target.value)} /><span>{filteredRepositories.length} MATCH{filteredRepositories.length === 1 ? "" : "ES"}</span></div><div className="repo-list">{filteredRepositories.length ? filteredRepositories.map((repo) => <a className="repo-row" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span className="repo-glyph">⌘</span><span className="repo-name"><strong>{repo.name}</strong><small>{repo.description || "Independent project / experiment"}</small></span><span className="repo-language">{repo.language || "PROJECT"}</span><Arrow /></a>) : <p className="repo-no-results">No repositories match that search. Try another keyword.</p>}</div></> : <div className="repo-empty"><span>⌁</span><p>{repoState === "offline" ? "Couldn't load the live list right now. You can still browse the GitHub profile directly." : "Loading public repositories…"}</p><a href={GITHUB} target="_blank" rel="noreferrer">OPEN GITHUB PROFILE ↗</a></div>}
             {repoState === "ready" && repositories.length > 8 && <button className="show-more" onClick={() => setShowAll(!showAll)}>{showAll ? "SHOW LESS ↑" : "SHOW MORE REPOSITORIES ↓"}</button>}
           </div>
         </div>
