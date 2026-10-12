@@ -33,6 +33,10 @@ export default function App() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);
   const [notice, setNotice] = useState("");
+  const [githubRepos, setGithubRepos] = useState([]);
+  const [githubStatus, setGithubStatus] = useState("syncing");
+  const [githubLastSynced, setGithubLastSynced] = useState("");
+  const [githubSyncTrigger, setGithubSyncTrigger] = useState(0);
 
   useEffect(() => {
     let active = true;
@@ -42,6 +46,43 @@ export default function App() {
       .catch(() => { if (active) setApiStatus("offline"); });
     return () => { active = false; };
   }, []);
+
+  useEffect(() => {
+    let active = true;
+    const syncPublicRepos = async () => {
+      if (active) setGithubStatus("syncing");
+      try {
+        const response = await fetch("https://api.github.com/users/Ad3n1x/repos?type=public&sort=updated&per_page=100", {
+          headers: { Accept: "application/vnd.github+json" }
+        });
+        if (!response.ok) throw new Error("GitHub API request failed");
+        const data = await response.json();
+        const repos = data
+          .filter((repo) => !repo.fork && !repo.archived && repo.name.toLowerCase() !== "portfolio")
+          .slice(0, 8)
+          .map((repo, index) => ({
+            _id: `github-${repo.id}`,
+            number: String(index + 1).padStart(3, "0"),
+            title: repo.name.replace(/[-_]/g, " "),
+            kind: repo.language ? `GITHUB REPOSITORY / ${repo.language.toUpperCase()}` : "GITHUB REPOSITORY",
+            description: repo.description || "Public repository by AD3N1X. Open the repository to explore its source code and latest updates.",
+            technologies: [repo.language, repo.stargazers_count ? `${repo.stargazers_count} STARS` : null, "SOURCE CODE"].filter(Boolean),
+            url: repo.html_url,
+            updatedAt: repo.updated_at
+          }));
+        if (active) {
+          setGithubRepos(repos);
+          setGithubStatus("synced");
+          setGithubLastSynced(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+        }
+      } catch {
+        if (active) setGithubStatus("offline");
+      }
+    };
+    syncPublicRepos();
+    const interval = window.setInterval(syncPublicRepos, 5 * 60 * 1000);
+    return () => { active = false; window.clearInterval(interval); };
+  }, [githubSyncTrigger]);
 
   const updateField = (event) => setForm({ ...form, [event.target.name]: event.target.value });
 
@@ -94,6 +135,12 @@ export default function App() {
         <div className="project-grid">{projects.map((project, index) => <ProjectCard key={project._id || project.url || project.title} project={project} index={index} />)}</div>
         <p className="project-note"><span>*</span> These are independent practice projects and recreations, not official products or brand affiliations.</p>
         <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING LOCAL FALLBACK" : "CONNECTING TO API"}</p>
+      </section>
+      <section id="github" className="section-wrap section-block github-section">
+        <div className="section-heading"><div><p className="eyebrow">GITHUB / LIVE REPOSITORY SYNC</p><h2>Fresh from<br /><span className="muted-heading">the source.</span></h2></div><div className="github-sync-tools"><p className="section-side">Public repositories are pulled directly from GitHub and refreshed automatically every five minutes.</p><button className="button github-sync-button" type="button" onClick={() => setGithubSyncTrigger((value) => value + 1)} disabled={githubStatus === "syncing"}>{githubStatus === "syncing" ? "SYNCING..." : "SYNC NOW"} <span>↻</span></button></div></div>
+        <p className="api-note"><span className={`api-dot ${githubStatus === "synced" ? "connected" : githubStatus === "offline" ? "offline" : ""}`} /> GITHUB: {githubStatus === "synced" ? `SYNCED · LAST CHECK ${githubLastSynced}` : githubStatus === "offline" ? "UNAVAILABLE · TRY AGAIN" : "FETCHING PUBLIC REPOSITORIES"}</p>
+        {githubRepos.length ? <div className="project-grid github-project-grid">{githubRepos.map((project, index) => <ProjectCard key={project._id} project={project} index={index} />)}</div> : <p className="github-empty">{githubStatus === "offline" ? "GitHub couldn't be reached right now. Your selected live projects above remain available." : "Loading public repositories from GitHub…"}</p>}
+        <p className="project-note"><span>*</span> Repository cards link to source code, not necessarily to a live deployment. Private repositories are never displayed.</p>
       </section>
       <section id="about" className="about-section"><div className="section-wrap about-layout">
         <div className="about-heading"><p className="eyebrow">02 / HOW I THINK</p><h2>Curiosity is<br />my starting<br /><span className="accent">point.</span></h2><div className="about-index">[ HUMAN.EXE ]</div></div>
