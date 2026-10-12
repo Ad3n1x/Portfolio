@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 const fallbackProjects = [
-  { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app/unitrack" },
-  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE / SAAS", description: "A WhatsApp-first storefront for independent sellers, with product catalogues, orders, customers, seller tools, and a MongoDB-backed API.", technologies: ["REACT", "NODE.JS", "EXPRESS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/width/1200/crop/700/wait/15/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
+  { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/maxAge/0/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app/unitrack" },
+  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE / SAAS", description: "A WhatsApp-first storefront for independent sellers, with product catalogues, orders, customers, seller tools, and a MongoDB-backed API.", technologies: ["REACT", "NODE.JS", "EXPRESS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/maxAge/0/width/1200/crop/700/wait/15/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
 ];
 
 const skills = [
@@ -31,7 +31,18 @@ function ProjectCard({ project, index }) {
 
 export default function App() {
   const [projects, setProjects] = useState(fallbackProjects);
-  const [webProjects, setWebProjects] = useState([]);
+  const [webProjects, setWebProjects] = useState([
+    ["Quiz-App", "Quiz application"], ["CALC", "Calculator project"], ["AI-CONV-HELP", "AI conversation helper"],
+    ["lv3node", "Node.js learning project"], ["mixlr", "Web project"], ["maycohvirFE", "Front-end project"],
+    ["QuickCart", "WhatsApp-first commerce MVP"], ["Portfolio", "AD3N1X portfolio"], ["PIGGYVEST", "Web project"],
+    ["Thought-Bot-11", "Chatbot experiment"], ["HUMANKIND", "Web project"], ["WORD-COUNTER", "Word counter"],
+    ["Javascript-overview", "JavaScript learning project"], ["Game-optimizer-", "Game optimization project"],
+    ["blog", "Blog project"], ["maycohvirBE", "Back-end project"], ["MULTIPLICATION-TABLE", "Multiplication table"],
+    ["Blog-", "Blog project"], ["zenDesk", "Web project"], ["A", "Web project"], ["UNI-TRACK", "Productivity ecosystem"],
+    ["AUG-1ST", "Web project"], ["Adeniran-Adewale-s-website", "Personal website"], ["Test", "Web project"],
+    ["ADENA", "Creative web project"], ["Quynh", "Web project"], ["Standard-Calc", "Calculator project"],
+    ["Actual-calc", "Calculator project"], ["JAVASCRIPT-BASICS", "JavaScript fundamentals"]
+  ].map(([title, description]) => ({ title, description, sourceUrl: `https://github.com/Ad3n1x/${title}` })));
   const [apiStatus, setApiStatus] = useState("connecting");
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);
@@ -39,22 +50,42 @@ export default function App() {
 
   useEffect(() => {
     let active = true;
-    fetch(`${API_URL}/api/projects`)
-      .then((response) => { if (!response.ok) throw new Error("API unavailable"); return response.json(); })
-      .then((data) => {
-        if (active && Array.isArray(data.projects)) {
-          const visibleProjects = data.projects.filter((item) => !/west\s*citi/i.test(item.title || item.name || ""));
-          setWebProjects(visibleProjects);
-          if (visibleProjects.length) {
-            setProjects(fallbackProjects.map((featured) => {
-              const match = visibleProjects.find((item) => (item.title || "").toLowerCase() === featured.title.toLowerCase() || item.url === featured.url);
-              return { ...featured, ...(match || {}), image: match?.image || featured.image, sourceUrl: match?.sourceUrl || featured.sourceUrl };
-            }));
-          }
-        }
-        if (active) setApiStatus("connected");
+    // Load the public GitHub repository list directly so the directory doesn't depend on the portfolio API.
+    fetch("https://api.github.com/users/Ad3n1x/repos?per_page=100&sort=updated")
+      .then((response) => { if (!response.ok) throw new Error("GitHub project list unavailable"); return response.json(); })
+      .then((repos) => {
+        if (!active || !Array.isArray(repos)) return;
+        const visibleProjects = repos
+          .filter((repo) => !/west\\s*citi/i.test(repo.name || ""))
+          .filter((repo) => !repo.fork)
+          .map((repo) => ({
+            _id: String(repo.id),
+            title: repo.name,
+            description: repo.description || "Independent project / experiment",
+            url: repo.homepage && /^https?:\\/\\//i.test(repo.homepage) && !/github\\.com/i.test(repo.homepage) ? repo.homepage : "",
+            sourceUrl: repo.html_url,
+            kind: repo.language ? repo.language.toUpperCase() + " PROJECT" : "GITHUB PROJECT",
+            updatedAt: repo.updated_at
+          }))
+          .sort((a, b) => {
+            if (a.title.toLowerCase() === "uni-track") return -1;
+            if (b.title.toLowerCase() === "uni-track") return 1;
+            if (a.title.toLowerCase() === "quickcart") return -1;
+            if (b.title.toLowerCase() === "quickcart") return 1;
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+          });
+        setWebProjects(visibleProjects);
+        setProjects(fallbackProjects.map((featured) => {
+          const match = visibleProjects.find((item) => item.title.toLowerCase() === featured.title.toLowerCase());
+          return { ...featured, ...(match || {}), url: match?.url || featured.url, sourceUrl: match?.sourceUrl || featured.sourceUrl, image: featured.image };
+        }));
+        setApiStatus("connected");
       })
-      .catch(() => { if (active) setApiStatus("offline"); });
+      .catch(() => {
+        if (!active) return;
+        // Keep the curated project cards and repository fallback directory visible offline.
+        setApiStatus("offline");
+      });
     return () => { active = false; };
   }, []);
 
@@ -113,7 +144,7 @@ export default function App() {
         <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING SELECTED PROJECTS" : "LOADING SELECTED PROJECTS"}</p>
       </section>
       <section id="live-web" className="section-wrap section-block live-web-section">
-        <div className="section-heading"><div><p className="eyebrow">01B / PROJECT DIRECTORY</p><h2>Live on the web<span className="accent">.</span></h2></div><p className="section-side">A broader index of projects from the portfolio API. WestCiti is intentionally excluded from this list.</p></div>
+        <div className="section-heading"><div><p className="eyebrow">01B / PROJECT DIRECTORY</p><h2>Live on the web<span className="accent">.</span></h2></div><p className="section-side">Every public GitHub project, with live links where a deployed homepage is configured. WestCiti is intentionally excluded.</p></div>
         <div className="live-web-list">
           {(webProjects.length ? webProjects : fallbackProjects).map((project, index) => {
             const title = project.title || project.name || "Untitled project";
@@ -125,6 +156,7 @@ export default function App() {
               <div className="live-web-actions">
                 {liveUrl && <a href={liveUrl} target="_blank" rel="noreferrer">LIVE SITE ↗</a>}
                 {sourceUrl && <a href={sourceUrl} target="_blank" rel="noreferrer">SOURCE ↗</a>}
+                {!liveUrl && <span className="live-web-not-live">NO LIVE DEMO LINKED</span>}
               </div>
             </article>;
           })}
