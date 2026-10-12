@@ -4,3 +4,57 @@
 @media(max-width:650px){.page-width{width:calc(100% - 36px)}.header{height:68px;padding:0 18px}.brand{font-size:21px}.nav{display:none}.header-contact{padding:10px 12px}.hero{display:flex;flex-direction:column;align-items:stretch;gap:42px;padding:74px 0 65px;min-height:0}.hero h1{font-size:clamp(44px,12vw,64px);margin-top:24px}.hero-intro{font-size:14px}.hero-meta{margin-top:38px;gap:12px;font-size:8px}.identity-card{max-width:470px;width:calc(100% - 10px);margin-right:10px}.identity-symbol{height:175px}.card-caption{right:-10px}.hero-index{bottom:18px;font-size:8px}.section{padding-block:78px}.section-head{display:block;margin-bottom:30px}.section-head h2,.approach-heading h2,.github-layout h2,.contact-layout h2{font-size:clamp(40px,11vw,57px)}.section-note{margin-top:20px;font-size:12px}.featured-grid{grid-template-columns:1fr;gap:14px}.project-art{height:155px}.project-description{min-height:0}.project-content{padding:21px 17px}.approach-layout{padding-block:78px;grid-template-columns:1fr;gap:30px}.approach-copy .approach-lead{font-size:18px}.principles{gap:9px}.principles strong{font-size:9px}.principles p{font-size:10px}.stack-section{padding-bottom:80px}.capability{grid-template-columns:32px 1fr 18px;gap:10px;padding:20px 0}.capability h3{font-size:14px}.capability p{font-size:11px}.education-card{padding:20px;align-items:flex-start;flex-direction:column}.github-section{padding:78px 0}.github-layout{grid-template-columns:1fr;gap:38px}.repo-row{grid-template-columns:20px minmax(0,1fr) 12px;gap:8px;padding:13px 11px}.repo-language{display:none}.repo-name small{font-size:9px}.contact-section{padding:80px 0}.contact-layout{grid-template-columns:1fr;gap:34px}.contact-card{padding:20px}.contact-email{font-size:16px}.footer{padding:22px 0;justify-content:space-between}.footer p{order:3;width:100%}.footer>span{font-size:8px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
 .case-study-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:transparent;border:1px solid #30392d;padding:12px 11px;color:var(--acid);font:9px var(--mono);letter-spacing:.04em;text-align:left;cursor:pointer;transition:background .2s,border-color .2s}.case-study-toggle:hover{background:#171d14;border-color:#607443}.case-study-toggle span{color:#84917e;font-size:8px}.case-study-details{padding:15px 2px 2px;animation:case-study-in .2s ease-out}.case-study-details p{margin:0;color:#aab4a5;font-size:12px;line-height:1.9}.case-study-details h4{margin:18px 0 10px;color:#d5ff45;font:9px var(--mono);letter-spacing:.1em}.case-study-details ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px}.case-study-details li{border:1px solid #30392d;padding:7px 9px;color:#c3cdbb;font:9px var(--mono)}@keyframes case-study-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+
+/* Responsive layout safeguards */
+*,*::before,*::after{box-sizing:border-box}
+html{width:100%;overflow-x:clip}
+body{width:100%;min-width:320px;overflow-x:clip}
+img,svg,video,canvas{max-width:100%;height:auto}
+button,a{ -webkit-tap-highlight-color:transparent }
+.page-width{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+.hero,.section-head,.approach-layout,.github-layout,.contact-layout,.featured-grid{min-width:0}
+.hero-main,.identity-card,.project-card,.approach-copy,.repo-panel,.contact-card{min-width:0;max-width:100%}
+.contact-email,.contact-social strong,.repo-name small,.project-description{overflow-wrap:anywhere;word-break:normal}
+.contact-social{grid-template-columns:minmax(70px,90px) minmax(0,1fr) 16px}
+.copy-email{max-width:100%;white-space:normal;text-align:left;line-height:1.5;overflow-wrap:anywhere}
+.copy-all-contact{width:100%;min-height:46px}
+@media(max-width:900px){
+  .page-width{width:calc(100% - 40px)}
+  .hero{grid-template-columns:minmax(0,1.05fr) minmax(0,.85fr)}
+  .hero-main,.identity-card{min-width:0}
+  .hero-meta{flex-wrap:wrap}
+  .approach-layout,.github-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .contact-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:6%}
+  .contact-card{padding:clamp(16px,3vw,25px)}
+}
+@media(max-width:650px){
+  .page-width{width:calc(100% - 32px)}
+  .header{gap:12px}
+  .header-contact{flex-shrink:0}
+  .hero{display:flex;flex-direction:column}
+  .identity-card{width:100%;margin:0}
+  .card-caption{right:0}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{max-width:100%;white-space:normal}
+  .hero-meta{justify-content:space-between;flex-wrap:wrap}
+  .approach-layout,.github-layout,.contact-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:30px}
+  .featured-grid{grid-template-columns:minmax(0,1fr)}
+  .principles{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .contact-card{width:100%;padding:18px}
+  .contact-email{font-size:clamp(14px,4vw,17px)}
+  .contact-social{grid-template-columns:minmax(66px,82px) minmax(0,1fr) 14px;gap:8px}
+  .contact-social strong{font-size:11px}
+  .copy-email{font-size:9px}
+  .footer{gap:14px}
+}
+@media(max-width:380px){
+  .page-width{width:calc(100% - 24px)}
+  .header{padding-inline:12px}
+  .hero h1{font-size:clamp(38px,11vw,48px)}
+  .contact-social{grid-template-columns:1fr 14px;row-gap:5px}
+  .contact-social>span{grid-column:1}
+  .contact-social>strong{grid-column:1;grid-row:2}
+  .contact-social>.arrow{grid-column:2;grid-row:1 / span 2}
+  .principles{grid-template-columns:1fr}
+}
