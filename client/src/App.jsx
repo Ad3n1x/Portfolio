@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 const fallbackProjects = [
-  { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/maxAge/0/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app/unitrack" },
+  { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/maxAge/0/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app" },
   { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE / SAAS", description: "A WhatsApp-first storefront for independent sellers, with product catalogues, orders, customers, seller tools, and a MongoDB-backed API.", technologies: ["REACT", "NODE.JS", "EXPRESS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/maxAge/0/width/1200/crop/700/wait/15/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
 ];
 
@@ -76,7 +76,7 @@ export default function App() {
         setWebProjects(visibleProjects);
         setProjects(fallbackProjects.map((featured) => {
           const match = visibleProjects.find((item) => item.title.toLowerCase() === featured.title.toLowerCase());
-          return { ...featured, ...(match || {}), url: match?.url || featured.url, sourceUrl: match?.sourceUrl || featured.sourceUrl, image: featured.image };
+          return { ...featured, ...(match || {}), url: featured._id === "unitrack" ? "https://unitrack-app.vercel.app" : (match?.url || featured.url), sourceUrl: match?.sourceUrl || featured.sourceUrl, image: featured.image };
         }));
         setApiStatus("connected");
       })
