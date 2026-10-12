@@ -109,7 +109,7 @@ export default function App() {
     <div className="ambient-grid" aria-hidden="true" />
     <header className="site-header">
       <a className="wordmark" href="#home" aria-label="AD3N1X home">AD<span>3</span>N1X<span className="wordmark-cursor">_</span></a>
-      <nav aria-label="Main navigation"><a href="#work">WORK<span>01</span></a><a href="#about">MINDSET<span>02</span></a><a href="#skills">STACK<span>03</span></a></nav>
+      <nav aria-label="Main navigation"><a href="#work">WORK<span>01</span></a><a href="#github">GITHUB<span>02</span></a><a href="#about">MINDSET<span>03</span></a><a href="#skills">STACK<span>03</span></a></nav>
       <a className="header-cta" href="#contact">LET'S CONNECT <span>↗</span></a>
     </header>
     <main id="home">
