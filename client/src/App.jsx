@@ -68,10 +68,17 @@ export default function App() {
     return () => controller.abort();
   }, []);
 
-  const copyEmail = async () => {
-    try { await navigator.clipboard.writeText("adenix271@gmail.com"); }
-    catch { window.location.href = "mailto:adenix271@gmail.com"; }
+  const copyContact = async (value) => {
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      window.prompt("Copy this contact information:", value);
+    }
   };
+
+  const copyEmail = () => copyContact("adenix271@gmail.com");
+
+  const allContactInfo = "AD3N1X — CONTACT INFORMATION\\nEmail: adenix271@gmail.com\\nAlternate email: adeniranabe@outlook.com\\nPhone: 0703 923 7610\\nPhone: 0901 695 3597\\nWhatsApp: 0703 923 7610\\nWhatsApp link: https://wa.me/2347039237610\\nGitHub: https://github.com/Ad3n1x";
 
   const projectsToShow = showAll ? repositories : repositories.slice(0, 8);
 
@@ -135,7 +142,7 @@ export default function App() {
       </section>
 
       <section id="contact" className="contact-section"><div className="page-width contact-layout"><div><p className="eyebrow">05 / OPEN CHANNEL</p><h2>Have a useful<br />problem to solve<span>?</span></h2><p className="contact-intro">Open to junior opportunities, internships, thoughtful collaborations, and projects where I can contribute while learning.</p></div>
-        <div className="contact-card"><span className="contact-label">START A CONVERSATION</span><a className="contact-email" href="mailto:adenix271@gmail.com">adenix271@gmail.com <Arrow /></a><a className="contact-social" href="mailto:adeniranabe@outlook.com"><span>ALTERNATE EMAIL</span><strong>adeniranabe@outlook.com</strong><Arrow /></a><div className="contact-divider" /><a className="contact-social" href="tel:+2347039237610"><span>PHONE</span><strong>0703 923 7610</strong><Arrow /></a><a className="contact-social" href="tel:+2349016953597"><span>PHONE</span><strong>0901 695 3597</strong><Arrow /></a><a className="contact-social" href="https://wa.me/2347039237610" target="_blank" rel="noreferrer"><span>WHATSAPP</span><strong>0703 923 7610</strong><Arrow /></a><button className="copy-email" onClick={copyEmail}>COPY EMAIL ADDRESS <span>⧉</span></button><div className="contact-divider" /><a className="contact-social" href={GITHUB} target="_blank" rel="noreferrer"><span>GITHUB</span><strong>@Ad3n1x</strong><Arrow /></a><a className="contact-social" href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><span>LINKEDIN</span><strong>Find me professionally</strong><Arrow /></a></div>
+        <div className="contact-card"><span className="contact-label">START A CONVERSATION</span><a className="contact-email" href="mailto:adenix271@gmail.com">adenix271@gmail.com <Arrow /></a><button className="copy-email" onClick={() => copyContact("adenix271@gmail.com")}>COPY EMAIL <span>⧉</span></button><a className="contact-social" href="mailto:adeniranabe@outlook.com"><span>ALTERNATE EMAIL</span><strong>adeniranabe@outlook.com</strong><Arrow /></a><button className="copy-email" onClick={() => copyContact("adeniranabe@outlook.com")}>COPY ALTERNATE EMAIL <span>⧉</span></button><div className="contact-divider" /><a className="contact-social" href="tel:+2347039237610"><span>PHONE</span><strong>0703 923 7610</strong><Arrow /></a><button className="copy-email" onClick={() => copyContact("0703 923 7610")}>COPY PHONE NUMBER <span>⧉</span></button><a className="contact-social" href="tel:+2349016953597"><span>PHONE</span><strong>0901 695 3597</strong><Arrow /></a><button className="copy-email" onClick={() => copyContact("0901 695 3597")}>COPY PHONE NUMBER <span>⧉</span></button><a className="contact-social" href="https://wa.me/2347039237610" target="_blank" rel="noreferrer"><span>WHATSAPP</span><strong>0703 923 7610</strong><Arrow /></a><button className="copy-email" onClick={() => copyContact("0703 923 7610")}>COPY WHATSAPP NUMBER <span>⧉</span></button><button className="copy-email" onClick={() => copyContact(allContactInfo)}>COPY ALL CONTACT INFO <span>⧉</span></button><div className="contact-divider" /><a className="contact-social" href={GITHUB} target="_blank" rel="noreferrer"><span>GITHUB</span><strong>@Ad3n1x</strong><Arrow /></a><a className="contact-social" href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><span>LINKEDIN</span><strong>Find me professionally</strong><Arrow /></a></div>
       </div></section>
     </main>
     <footer className="footer page-width"><a className="brand" href="#home">AD<span>3</span>N1X<span className="brand-cursor">_</span></a><p>Built with curiosity. Refined through practice.</p><a href="#home">BACK TO TOP ↑</a><span>© AD3N1X · 2026</span></footer>
