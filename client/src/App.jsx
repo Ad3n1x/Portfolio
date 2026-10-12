@@ -74,6 +74,28 @@ function ProjectCard({ project }) {
   </article>;
 }
 
+
+function LivePreviewCard({ project, index }) {
+  const [previewState, setPreviewState] = useState("loading");
+  const waitForQuickCart = /quickcart/i.test(project.name);
+  const screenshotUrl = "https://image.thum.io/get/width/1200/crop/720/" + (waitForQuickCart ? "wait/15/" : "") + project.live;
+
+  return <article className="live-preview-card">
+    <a className="live-preview-image" href={project.live} target="_blank" rel="noreferrer" aria-label={"Open " + project.name + " live website"}>
+      {previewState !== "error" && <img src={screenshotUrl} alt={project.name + " website preview"} loading={waitForQuickCart ? "eager" : "lazy"} onLoad={() => setPreviewState("ready")} onError={() => setPreviewState("error")} />}
+      {previewState === "loading" && <span className="preview-state">CAPTURING LIVE PREVIEW<span className="preview-dots">…</span></span>}
+      {previewState === "error" && <span className="preview-fallback"><b>{getProjectMark(project.name)}</b><small>Preview unavailable</small></span>}
+      {previewState === "ready" && <span className="preview-ready">PREVIEW READY <i /></span>}
+      <span className="preview-open">OPEN LIVE ↗</span>
+    </a>
+    <div className="live-preview-info">
+      <div><span className="preview-number">{String(index + 1).padStart(2, "0")}</span><h3>{project.name}</h3></div>
+      <p>{project.description}</p>
+      <div className="live-preview-bottom"><span>{project.stack?.slice(0, 3).join(" · ") || "WEB PROJECT"}</span><a href={project.repo} target="_blank" rel="noreferrer">SOURCE ↗</a></div>
+    </div>
+  </article>;
+}
+
 export default function App() {
   const [repositories, setRepositories] = useState([]);
   const [repoState, setRepoState] = useState("loading");
@@ -130,6 +152,7 @@ export default function App() {
     ...featuredOverrides,
     ...autoFeatured.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
   ];
+  const liveProjects = [...new Map(projectsToFeature.filter((project) => project.live && !/west\s*citi|portfolio/i.test(project.name)).map((project) => [project.live.replace(/\/$/, ""), project])).values()];
   const projectsToShow = showAll ? repositories : repositories.slice(0, 8);
   const filteredRepositories = projectsToShow.filter((repo) => `${repo.name} ${repo.description || ""} ${repo.language || ""}`.toLowerCase().includes(repoQuery.trim().toLowerCase()));
 
@@ -166,9 +189,12 @@ export default function App() {
       <div className="ticker" aria-label="Areas of focus"><div>FRONT-END DEVELOPMENT <b>✳</b> JAVASCRIPT <b>✳</b> REACT <b>✳</b> RESPONSIVE UI <b>✳</b> DEBUGGING <b>✳</b> KEEP LEARNING <b>✳</b> FRONT-END DEVELOPMENT <b>✳</b> JAVASCRIPT <b>✳</b> REACT <b>✳</b></div></div>
 
       <section id="work" className="section page-width">
-        <div className="section-head"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Made to be<br /><span>explored.</span></h2></div><p className="section-note">A few projects that reflect what I'm learning and building. Open the live experience or inspect the source — the work should speak for itself.</p></div>
-        <div className="featured-grid">{projectsToFeature.map((project) => <ProjectCard key={project.repo} project={project} />)}</div>
-        <p className="section-note auto-feature-note">{repoState === "ready" ? `${featuredOverrides.length} curated projects · ${autoFeatured.length} additional projects discovered from GitHub` : "Curated projects are shown while GitHub projects load."}</p>
+        <div className="section-head"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Made to be<br /><span>explored.</span></h2></div><p className="section-note">Two featured builds, chosen to lead with product thinking and practical engineering. Open the live experience or inspect the source.</p></div>
+        <div className="featured-grid featured-grid-top">{projectsToFeature.slice(0, 2).map((project) => <ProjectCard key={project.repo} project={project} />)}</div>
+        <p className="section-note auto-feature-note">Featured work is curated; the live gallery below discovers public projects from GitHub automatically.</p>
+        <div className="live-work-head"><div><p className="eyebrow">LIVE ON THE WEB</p><h3>See it in action<span>.</span></h3></div><p>Real site previews, live links, and source code in one place. WestCiti and the portfolio itself are intentionally excluded.</p></div>
+        <div className="live-preview-grid">{liveProjects.map((project, index) => <LivePreviewCard key={project.live} project={project} index={index} />)}</div>
+        {repoState === "ready" && <p className="live-gallery-footnote">{liveProjects.length} live project link{liveProjects.length === 1 ? "" : "s"} found from curated builds and public GitHub repositories. Preview availability is checked in your browser as each screenshot loads.</p>}
       </section>
 
       <section id="approach" className="approach-section">
