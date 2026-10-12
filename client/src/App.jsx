@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 const fallbackProjects = [
   { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app/unitrack" },
-  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE / SAAS", description: "A WhatsApp-first storefront for independent sellers, with product catalogues, orders, customers, seller tools, and a MongoDB-backed API.", technologies: ["REACT", "NODE.JS", "EXPRESS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
+  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE / SAAS", description: "A WhatsApp-first storefront for independent sellers, with product catalogues, orders, customers, seller tools, and a MongoDB-backed API.", technologies: ["REACT", "NODE.JS", "EXPRESS", "MONGODB"], url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/width/1200/crop/700/wait/15/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app" },
 ];
 
 const skills = [
@@ -31,6 +31,7 @@ function ProjectCard({ project, index }) {
 
 export default function App() {
   const [projects, setProjects] = useState(fallbackProjects);
+  const [webProjects, setWebProjects] = useState([]);
   const [apiStatus, setApiStatus] = useState("connecting");
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);
@@ -40,7 +41,19 @@ export default function App() {
     let active = true;
     fetch(`${API_URL}/api/projects`)
       .then((response) => { if (!response.ok) throw new Error("API unavailable"); return response.json(); })
-      .then((data) => { if (active && Array.isArray(data.projects) && data.projects.length) { setProjects(fallbackProjects.map((featured) => { const match = data.projects.find((item) => (item.title || "").toLowerCase() === featured.title.toLowerCase() || item.url === featured.url); return { ...featured, ...(match || {}), image: match?.image || featured.image, sourceUrl: match?.sourceUrl || featured.sourceUrl }; })); } if (active) setApiStatus("connected"); })
+      .then((data) => {
+        if (active && Array.isArray(data.projects)) {
+          const visibleProjects = data.projects.filter((item) => !/west\s*citi/i.test(item.title || item.name || ""));
+          setWebProjects(visibleProjects);
+          if (visibleProjects.length) {
+            setProjects(fallbackProjects.map((featured) => {
+              const match = visibleProjects.find((item) => (item.title || "").toLowerCase() === featured.title.toLowerCase() || item.url === featured.url);
+              return { ...featured, ...(match || {}), image: match?.image || featured.image, sourceUrl: match?.sourceUrl || featured.sourceUrl };
+            }));
+          }
+        }
+        if (active) setApiStatus("connected");
+      })
       .catch(() => { if (active) setApiStatus("offline"); });
     return () => { active = false; };
   }, []);
@@ -98,6 +111,24 @@ export default function App() {
         <div className="project-grid">{projects.map((project, index) => <ProjectCard key={project._id || project.url || project.title} project={project} index={index} />)}</div>
         <p className="project-note"><span>*</span> These are independent practice projects and recreations, not official products or brand affiliations.</p>
         <p className="api-note"><span className={`api-dot ${apiStatus}`} /> PROJECT DATA: {apiStatus === "connected" ? "CONNECTED TO API" : apiStatus === "offline" ? "SHOWING SELECTED PROJECTS" : "LOADING SELECTED PROJECTS"}</p>
+      </section>
+      <section id="live-web" className="section-wrap section-block live-web-section">
+        <div className="section-heading"><div><p className="eyebrow">01B / PROJECT DIRECTORY</p><h2>Live on the web<span className="accent">.</span></h2></div><p className="section-side">A broader index of projects from the portfolio API. WestCiti is intentionally excluded from this list.</p></div>
+        <div className="live-web-list">
+          {(webProjects.length ? webProjects : fallbackProjects).map((project, index) => {
+            const title = project.title || project.name || "Untitled project";
+            const liveUrl = project.url || project.liveUrl || project.homepage;
+            const sourceUrl = project.sourceUrl || project.githubUrl || project.repoUrl;
+            return <article className="live-web-item" key={project._id || liveUrl || sourceUrl || title}>
+              <span className="live-web-number">{String(index + 1).padStart(2, "0")}</span>
+              <div className="live-web-copy"><h3>{title}</h3><p>{project.description || project.kind || "Independent build / development project"}</p></div>
+              <div className="live-web-actions">
+                {liveUrl && <a href={liveUrl} target="_blank" rel="noreferrer">LIVE SITE ↗</a>}
+                {sourceUrl && <a href={sourceUrl} target="_blank" rel="noreferrer">SOURCE ↗</a>}
+              </div>
+            </article>;
+          })}
+        </div>
       </section>
       <section id="about" className="about-section"><div className="section-wrap about-layout">
         <div className="about-heading"><p className="eyebrow">02 / HOW I THINK</p><h2>Curiosity is<br />my starting<br /><span className="accent">point.</span></h2><div className="about-index">[ HUMAN.EXE ]</div></div>
