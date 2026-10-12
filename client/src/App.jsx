@@ -137,19 +137,25 @@ export default function App() {
     .filter((repo) => !pinnedRepoNames.has(repo.name.toLowerCase()))
     .filter((repo) => typeof repo.homepage === "string" && /^https?:\/\//i.test(repo.homepage.trim()))
     .filter((repo) => Boolean(repo.description && repo.description.trim()))
-    .map((repo, index) => ({
-      name: repo.name.replace(/[-_]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()),
-      type: `${repo.language || "WEB"} / COMMUNITY PROJECT`,
-      description: repo.description.trim(),
-      details: `${repo.description.trim()} This project was discovered automatically from the public AD3N1X GitHub repositories. Visit the live project to explore it, or inspect the source to see how it was built.`,
-      focus: ["Automatically discovered from GitHub", repo.language ? `${repo.language} development` : "Web development", "Independent project"],
-      stack: repo.language ? [repo.language] : ["Web project"],
-      live: repo.homepage.trim(),
-      repo: repo.html_url,
-      code: String(featuredOverrides.length + index + 1).padStart(2, "0"),
-      autoDiscovered: true,
-      updatedAt: repo.updated_at
-    }));
+    .map((repo, index) => {
+      const cloneBrand = /piggyvest/i.test(repo.name) ? "PiggyVest" : /mixlr/i.test(repo.name) ? "Mixlr" : null;
+      const isClone = Boolean(cloneBrand);
+      return {
+        name: cloneBrand ? `${cloneBrand} Clone` : repo.name.replace(/[-_]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()),
+        type: isClone ? "FRONT-END CLONE / PRACTICE PROJECT" : `${repo.language || "WEB"} / COMMUNITY PROJECT`,
+        description: `${repo.description.trim()}${isClone ? ` Independent recreation for learning and portfolio demonstration; not the official ${cloneBrand} product.` : ""}`,
+        details: `${repo.description.trim()} This project was discovered automatically from the public AD3N1X GitHub repositories. ${isClone ? `It is an independent clone created for practice and is not affiliated with or endorsed by ${cloneBrand}. ` : ""}Visit the live project to explore it, or inspect the source to see how it was built.`,
+        focus: isClone
+          ? ["Website recreation", "Frontend practice", "Independent, unofficial project"]
+          : ["Automatically discovered from GitHub", repo.language ? `${repo.language} development` : "Web development", "Independent project"],
+        stack: repo.language ? [repo.language] : ["Web project"],
+        live: repo.homepage.trim(),
+        repo: repo.html_url,
+        code: String(featuredOverrides.length + index + 1).padStart(2, "0"),
+        autoDiscovered: true,
+        updatedAt: repo.updated_at
+      };
+    });
   const projectsToFeature = [
     ...featuredOverrides,
     ...autoFeatured.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
