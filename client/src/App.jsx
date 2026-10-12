@@ -140,7 +140,7 @@ export default function App() {
       <div className="ticker" aria-label="Areas of focus"><div>FRONT-END DEVELOPMENT <b>✳</b> JAVASCRIPT <b>✳</b> REACT <b>✳</b> RESPONSIVE UI <b>✳</b> DEBUGGING <b>✳</b> KEEP LEARNING <b>✳</b> FRONT-END DEVELOPMENT <b>✳</b> JAVASCRIPT <b>✳</b> REACT <b>✳</b></div></div>
 
       <section id="work" className="section page-width">
-        <div className="section-head"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Made to be<br /><span>explored.</span></h2></div><p className="section-note">Two featured builds, chosen to lead with product thinking and practical engineering. Open the live experience or inspect the source.</p></div>
+        <div className="section-head"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Made to be<br /><span>explored.</span></h2></div><p className="section-note">A few projects that show how I approach practical problems. Open a live build or inspect the source.</p></div>
         <div className="featured-grid">{featuredOverrides.map((project) => <ProjectCard key={project.repo} project={project} />)}</div>
       </section>
 
