@@ -56,12 +56,12 @@ export default function App() {
       .then((repos) => {
         if (!active || !Array.isArray(repos)) return;
         const visibleProjects = repos
-          .filter((repo) => !/west\\s*citi/i.test(repo.name || ""))
+          .filter((repo) => !/west\s*citi/i.test(repo.name || ""))
           .map((repo) => ({
             _id: String(repo.id),
             title: repo.name,
             description: repo.description || "Independent project / experiment",
-            url: repo.homepage && /^https?:\\/\\//i.test(repo.homepage) && !/github\\.com/i.test(repo.homepage) ? repo.homepage : "",
+            url: repo.homepage && /^https?:\/\//i.test(repo.homepage) && !/github\.com/i.test(repo.homepage) ? repo.homepage : "",
             sourceUrl: repo.html_url,
             kind: repo.language ? repo.language.toUpperCase() + " PROJECT" : "GITHUB PROJECT",
             updatedAt: repo.updated_at
