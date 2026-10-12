@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 const fallbackProjects = [
   { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack" },
-  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE MVP", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB"], url: "https://github.com/Ad3n1x/QuickCart" },
+  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE MVP", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB"], url: "https://quick-cart-1m279f695-adeniran-victor-adebowales-projects.vercel.app" },
   { _id: "flowpilot", number: "003", title: "FlowPilot AI", kind: "AI WORKFLOW PRODUCT", description: "An AI-assisted workflow concept focused on turning natural-language requests into useful, structured actions.", technologies: ["REACT", "API DESIGN", "AI INTEGRATION"], url: "https://github.com/Ad3n1x/FlowPilot-AI" },
-  { _id: "westciti", number: "004", title: "WestCiti Restaurant & Lounge", kind: "CLIENT WEBSITE CONCEPT", description: "A digital presence concept for an upscale restaurant and lounge, designed around menus, occasions, and enquiries.", technologies: ["RESPONSIVE UI", "UX", "WEB DESIGN"], url: "https://github.com/Ad3n1x/westciti" }
+  { _id: "westciti", number: "004", title: "WestCiti Restaurant & Lounge", kind: "CLIENT WEBSITE CONCEPT", description: "A digital presence concept for an upscale restaurant and lounge, designed around menus, occasions, and enquiries.", technologies: ["RESPONSIVE UI", "UX", "WEB DESIGN"], url: "https://westciti-bq5zb82q9-adeniran-victor-adebowales-projects.vercel.app" }
 ];
 
 const skills = [
