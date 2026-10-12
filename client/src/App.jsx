@@ -17,14 +17,16 @@ const skills = [
 
 function ProjectCard({ project, index }) {
   const number = String(index + 1).padStart(3, "0");
-  return <a className="project-card" href={project.url} target="_blank" rel="noreferrer">
+  return <article className="project-card">
     <div className="project-visual">
-      {project.image ? <img src={project.image} alt={`${project.title} preview`} loading="lazy" onError={(event) => { event.currentTarget.style.display = "none"; }} /> : <div className="thought-art"><span>IDEAS</span><span className="thought-arrow">↘</span><span>INTO<br />INTERFACES<span className="accent">.</span></span></div>}
-      <span className="project-index">PROJECT / {project.number || number}</span><span className="project-open">↗</span><span className="project-overlay">OPEN PROJECT ↗</span>
+      <div className="thought-art project-preview-fallback"><span>LIVE BUILD</span><span className="thought-arrow">↗</span><span>{project.title}<span className="accent">.</span></span></div>
+      {project.image && <img className="project-preview-image" src={project.image} alt={`${project.title} live website preview`} loading="lazy" onError={(event) => { event.currentTarget.style.display = "none"; }} />}
+      <span className="project-index">PROJECT / {project.number || number}</span><span className="project-open">↗</span><span className="project-overlay">LIVE WEBSITE PREVIEW · CLICK BELOW ↗</span>
     </div>
     <div className="project-info"><div><p className="project-kind">{project.kind || "FRONT-END PROJECT"}</p><h3>{project.title}</h3><p>{project.description}</p></div><span className="project-arrow">↗</span></div>
     <div className="tag-row">{(project.technologies || []).map((tag) => <span key={tag}>{tag}</span>)}</div>
-  </a>;
+    <div className="project-actions"><a className="project-action project-action-primary" href={project.url} target="_blank" rel="noreferrer">LIVE PREVIEW <span>↗</span></a><a className="project-action" href={project.sourceUrl || "https://github.com/Ad3n1x"} target="_blank" rel="noreferrer">SOURCE CODE <span>↗</span></a></div>
+  </article>;
 }
 
 export default function App() {
@@ -60,21 +62,7 @@ export default function App() {
           { _id: "live-unitrack", title: "UNI-TRACK", url: "https://unitrack-app.vercel.app/unitrack", sourceUrl: "https://github.com/Ad3n1x/UNI-TRACK", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://unitrack-app.vercel.app/unitrack", description: "A privacy-first tracking and productivity ecosystem.", technologies: ["JAVASCRIPT", "PRODUCTIVITY", "LIVE WEBSITE"], kind: "LIVE PRODUCT / PRODUCTIVITY" },
           { _id: "live-quickcart", title: "QuickCart", url: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", sourceUrl: "https://github.com/Ad3n1x/QuickCart", image: "https://image.thum.io/get/width/1200/crop/700/noanimate/https://quick-cart-adeniran-victor-adebowales-projects.vercel.app", description: "A WhatsApp-first storefront for independent sellers with catalogues, orders, customer flows, and seller tools.", technologies: ["REACT", "NODE.JS", "MONGODB", "LIVE WEBSITE"], kind: "FULL-STACK COMMERCE / SAAS" }
         ];
-        const homepageSites = data
-          .filter((repo) => !repo.fork && !repo.archived && repo.name.toLowerCase() !== "portfolio" && repo.name.toLowerCase() !== "westciti" && typeof repo.homepage === "string" && /^https?:\/\//i.test(repo.homepage.trim()))
-          .map((repo) => ({
-            _id: `github-live-${repo.id}`,
-            title: repo.name.replace(/[-_]/g, " "),
-            kind: repo.language ? `LIVE WEBSITE / ${repo.language.toUpperCase()}` : "LIVE WEBSITE",
-            description: repo.description || `A public AD3N1X project. Visit the live website.`,
-            technologies: [repo.language, "LIVE WEBSITE"].filter(Boolean),
-            url: repo.homepage.trim(),
-            updatedAt: repo.updated_at
-          }));
         const combined = [...knownLiveSites];
-        for (const site of homepageSites) {
-          if (!combined.some((known) => known.url.replace(/\/$/, "").toLowerCase() === site.url.replace(/\/$/, "").toLowerCase())) combined.push(site);
-        }
         const liveSites = combined.map((site, index) => ({ ...site, number: String(index + 1).padStart(3, "0") }));
         if (active) {
           setGithubRepos(liveSites);
