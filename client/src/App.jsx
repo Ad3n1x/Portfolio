@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 const fallbackProjects = [
-  { _id: "piggyvest", number: "001", title: "PiggyVest UI study", kind: "INTERFACE RECREATION", description: "Practising interface structure, spacing, and visual consistency through a front-end recreation.", technologies: ["HTML", "CSS", "BOOTSTRAP"], url: "https://ad3n1x.github.io/PIGGYVEST/", image: "https://raw.githubusercontent.com/Ad3n1x/Portfolio/main/multimedia/Screenshot%202025-09-18%20221344.png" },
-  { _id: "humankind", number: "002", title: "Humankind", kind: "VISUAL WEB PROJECT", description: "A themed web experience focused on content hierarchy and presenting a clear visual idea.", technologies: ["HTML", "CSS", "LAYOUT"], url: "https://ad3n1x.github.io/HUMANKIND/", image: "https://raw.githubusercontent.com/Ad3n1x/Portfolio/main/multimedia/Screenshot%202025-09-18%20235509.png" },
-  { _id: "thoughtbot", number: "003", title: "Thoughtbot-inspired page", kind: "WEB DESIGN RECREATION", description: "A practice build exploring section rhythm, typography, and responsive page composition.", technologies: ["HTML", "CSS", "JAVASCRIPT"], url: "https://ad3n1x.github.io/Thought-Bot-11/" }
+  { _id: "unitrack", number: "001", title: "UNI-TRACK", kind: "LIVE PRODUCT / PRODUCTIVITY", description: "A privacy-first tracking and productivity ecosystem built around personal workflows and useful daily progress.", technologies: ["JAVASCRIPT", "PRODUCT DESIGN", "WEB APP"], url: "https://unitrack-app.vercel.app/unitrack" },
+  { _id: "quickcart", number: "002", title: "QuickCart", kind: "FULL-STACK COMMERCE MVP", description: "A commerce workflow project exploring product discovery, cart interactions, checkout, and account flows.", technologies: ["REACT", "NODE.JS", "MONGODB"], url: "https://github.com/Ad3n1x/QuickCart" },
+  { _id: "flowpilot", number: "003", title: "FlowPilot AI", kind: "AI WORKFLOW PRODUCT", description: "An AI-assisted workflow concept focused on turning natural-language requests into useful, structured actions.", technologies: ["REACT", "API DESIGN", "AI INTEGRATION"], url: "https://github.com/Ad3n1x/FlowPilot-AI" },
+  { _id: "westciti", number: "004", title: "WestCiti Restaurant & Lounge", kind: "CLIENT WEBSITE CONCEPT", description: "A digital presence concept for an upscale restaurant and lounge, designed around menus, occasions, and enquiries.", technologies: ["RESPONSIVE UI", "UX", "WEB DESIGN"], url: "https://github.com/Ad3n1x/westciti" }
 ];
 
 const skills = [
-  ["01", "HTML5", "Semantic structure & content hierarchy", "IN USE"],
-  ["02", "CSS3", "Layout, styling & visual systems", "IN USE"],
-  ["03", "Bootstrap 5", "Responsive grids & UI patterns", "IN USE"],
-  ["04", "JavaScript", "ES6+ fundamentals & DOM interaction", "BUILDING"],
-  ["05", "Responsive design", "Interfaces across screen sizes", "IN USE"],
-  ["06", "Debugging", "Testing, troubleshooting & iteration", "ALWAYS"]
+  ["01", "HTML5 / CSS3", "Semantic structure, responsive layout & visual systems", "IN USE"],
+  ["02", "JavaScript", "ES6+, DOM interaction & application logic", "IN USE"],
+  ["03", "React", "Component-based interfaces & state", "BUILDING"],
+  ["04", "Node.js / Express", "REST APIs & server-side application logic", "BUILDING"],
+  ["05", "MongoDB", "Document models & persistence with Mongoose", "BUILDING"],
+  ["06", "Git / GitHub", "Version control, collaboration & deployment workflow", "IN USE"]
 ];
 
 function ProjectCard({ project, index }) {
