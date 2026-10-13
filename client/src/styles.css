@@ -122,3 +122,16 @@ button,a{ -webkit-tap-highlight-color:transparent }
   .preview-open{opacity:1;transform:none}
 }
 @media(prefers-reduced-motion:reduce){.live-preview-card,.live-preview-image img,.preview-open{transition:none!important}}
+
+
+/* Repository shelf: tidy, readable multi-language chips */
+.repo-row{grid-template-columns:24px minmax(0,1fr) minmax(110px,auto) 14px;gap:12px}
+.repo-language-list{align-items:center;align-content:center}
+.repo-language-list .repo-language{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border:1px solid #3a4634;border-radius:4px;background:#1a2117;padding:5px 7px;color:#c4d1b8;font-size:9px;line-height:1.25}
+.repo-language-list .repo-language:first-child{border-color:#586b3f;color:var(--acid)}
+@media(max-width:650px){
+  .repo-row{grid-template-columns:20px minmax(0,1fr) 14px;align-items:start;row-gap:9px}
+  .repo-language-list{grid-column:2;grid-row:2;justify-content:flex-start!important;max-width:100%!important;gap:5px!important}
+  .repo-language-list .repo-language{display:inline-flex!important;font-size:8px;padding:5px 7px;white-space:normal}
+  .repo-row>.arrow{grid-column:3;grid-row:1}
+}
