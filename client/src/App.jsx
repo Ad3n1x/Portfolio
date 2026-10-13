@@ -105,6 +105,7 @@ function LivePreviewCard({ project, index }) {
 export default function App() {
   const [repositories, setRepositories] = useState([]);
   const [repoState, setRepoState] = useState("loading");
+  const [repoRetry, setRepoRetry] = useState(0);
   const [showAll, setShowAll] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [repoQuery, setRepoQuery] = useState("");
@@ -119,17 +120,44 @@ export default function App() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("https://api.github.com/users/Ad3n1x/repos?per_page=100&sort=updated", { signal: controller.signal })
-      .then((res) => { if (!res.ok) throw new Error("GitHub unavailable"); return res.json(); })
+    let hasCachedRepositories = false;
+    try {
+      const cached = JSON.parse(window.localStorage.getItem("ad3n1x-public-repositories") || "null");
+      if (Array.isArray(cached) && cached.length) {
+        hasCachedRepositories = true;
+        setRepositories(cached);
+        setRepoState("ready");
+      }
+    } catch {
+      // Storage can be unavailable in private browsing; the live request still runs.
+    }
+
+    fetch("https://api.github.com/users/Ad3n1x/repos?per_page=100&sort=updated", {
+      signal: controller.signal,
+      headers: { Accept: "application/vnd.github+json" }
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(res.status === 403 ? "GitHub rate limit reached" : "GitHub unavailable");
+        return res.json();
+      })
       .then((data) => {
+        if (!Array.isArray(data)) throw new Error("Unexpected GitHub response");
         const sorted = data.filter((repo) => !repo.fork && !/west\s*citi/i.test(repo.name))
           .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
         setRepositories(sorted);
         setRepoState("ready");
+        try {
+          window.localStorage.setItem("ad3n1x-public-repositories", JSON.stringify(sorted));
+        } catch {
+          // Keep the live list usable when storage is full or disabled.
+        }
       })
-      .catch((error) => { if (error.name !== "AbortError") setRepoState("offline"); });
+      .catch((error) => {
+        if (error.name === "AbortError") return;
+        if (!hasCachedRepositories) setRepoState("offline");
+      });
     return () => controller.abort();
-  }, []);
+  }, [repoRetry]);
 
   useEffect(() => {
     if (!repositories.length) return;
@@ -278,7 +306,7 @@ export default function App() {
 
       <section className="github-section"><div className="page-width github-layout"><div><p className="eyebrow">04 / THE REPOSITORY SHELF</p><h2>Open tabs.<br /><span>Open source.</span></h2><p className="github-intro">A live directory pulled from my public GitHub profile. Some repositories are experiments and practice projects; not every repository is a finished product.</p><a className="btn btn-primary" href={GITHUB} target="_blank" rel="noreferrer">ALL REPOSITORIES <Arrow /></a><p className="sync-state"><i className={repoState === "ready" ? "online" : ""} /> {repoState === "ready" ? "GITHUB DATA CONNECTED" : repoState === "offline" ? "GITHUB TEMPORARILY UNAVAILABLE" : "CONNECTING TO GITHUB"}</p></div>
           <div className="repo-panel"><div className="repo-panel-head"><span>AD3N1X / PUBLIC REPOSITORIES</span><span>{repoState === "ready" ? String(repositories.length).padStart(2, "0") : "—"}</span></div>
-            {repoState === "ready" && projectsToShow.length > 0 ? <><div className="repo-search-wrap"><label htmlFor="repo-search">FIND A REPOSITORY</label><input id="repo-search" className="repo-search" type="search" placeholder="Search name, description, language…" value={repoQuery} onChange={(event) => setRepoQuery(event.target.value)} /><span>{filteredRepositories.length} MATCH{filteredRepositories.length === 1 ? "" : "ES"}</span></div><div className="repo-list">{filteredRepositories.length ? filteredRepositories.map((repo) => <a className="repo-row" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span className="repo-glyph">⌘</span><span className="repo-name"><strong>{repo.name}</strong><small>{repo.description || "Independent project / experiment"}</small></span><span className="repo-language-list" aria-label="Languages used">{Object.keys(repositoryLanguages[repo.id] || {}).map((language) => <span className="repo-language" key={language}>{language}</span>)}</span><Arrow /></a>) : <p className="repo-no-results">No repositories match that search. Try another keyword.</p>}</div></> : <div className="repo-empty"><span>⌁</span><p>{repoState === "offline" ? "Couldn't load the live list right now. You can still browse the GitHub profile directly." : "Loading public repositories…"}</p><a href={GITHUB} target="_blank" rel="noreferrer">OPEN GITHUB PROFILE ↗</a></div>}
+            {repoState === "ready" && projectsToShow.length > 0 ? <><div className="repo-search-wrap"><label htmlFor="repo-search">FIND A REPOSITORY</label><input id="repo-search" className="repo-search" type="search" placeholder="Search name, description, language…" value={repoQuery} onChange={(event) => setRepoQuery(event.target.value)} /><span>{filteredRepositories.length} MATCH{filteredRepositories.length === 1 ? "" : "ES"}</span></div><div className="repo-list">{filteredRepositories.length ? filteredRepositories.map((repo) => <a className="repo-row" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span className="repo-glyph">⌘</span><span className="repo-name"><strong>{repo.name}</strong><small>{repo.description || "Independent project / experiment"}</small></span><span className="repo-language-list" aria-label="Languages used">{Object.keys(repositoryLanguages[repo.id] || {}).map((language) => <span className="repo-language" key={language}>{language}</span>)}</span><Arrow /></a>) : <p className="repo-no-results">No repositories match that search. Try another keyword.</p>}</div></> : <div className="repo-empty"><span>⌁</span><p>{repoState === "offline" ? "Couldn't load the live list right now. You can still browse the GitHub profile directly." : "Loading public repositories…"}</p><a href={GITHUB} target="_blank" rel="noreferrer">OPEN GITHUB PROFILE ↗</a>{repoState === "offline" && <button className="show-more repo-retry" type="button" onClick={() => { setRepoState("loading"); setRepoRetry((value) => value + 1); }}>RETRY CONNECTION ↻</button>}</div>}
             {repoState === "ready" && repositories.length > 8 && <button className="show-more" onClick={() => setShowAll(!showAll)}>{showAll ? "SHOW LESS ↑" : "SHOW MORE REPOSITORIES ↓"}</button>}
           </div>
         </div>
