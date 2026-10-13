@@ -165,9 +165,9 @@ export default function App() {
 
   useEffect(() => {
     if (!repositories.length) return;
-    // Load language details only for visible rows; the repository list must not
-    // depend on a second API request for every repository.
-    const visibleRepositories = showAll ? repositories : repositories.slice(0, 8);
+    // Load language metadata for every repository so projects without detected
+    // languages can be excluded consistently, even before "Show all" is selected.
+    const visibleRepositories = repositories;
     const missingLanguageData = visibleRepositories.filter((repo) =>
       !Object.prototype.hasOwnProperty.call(repositoryLanguages, repo.id)
     );
@@ -240,8 +240,12 @@ export default function App() {
   const projectsToShow = showAll ? repositories : repositories.slice(0, 8);
   const isRepoListAvailable = repoState === "ready";
   const filteredRepositories = projectsToShow.filter((repo) => {
-    const languages = Object.keys(repositoryLanguages[repo.id] || {}).join(" ");
-    return `${repo.name} ${repo.description || ""} ${languages}`.toLowerCase().includes(repoQuery.trim().toLowerCase());
+    const languageData = repositoryLanguages[repo.id] ||
+      (repo.language ? { [repo.language]: 1 } : {});
+    const languageNames = Object.keys(languageData);
+    if (languageNames.length === 0) return false;
+    const searchableText = `${repo.name} ${repo.description || ""} ${languageNames.join(" ")}`;
+    return searchableText.toLowerCase().includes(repoQuery.trim().toLowerCase());
   });
 
   return <div className="site-shell">
