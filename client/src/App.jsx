@@ -202,6 +202,16 @@ export default function App() {
   });
 
   return <div className="site-shell">
+    {showIntroLoader && <div className="boot-loader" role="status" aria-label="Loading portfolio">
+      <div className="boot-loader-grid" aria-hidden="true" />
+      <div className="boot-loader-core">
+        <span className="boot-loader-label">INITIALIZING PORTFOLIO</span>
+        <div className="boot-loader-mark" aria-hidden="true"><span>AD</span><b>3</b><span>N1X</span><i>_</i></div>
+        <div className="boot-loader-track"><span /></div>
+        <span className="boot-loader-status">THINK <b>→</b> BUILD <b>→</b> REFINE</span>
+      </div>
+      <span className="boot-loader-index">SYS.BOOT / 001</span>
+    </div>}
     <div className="ambient" aria-hidden="true" />
     <header className="header">
       <a className="brand" href="#home" aria-label="AD3N1X home">AD<span>3</span>N1X<span className="brand-cursor">_</span></a>
