@@ -109,6 +109,13 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [repoQuery, setRepoQuery] = useState("");
   const [repositoryLanguages, setRepositoryLanguages] = useState({});
+  const [showIntroLoader, setShowIntroLoader] = useState(true);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const timer = window.setTimeout(() => setShowIntroLoader(false), reducedMotion ? 250 : 1650);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
