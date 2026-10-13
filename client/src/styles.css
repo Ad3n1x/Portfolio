@@ -572,3 +572,71 @@ button,a{-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
 }
+
+
+/* Repository rows: keep every column aligned and descriptions consistently sized. */
+.repo-row{
+  grid-template-columns:24px minmax(0,1fr) 190px 14px;
+  column-gap:12px;
+  align-items:center;
+  min-height:88px;
+}
+.repo-name{
+  min-width:0;
+  align-self:center;
+}
+.repo-name strong{
+  display:block;
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+.repo-name small{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  min-width:0;
+  line-height:1.5;
+}
+.repo-language-list{
+  width:190px;
+  max-width:190px;
+  min-height:24px;
+  align-self:center;
+  justify-content:flex-start;
+  align-content:center;
+}
+.repo-language-list .repo-language{
+  flex:0 0 auto;
+}
+.repo-row>.arrow{
+  justify-self:end;
+  align-self:center;
+}
+@media(max-width:1100px){
+  .repo-row{grid-template-columns:22px minmax(0,1fr) 150px 14px;column-gap:8px}
+  .repo-language-list{width:150px;max-width:150px}
+}
+@media(max-width:800px){
+  .repo-row{grid-template-columns:22px minmax(0,1fr) 170px 14px;min-height:88px}
+  .repo-language-list{width:170px;max-width:170px}
+}
+@media(max-width:650px){
+  .repo-row{
+    grid-template-columns:20px minmax(0,1fr) 14px;
+    min-height:0;
+    align-items:start;
+    column-gap:8px;
+  }
+  .repo-name{grid-column:2;grid-row:1;align-self:start}
+  .repo-name small{-webkit-line-clamp:2}
+  .repo-language-list{
+    grid-column:2;
+    grid-row:2;
+    width:100%;
+    max-width:100%;
+    min-height:20px;
+    align-self:start;
+  }
+  .repo-row>.arrow{grid-column:3;grid-row:1;align-self:start}
+}
