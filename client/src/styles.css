@@ -295,7 +295,34 @@ button,a{ -webkit-tap-highlight-color:transparent }
 @keyframes boot-progress{to{transform:scaleX(1)}}
 @keyframes boot-grid-drift{from{background-position:0 0,0 0,0 0}to{background-position:0 0,0 44px,44px 0}}
 @keyframes boot-screen-exit{to{opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(0,-12px,0)}}
-@media(max-width:650px){.boot-loader-index{right:14px;bottom:14px}.boot-loader-core{gap:17px}}
+/* Responsive boot screen: keep the mark, progress line, and status aligned on small screens. */
+.boot-loader{padding:clamp(18px,5vw,36px);min-height:100svh;min-height:100dvh}
+.boot-loader-core{width:min(100%,420px);min-width:0;gap:clamp(14px,3.5vh,20px);text-align:center}
+.boot-loader-label,.boot-loader-status{max-width:100%;overflow-wrap:anywhere;text-align:center}
+.boot-loader-mark{max-width:100%;font-size:clamp(42px,10vw,76px);white-space:nowrap}
+.boot-loader-track{width:min(190px,68vw)}
+.boot-loader-status{font-size:clamp(7px,1.9vw,8px);letter-spacing:clamp(.06em,.13em,.13em);white-space:normal}
+.boot-loader-index{right:clamp(12px,3vw,22px);bottom:clamp(12px,3vh,20px);font-size:clamp(7px,1.8vw,8px)}
+@media(max-width:650px){
+  .boot-loader-core{gap:clamp(14px,2.8vh,17px)}
+  .boot-loader-mark{font-size:clamp(42px,12vw,64px)}
+  .boot-loader-label{font-size:8px;letter-spacing:.12em}
+  .boot-loader-index{right:14px;bottom:14px}
+}
+@media(max-width:360px){
+  .boot-loader-mark{font-size:clamp(38px,11vw,44px);letter-spacing:-.085em}
+  .boot-loader-status{letter-spacing:.045em}
+  .boot-loader-track{width:62vw}
+}
+@media(max-height:500px) and (orientation:landscape){
+  .boot-loader{padding:12px}
+  .boot-loader-core{gap:8px;transform:scale(.82)}
+  .boot-loader-label{font-size:7px}
+  .boot-loader-mark{font-size:clamp(36px,8vh,48px)}
+  .boot-loader-track{width:min(160px,36vw)}
+  .boot-loader-status{font-size:7px}
+  .boot-loader-index{right:10px;bottom:8px}
+}
 @media(prefers-reduced-motion:reduce){.boot-loader,.boot-loader-core,.boot-loader-mark b,.boot-loader-track span,.boot-loader-grid{animation:none!important}.boot-loader{opacity:0;visibility:hidden}}
 
 
