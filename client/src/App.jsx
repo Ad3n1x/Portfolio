@@ -113,7 +113,7 @@ export default function App() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const timer = window.setTimeout(() => setShowIntroLoader(false), reducedMotion ? 250 : 10000);
+    const timer = window.setTimeout(() => setShowIntroLoader(false), reducedMotion ? 250 : 2000);
     return () => window.clearTimeout(timer);
   }, []);
 
