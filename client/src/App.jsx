@@ -1,25 +1,6 @@
 import { useEffect, useState } from "react";
 
 const GITHUB = "https://github.com/Ad3n1x";
-const FALLBACK_REPOSITORIES = [
-  "A", "Actual-calc", "ADENA", "Adeniran-Adewale-s-website", "AI-CONV-HELP",
-  "AUG-1ST", "blog", "Blog-", "CALC", "Game-optimizer-", "HUMANKIND",
-  "JAVASCRIPT-BASICS", "Javascript-overview", "lv3node", "maycohvirBE",
-  "maycohvirFE", "mixlr", "MULTIPLICATION-TABLE", "PIGGYVEST", "QuickCart",
-  "Quiz-App", "Quynh", "Standard-Calc", "Test", "Thought-Bot-11", "UNI-TRACK",
-  "WORD-COUNTER", "zenDesk"
-].map((name, index) => ({
-  id: `fallback-${index}`,
-  name,
-  language: ({ "UNI-TRACK": "JavaScript", "QuickCart": "JavaScript", "Quiz-App": "JavaScript", "mixlr": "JavaScript", "PIGGYVEST": "JavaScript", "blog": "JavaScript", "Blog-": "JavaScript", "AI-CONV-HELP": "JavaScript", "lv3node": "JavaScript", "JAVASCRIPT-BASICS": "JavaScript", "Javascript-overview": "JavaScript", "WORD-COUNTER": "JavaScript", "CALC": "JavaScript", "Actual-calc": "JavaScript", "Standard-Calc": "JavaScript", "MULTIPLICATION-TABLE": "JavaScript", "QuickCart": "JavaScript" })[name] || null,
-  html_url: `https://github.com/Ad3n1x/${name}`,
-  description: null,
-  fork: false,
-  archived: false,
-  homepage: null,
-  updated_at: ""
-}));
-
 const featuredOverrides = [
   {
     name: "UNI-TRACK",
@@ -175,8 +156,8 @@ export default function App() {
       .catch((error) => {
         if (error.name === "AbortError") return;
         if (!hasCachedRepositories) {
-          setRepositories(FALLBACK_REPOSITORIES);
-          setRepoState("fallback");
+          setRepositories([]);
+          setRepoState("offline");
         }
       });
     return () => controller.abort();
@@ -257,7 +238,7 @@ export default function App() {
   const liveProjects = [...new Map(projectsToFeature.filter((project) => project.live && !/west\s*citi|portfolio/i.test(project.name)).map((project) => [project.live.replace(/\/$/, ""), project])).values()];
   // Show repositories as soon as GitHub returns them; language metadata is optional.
   const projectsToShow = showAll ? repositories : repositories.slice(0, 8);
-  const isRepoListAvailable = repoState === "ready" || repoState === "fallback";
+  const isRepoListAvailable = repoState === "ready";
   const filteredRepositories = projectsToShow.filter((repo) => {
     const languages = Object.keys(repositoryLanguages[repo.id] || {}).join(" ");
     return `${repo.name} ${repo.description || ""} ${languages}`.toLowerCase().includes(repoQuery.trim().toLowerCase());
@@ -328,7 +309,7 @@ export default function App() {
         <div className="education-card"><div><p className="eyebrow">CURRENT LEARNING</p><h3>Software engineering & web development</h3><p>SQI College of ICT · Levels 1–3 completed · Preparing for Level 4</p><p className="learning-detail">Python: current learning focus · TypeScript: planned next step</p></div><span className="learning-pill"><i /> IN PROGRESS</span></div>
       </section>
 
-      <section className="github-section"><div className="page-width github-layout"><div><p className="eyebrow">04 / THE REPOSITORY SHELF</p><h2>Open tabs.<br /><span>Open source.</span></h2><p className="github-intro">A live directory pulled from my public GitHub profile. Some repositories are experiments and practice projects; not every repository is a finished product.</p><a className="btn btn-primary" href={GITHUB} target="_blank" rel="noreferrer">ALL REPOSITORIES <Arrow /></a><p className="sync-state"><i className={repoState === "ready" ? "online" : ""} /> {repoState === "ready" ? "GITHUB DATA CONNECTED" : repoState === "fallback" ? "SHOWING REPOSITORY BACKUP" : repoState === "offline" ? "GITHUB TEMPORARILY UNAVAILABLE" : "CONNECTING TO GITHUB"}</p></div>
+      <section className="github-section"><div className="page-width github-layout"><div><p className="eyebrow">04 / THE REPOSITORY SHELF</p><h2>Open tabs.<br /><span>Open source.</span></h2><p className="github-intro">A live directory pulled from my public GitHub profile. Some repositories are experiments and practice projects; not every repository is a finished product.</p><a className="btn btn-primary" href={GITHUB} target="_blank" rel="noreferrer">ALL REPOSITORIES <Arrow /></a><p className="sync-state"><i className={repoState === "ready" ? "online" : ""} /> {repoState === "ready" ? "GITHUB DATA CONNECTED" : repoState === "offline" ? "GITHUB TEMPORARILY UNAVAILABLE" : "CONNECTING TO GITHUB"}</p></div>
           <div className="repo-panel"><div className="repo-panel-head"><span>AD3N1X / PUBLIC REPOSITORIES</span><span>{isRepoListAvailable ? String(repositories.length).padStart(2, "0") : "—"}</span></div>
             {isRepoListAvailable && projectsToShow.length > 0 ? <><div className="repo-search-wrap"><label htmlFor="repo-search">FIND A REPOSITORY</label><input id="repo-search" className="repo-search" type="search" placeholder="Search name, description, language…" value={repoQuery} onChange={(event) => setRepoQuery(event.target.value)} /><span>{filteredRepositories.length} MATCH{filteredRepositories.length === 1 ? "" : "ES"}</span></div><div className="repo-list">{filteredRepositories.length ? filteredRepositories.map((repo) => <a className="repo-row" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span className="repo-glyph">⌘</span><span className="repo-name"><strong>{repo.name}</strong><small>{repo.description || "Independent project / experiment"}</small></span><span className="repo-language-list" aria-label="Languages used">{Object.keys(repositoryLanguages[repo.id] || (repo.language ? { [repo.language]: 1 } : {})).map((language) => <span className="repo-language" key={language}>{language}</span>)}</span><Arrow /></a>) : <p className="repo-no-results">No repositories match that search. Try another keyword.</p>}</div></> : <div className="repo-empty"><span>⌁</span><p>{repoState === "offline" ? "Couldn't load the live list right now. You can still browse the GitHub profile directly." : "Loading public repositories…"}</p><a href={GITHUB} target="_blank" rel="noreferrer">OPEN GITHUB PROFILE ↗</a>{repoState === "offline" && <button className="show-more repo-retry" type="button" onClick={() => { setRepoState("loading"); setRepoRetry((value) => value + 1); }}>RETRY CONNECTION ↻</button>}</div>}
             {isRepoListAvailable && repositories.length > 8 && <button className="show-more" onClick={() => setShowAll(!showAll)}>{showAll ? "SHOW LESS ↑" : "SHOW MORE REPOSITORIES ↓"}</button>}
