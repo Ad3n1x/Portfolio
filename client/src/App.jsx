@@ -133,22 +133,34 @@ export default function App() {
 
   useEffect(() => {
     if (!repositories.length) return;
-    const missingLanguageData = repositories.filter((repo) =>
+    // Load language details only for visible rows; the repository list must not
+    // depend on a second API request for every repository.
+    const visibleRepositories = showAll ? repositories : repositories.slice(0, 8);
+    const missingLanguageData = visibleRepositories.filter((repo) =>
       !Object.prototype.hasOwnProperty.call(repositoryLanguages, repo.id)
     );
     if (!missingLanguageData.length) return;
     let cancelled = false;
-    Promise.all(missingLanguageData.map(async (repo) => {
-      try {
-        const response = await fetch(repo.languages_url);
-        if (!response.ok) throw new Error("Language data unavailable");
-        return [repo.id, await response.json()];
-      } catch {
-        return [repo.id, repo.language ? { [repo.language]: 1 } : {}];
+    const loadLanguages = async () => {
+      const entries = [];
+      // Small batches avoid exhausting GitHub's unauthenticated API rate limit.
+      for (let start = 0; start < missingLanguageData.length; start += 6) {
+        const batch = missingLanguageData.slice(start, start + 6);
+        const results = await Promise.all(batch.map(async (repo) => {
+          try {
+            const response = await fetch(repo.languages_url);
+            if (!response.ok) throw new Error("Language data unavailable");
+            return [repo.id, await response.json()];
+          } catch {
+            return [repo.id, repo.language ? { [repo.language]: 1 } : {}];
+          }
+        }));
+        entries.push(...results);
+        if (cancelled) return;
       }
-    })).then((entries) => {
       if (!cancelled) setRepositoryLanguages((current) => ({ ...current, ...Object.fromEntries(entries) }));
-    });
+    };
+    loadLanguages();
     return () => { cancelled = true; };
   }, [repositories, showAll, repositoryLanguages]);
 
@@ -192,10 +204,8 @@ export default function App() {
     ...autoFeatured.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
   ];
   const liveProjects = [...new Map(projectsToFeature.filter((project) => project.live && !/west\s*citi|portfolio/i.test(project.name)).map((project) => [project.live.replace(/\/$/, ""), project])).values()];
-  const repositoriesWithLanguages = repositories.filter((repo) =>
-    Object.keys(repositoryLanguages[repo.id] || {}).length > 0
-  );
-  const projectsToShow = showAll ? repositoriesWithLanguages : repositoriesWithLanguages.slice(0, 8);
+  // Show repositories as soon as GitHub returns them; language metadata is optional.
+  const projectsToShow = showAll ? repositories : repositories.slice(0, 8);
   const filteredRepositories = projectsToShow.filter((repo) => {
     const languages = Object.keys(repositoryLanguages[repo.id] || {}).join(" ");
     return `${repo.name} ${repo.description || ""} ${languages}`.toLowerCase().includes(repoQuery.trim().toLowerCase());
