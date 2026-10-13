@@ -413,3 +413,162 @@ body::after{content:"";position:fixed;inset:0;z-index:20;pointer-events:none;opa
     align-self:start;
   }
 }
+
+
+/* Site-wide responsive pass: fluid layouts, safe text wrapping, and no horizontal overflow. */
+html{width:100%;max-width:100%;overflow-x:clip}
+body{width:100%;max-width:100%;overflow-x:clip}
+img,svg,video,canvas,iframe{max-width:100%}
+button,input,textarea,select{max-width:100%;font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+.page-width{width:min(1180px,calc(100% - clamp(28px,8vw,96px)))}
+.hero,.section,.approach-layout,.stack-section,.github-section,.contact-section,.footer,
+.project-card,.live-preview-card,.repo-panel,.contact-card,.education-card{min-width:0}
+.hero h1,.section-head h2,.approach-heading h2,.github-layout h2,.contact-layout h2,
+.project-content h3,.capability h3,.education-card h3{overflow-wrap:break-word}
+.hero-intro,.section-note,.project-description,.approach-copy p,.contact-intro,
+.github-intro,.capability p,.education-card p{overflow-wrap:anywhere}
+.project-art,.live-preview-image{max-width:100%;min-width:0}
+.featured-grid,.github-layout,.contact-layout,.approach-layout{min-width:0}
+.repo-panel{width:100%;max-width:100%;overflow:hidden}
+.repo-search-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
+.repo-search{min-width:0;max-width:100%}
+.repo-list{min-width:0;overscroll-behavior:contain}
+.repo-row{min-width:0}
+.repo-name{min-width:0}
+.repo-language-list{min-width:0}
+.contact-email{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.contact-social{min-width:0}
+.contact-social strong{min-width:0;overflow-wrap:anywhere}
+.project-links{flex-wrap:wrap}
+.tag-list{min-width:0}
+@media(max-width:1100px){
+  .page-width{width:calc(100% - 56px)}
+  .hero{gap:5%;grid-template-columns:minmax(0,1.05fr) minmax(280px,.8fr)}
+  .hero h1{font-size:clamp(44px,6vw,68px)}
+  .identity-card{min-width:0}
+  .section-head{gap:24px}
+  .github-layout{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:5%}
+  .repo-row{grid-template-columns:22px minmax(0,1fr) minmax(90px,150px) 14px;gap:8px}
+  .repo-language-list{max-width:150px}
+  .nav{gap:14px}
+}
+@media(max-width:800px){
+  .page-width{width:calc(100% - 44px)}
+  .header{padding-inline:22px}
+  .nav{gap:12px}
+  .nav a{font-size:9px}
+  .nav a span{margin-left:4px}
+  .header-contact{padding:10px}
+  .hero{grid-template-columns:minmax(0,1fr) minmax(250px,.82fr);gap:4%;padding-top:76px}
+  .hero h1{font-size:clamp(40px,6vw,54px)}
+  .identity-card{padding:16px}
+  .identity-symbol{height:170px;font-size:clamp(42px,6vw,58px)}
+  .card-caption{right:-10px}
+  .hero-meta{gap:12px}
+  .section{padding-block:84px}
+  .featured-grid{gap:14px}
+  .project-content{padding:18px 15px}
+  .project-links{flex-wrap:wrap}
+  .approach-layout{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:6%}
+  .principles{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .github-section{padding-block:80px}
+  .github-layout{grid-template-columns:1fr;gap:32px;align-items:start}
+  .github-intro{max-width:560px}
+  .repo-row{grid-template-columns:22px minmax(0,1fr) minmax(100px,170px) 14px}
+  .repo-language-list{max-width:170px}
+  .contact-layout{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:5%}
+  .contact-card{padding:20px}
+}
+@media(max-width:650px){
+  .page-width{width:calc(100% - 36px)}
+  .header{height:68px;padding-inline:18px}
+  .nav{display:none}
+  .hero{display:flex;flex-direction:column;align-items:stretch;gap:34px;padding:66px 0 62px}
+  .hero h1{font-size:clamp(42px,11.5vw,64px);line-height:1.03}
+  .hero-intro{max-width:100%;font-size:14px}
+  .hero-actions{gap:10px}
+  .btn{max-width:100%;gap:14px}
+  .hero-meta{flex-wrap:wrap;line-height:1.8}
+  .identity-card{width:calc(100% - 8px);max-width:470px;margin:0 8px 0 0}
+  .identity-symbol{height:170px}
+  .card-caption{right:-8px;bottom:-15px}
+  .hero-index{right:0}
+  .section,.contact-section{padding-block:72px}
+  .section-head{display:block;margin-bottom:28px}
+  .section-note{max-width:100%;margin-top:18px}
+  .featured-grid{grid-template-columns:minmax(0,1fr)}
+  .project-card{width:100%}
+  .project-art{height:clamp(140px,40vw,180px)}
+  .project-description{min-height:0}
+  .approach-layout{padding-block:72px;grid-template-columns:minmax(0,1fr);gap:26px}
+  .principles{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .principles strong{overflow-wrap:anywhere}
+  .capability{grid-template-columns:28px minmax(0,1fr) 16px;gap:9px}
+  .education-card{align-items:flex-start;flex-direction:column}
+  .learning-pill{white-space:normal}
+  .github-layout{grid-template-columns:minmax(0,1fr);gap:30px}
+  .repo-panel{min-width:0}
+  .repo-row{grid-template-columns:20px minmax(0,1fr) 14px;align-items:start;row-gap:8px}
+  .repo-language-list{grid-column:2;grid-row:2;width:100%;max-width:100%;flex-wrap:wrap}
+  .repo-row>.arrow{grid-column:3;grid-row:1;align-self:start}
+  .repo-language-list .repo-language{font-size:8px;padding:5px 7px}
+  .repo-search-wrap{align-items:stretch}
+  .repo-search{width:100%;flex:1 1 100%}
+  .contact-layout{grid-template-columns:minmax(0,1fr);gap:28px}
+  .contact-card{padding:18px}
+  .contact-email{font-size:clamp(14px,4vw,17px)}
+  .contact-social{grid-template-columns:74px minmax(0,1fr) 14px;gap:8px}
+  .footer{gap:12px}
+  .footer .brand{font-size:17px}
+}
+@media(max-width:420px){
+  .page-width{width:calc(100% - 28px)}
+  .header{padding-inline:14px}
+  .brand{font-size:19px;letter-spacing:-1.4px}
+  .header-contact{font-size:9px;padding:9px}
+  .hero{padding-top:54px}
+  .hero h1{font-size:clamp(39px,11vw,48px);letter-spacing:-.07em}
+  .hero-actions{align-items:stretch;flex-direction:column}
+  .hero-actions .btn{width:100%;justify-content:space-between}
+  .hero-meta{font-size:8px;gap:8px}
+  .identity-card{padding:15px}
+  .identity-head{font-size:8px}
+  .identity-symbol{height:145px;font-size:clamp(39px,11vw,48px)}
+  .identity-line{gap:8px}
+  .identity-line span,.identity-line strong{font-size:9px}
+  .card-caption{font-size:9px;padding:10px 12px}
+  .section-head h2,.approach-heading h2,.github-layout h2,.contact-layout h2{font-size:clamp(37px,10.5vw,46px)}
+  .project-content h3{font-size:21px}
+  .principles{grid-template-columns:1fr;gap:12px}
+  .principles>div{display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;align-items:start}
+  .principles strong{margin-top:0}
+  .principles p{grid-column:2;margin:0}
+  .capability{grid-template-columns:24px minmax(0,1fr) 14px;padding-block:17px}
+  .capability-number{font-size:9px}
+  .capability h3{font-size:13px}
+  .capability p{font-size:10px}
+  .repo-panel-head{padding-inline:12px;font-size:8px}
+  .repo-row{padding-inline:10px}
+  .repo-name strong{font-size:11px}
+  .repo-name small{white-space:normal;overflow-wrap:anywhere;line-height:1.5}
+  .contact-social{grid-template-columns:64px minmax(0,1fr) 12px}
+  .contact-social strong{font-size:11px}
+  .footer>span{max-width:100%;overflow-wrap:anywhere}
+}
+@media(max-width:340px){
+  .brand{font-size:17px}
+  .header-contact{font-size:8px;padding:8px}
+  .hero h1{font-size:37px}
+  .btn{padding-inline:12px;font-size:9px}
+  .identity-symbol{font-size:37px}
+  .repo-row{grid-template-columns:17px minmax(0,1fr) 12px;gap:6px}
+  .repo-language-list .repo-language{font-size:7px;padding:4px 5px}
+}
+@media(hover:none){
+  .project-card:hover,.capability:hover,.principles>div:hover{transform:none}
+  .repo-row:hover{padding-left:initial}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
