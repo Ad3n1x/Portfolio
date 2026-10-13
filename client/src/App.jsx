@@ -14,7 +14,6 @@ const FALLBACK_REPOSITORIES = [
   language: ({ "UNI-TRACK": "JavaScript", "QuickCart": "JavaScript", "Quiz-App": "JavaScript", "mixlr": "JavaScript", "PIGGYVEST": "JavaScript", "blog": "JavaScript", "Blog-": "JavaScript", "AI-CONV-HELP": "JavaScript", "lv3node": "JavaScript", "JAVASCRIPT-BASICS": "JavaScript", "Javascript-overview": "JavaScript", "WORD-COUNTER": "JavaScript", "CALC": "JavaScript", "Actual-calc": "JavaScript", "Standard-Calc": "JavaScript", "MULTIPLICATION-TABLE": "JavaScript", "QuickCart": "JavaScript" })[name] || null,
   html_url: `https://github.com/Ad3n1x/${name}`,
   description: null,
-  language: null,
   fork: false,
   archived: false,
   homepage: null,
