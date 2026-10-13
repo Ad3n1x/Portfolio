@@ -42,8 +42,8 @@ const capabilities = [
   { n: "02", title: "JavaScript foundations", body: "DOM interaction, application logic, events, arrays, functions, and debugging." },
   { n: "03", title: "React in practice", body: "Components, props, state, and building interfaces with Vite." },
   { n: "04", title: "Full-stack exploration", body: "Learning Node.js, Express, APIs, MongoDB, and how frontend and backend fit together." },
-  { n: "05", title: "TypeScript", body: "Current learning focus — building on JavaScript with types and clearer tooling." },
-  { n: "06", title: "Python", body: "Planned next step; not yet presented as a current skill." }
+  { n: "05", title: "Python", body: "Current learning focus — building programming skills and problem-solving through practice." },
+  { n: "06", title: "TypeScript", body: "Planned next step — adding static typing to JavaScript projects." }
 ];
 
 function Arrow() { return <span aria-hidden="true" className="arrow">↗</span>; }
@@ -218,7 +218,7 @@ export default function App() {
       <section id="stack" className="section page-width stack-section">
         <div className="section-head"><div><p className="eyebrow">03 / TOOLKIT IN PROGRESS</p><h2>Learning the<br /><span>language.</span></h2></div><p className="section-note">A grounded view of my current toolkit — with a distinction between foundations I use and technologies I'm actively developing.</p></div>
         <div className="capability-list">{capabilities.map((item) => <article className="capability" key={item.n}><span className="capability-number">{item.n}</span><div><h3>{item.title}</h3><p>{item.body}</p></div><span className="capability-arrow">↗</span></article>)}</div>
-        <div className="education-card"><div><p className="eyebrow">CURRENT LEARNING</p><h3>Software engineering & web development</h3><p>SQI College of ICT · Levels 1–3 completed · Preparing for Level 4</p><p className="learning-detail">TypeScript: current learning focus · Python: planned next step</p></div><span className="learning-pill"><i /> IN PROGRESS</span></div>
+        <div className="education-card"><div><p className="eyebrow">CURRENT LEARNING</p><h3>Software engineering & web development</h3><p>SQI College of ICT · Levels 1–3 completed · Preparing for Level 4</p><p className="learning-detail">Python: current learning focus · TypeScript: planned next step</p></div><span className="learning-pill"><i /> IN PROGRESS</span></div>
       </section>
 
       <section className="github-section"><div className="page-width github-layout"><div><p className="eyebrow">04 / THE REPOSITORY SHELF</p><h2>Open tabs.<br /><span>Open source.</span></h2><p className="github-intro">A live directory pulled from my public GitHub profile. Some repositories are experiments and practice projects; not every repository is a finished product.</p><a className="btn btn-primary" href={GITHUB} target="_blank" rel="noreferrer">ALL REPOSITORIES <Arrow /></a><p className="sync-state"><i className={repoState === "ready" ? "online" : ""} /> {repoState === "ready" ? "GITHUB DATA CONNECTED" : repoState === "offline" ? "GITHUB TEMPORARILY UNAVAILABLE" : "CONNECTING TO GITHUB"}</p></div>
