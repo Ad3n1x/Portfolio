@@ -108,6 +108,7 @@ export default function App() {
   const [showAll, setShowAll] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [repoQuery, setRepoQuery] = useState("");
+  const [repositoryLanguages, setRepositoryLanguages] = useState({});
 
   useEffect(() => {
     const controller = new AbortController();
@@ -122,6 +123,28 @@ export default function App() {
       .catch((error) => { if (error.name !== "AbortError") setRepoState("offline"); });
     return () => controller.abort();
   }, []);
+
+  useEffect(() => {
+    if (!repositories.length) return;
+    const visibleRepos = showAll ? repositories : repositories.slice(0, 8);
+    const missingLanguageData = visibleRepos.filter((repo) =>
+      !Object.prototype.hasOwnProperty.call(repositoryLanguages, repo.id)
+    );
+    if (!missingLanguageData.length) return;
+    let cancelled = false;
+    Promise.all(missingLanguageData.map(async (repo) => {
+      try {
+        const response = await fetch(repo.languages_url);
+        if (!response.ok) throw new Error("Language data unavailable");
+        return [repo.id, await response.json()];
+      } catch {
+        return [repo.id, repo.language ? { [repo.language]: 1 } : {}];
+      }
+    })).then((entries) => {
+      if (!cancelled) setRepositoryLanguages((current) => ({ ...current, ...Object.fromEntries(entries) }));
+    });
+    return () => { cancelled = true; };
+  }, [repositories, showAll, repositoryLanguages]);
 
   const copyContact = async (value) => {
     try {
@@ -223,7 +246,7 @@ export default function App() {
 
       <section className="github-section"><div className="page-width github-layout"><div><p className="eyebrow">04 / THE REPOSITORY SHELF</p><h2>Open tabs.<br /><span>Open source.</span></h2><p className="github-intro">A live directory pulled from my public GitHub profile. Some repositories are experiments and practice projects; not every repository is a finished product.</p><a className="btn btn-primary" href={GITHUB} target="_blank" rel="noreferrer">ALL REPOSITORIES <Arrow /></a><p className="sync-state"><i className={repoState === "ready" ? "online" : ""} /> {repoState === "ready" ? "GITHUB DATA CONNECTED" : repoState === "offline" ? "GITHUB TEMPORARILY UNAVAILABLE" : "CONNECTING TO GITHUB"}</p></div>
           <div className="repo-panel"><div className="repo-panel-head"><span>AD3N1X / PUBLIC REPOSITORIES</span><span>{repoState === "ready" ? String(repositories.length).padStart(2, "0") : "—"}</span></div>
-            {repoState === "ready" && projectsToShow.length > 0 ? <><div className="repo-search-wrap"><label htmlFor="repo-search">FIND A REPOSITORY</label><input id="repo-search" className="repo-search" type="search" placeholder="Search name, description, language…" value={repoQuery} onChange={(event) => setRepoQuery(event.target.value)} /><span>{filteredRepositories.length} MATCH{filteredRepositories.length === 1 ? "" : "ES"}</span></div><div className="repo-list">{filteredRepositories.length ? filteredRepositories.map((repo) => <a className="repo-row" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span className="repo-glyph">⌘</span><span className="repo-name"><strong>{repo.name}</strong><small>{repo.description || "Independent project / experiment"}</small></span><span className="repo-language">{repo.language || "PROJECT"}</span><Arrow /></a>) : <p className="repo-no-results">No repositories match that search. Try another keyword.</p>}</div></> : <div className="repo-empty"><span>⌁</span><p>{repoState === "offline" ? "Couldn't load the live list right now. You can still browse the GitHub profile directly." : "Loading public repositories…"}</p><a href={GITHUB} target="_blank" rel="noreferrer">OPEN GITHUB PROFILE ↗</a></div>}
+            {repoState === "ready" && projectsToShow.length > 0 ? <><div className="repo-search-wrap"><label htmlFor="repo-search">FIND A REPOSITORY</label><input id="repo-search" className="repo-search" type="search" placeholder="Search name, description, language…" value={repoQuery} onChange={(event) => setRepoQuery(event.target.value)} /><span>{filteredRepositories.length} MATCH{filteredRepositories.length === 1 ? "" : "ES"}</span></div><div className="repo-list">{filteredRepositories.length ? filteredRepositories.map((repo) => <a className="repo-row" key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer"><span className="repo-glyph">⌘</span><span className="repo-name"><strong>{repo.name}</strong><small>{repo.description || "Independent project / experiment"}</small></span><span className="repo-language-list" aria-label="Languages used" style={{ display: "flex", flexWrap: "wrap", gap: "5px", justifyContent: "flex-end", maxWidth: "45%" }}>{(Object.keys(repositoryLanguages[repo.id] || (repo.language ? { [repo.language]: 1 } : {}))).map((language) => <span className="repo-language" key={language}>{language}</span>)}{!Object.keys(repositoryLanguages[repo.id] || (repo.language ? { [repo.language]: 1 } : {})).length && <span className="repo-language">LANGUAGES PENDING</span>}</span><Arrow /></a>) : <p className="repo-no-results">No repositories match that search. Try another keyword.</p>}</div></> : <div className="repo-empty"><span>⌁</span><p>{repoState === "offline" ? "Couldn't load the live list right now. You can still browse the GitHub profile directly." : "Loading public repositories…"}</p><a href={GITHUB} target="_blank" rel="noreferrer">OPEN GITHUB PROFILE ↗</a></div>}
             {repoState === "ready" && repositories.length > 8 && <button className="show-more" onClick={() => setShowAll(!showAll)}>{showAll ? "SHOW LESS ↑" : "SHOW MORE REPOSITORIES ↓"}</button>}
           </div>
         </div>
