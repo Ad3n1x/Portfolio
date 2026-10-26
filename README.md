@@ -2,6 +2,10 @@
 
 A dark graphite + acid-lime portfolio built with **MongoDB, Express, React, and Node.js**.
 
+## Featured product: ADVERSE
+
+[ADVERSE](https://adverse-web.onrender.com/) is an independent public-source search and research product created by **AD3N1X**. Explore the live product, read its [source repository](https://github.com/Ad3n1x/ADVERSE), or visit the [AD3N1X portfolio](https://engnradeniran.com/) for more projects.
+
 ## Structure
 
 - `client/` — React + Vite frontend
