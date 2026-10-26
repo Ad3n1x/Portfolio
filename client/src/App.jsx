@@ -3,6 +3,17 @@ import { useEffect, useState } from "react";
 const GITHUB = "https://github.com/Ad3n1x";
 const featuredOverrides = [
   {
+    name: "ADVERSE",
+    type: "PUBLIC-SOURCE SEARCH / RESEARCH TOOL",
+    description: "A website-first search workspace built by AD3N1X to help people find useful public webpages, check destinations, follow research leads, and understand source evidence.",
+    details: "ADVERSE is an independent product created by AD3N1X. It focuses on finding useful public-source destinations, exploring investigative leads, and organizing evidence with provenance and limitations kept visible. Search and destination discovery are the primary experience; relationship graphs and deeper investigative tools support the workflow when needed. The goal is to help people get to relevant, working sources faster instead of being buried in dead links or unsupported claims.",
+    focus: ["Public-source search", "Destination and link discovery", "Source provenance", "Research workflows"],
+    stack: ["React", "TypeScript", "Vite", "Node.js"],
+    live: "https://adverse-web.onrender.com",
+    repo: "https://github.com/Ad3n1x/ADVERSE",
+    code: "00"
+  },
+  {
     name: "UNI-TRACK",
     type: "PRODUCTIVITY / WEB APP",
     description: "A privacy-first productivity and tracking ecosystem designed to help users organise activities, keep daily goals visible, and build a clearer picture of their progress through a straightforward digital experience.",
