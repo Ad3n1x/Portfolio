@@ -46,6 +46,17 @@ const featuredOverrides = [
     repo: "https://github.com/Ad3n1x/Quiz-App",
     code: "03"
   },
+  {
+    name: "Cuewise",
+    type: "AI-ASSISTED CONVERSATION / REPLY COACHING",
+    description: "A conversation-understanding tool that separates literal wording from assumptions and offers thoughtful, editable reply suggestions.",
+    details: "Cuewise lets users paste a conversation excerpt or upload a screenshot, extract text with browser-based OCR, choose a communication goal, and review cautious alternative interpretations alongside editable reply suggestions. It is designed as a reflection and writing aid, not a mind-reading tool: its analysis cannot prove another person's feelings or intent. AI-powered analysis is optional, while local rule-based analysis remains available.",
+    focus: ["Conversation context analysis", "Screenshot text extraction", "Alternative interpretations", "Editable reply suggestions"],
+    stack: ["JavaScript", "Tesseract.js", "Node.js", "Vercel"],
+    live: "https://ai-conv-help.vercel.app/",
+    repo: "https://github.com/Ad3n1x/AI-CONV-HELP",
+    code: "04"
+  },
 ];
 
 const capabilities = [
