@@ -31,7 +31,7 @@ const featuredOverrides = [
     details: "QuickCart explores a practical bridge between messaging-based commerce and a structured online shopping experience. The project’s full-stack direction combines a React-based interface with a Node.js, Express, and MongoDB backend, creating a foundation for product data, API-driven workflows, and commerce functionality. Its central idea is to reduce friction between discovering a product and starting a purchase, especially for businesses that already communicate with customers through WhatsApp. The concept also leaves room for future seller-side tools and more organised order management as the project develops.",
     focus: ["E-commerce workflows", "WhatsApp-first commerce", "API development", "Full-stack architecture"],
     stack: ["React", "Node.js", "Express", "MongoDB"],
-    live: "https://quick-cart-adeniran-victor-adebowales-projects.vercel.app",
+    live: "https://quick-cart-three-chi.vercel.app/",
     repo: "https://github.com/Ad3n1x/QuickCart",
     code: "02"
   },
