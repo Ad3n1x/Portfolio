@@ -21,7 +21,7 @@ My work spans commerce tools, search and research software, productivity applica
 | **ADVERSE** | A search and research product for discovering public information, checking destination reachability, and keeping source context visible. Search coverage and verification are explicitly bounded. | [Live app](https://adverse-web.onrender.com/) · [Source](https://github.com/Ad3n1x/ADVERSE) |
 | **UNI-TRACK** | A privacy-first productivity and tracking ecosystem for organising goals, habits, tasks, and workflows. | [Live app](https://unitrack-app.vercel.app/) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
 | **Quiz App** | An interactive learning application with STEM-focused quizzes and configurable question sets. | [Live app](https://quiz-app-henna-omega.vercel.app/) · [Source](https://github.com/Ad3n1x/Quiz-App) |
-| **Statecraft** | An independent software project exploring structured application state and interactive workflows. | [Source](https://github.com/Ad3n1x/Statecraft) |
+| **Cuewise** | A conversation-understanding and reply-coaching app with screenshot OCR, cautious alternative interpretations, and editable reply suggestions. | [Live app](https://ai-conv-help.vercel.app/) · [Source](https://github.com/Ad3n1x/AI-CONV-HELP) |
 
 ## Technical focus
 
