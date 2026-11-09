@@ -1,66 +1,75 @@
-# AD3N1X Portfolio — MERN Edition
+# AD3N1X Portfolio
 
-A dark graphite + acid-lime portfolio built with **MongoDB, Express, React, and Node.js**.
+The personal developer portfolio of **AD3N1X (Adeniran Victor)**, showcasing independent software projects, technical interests, and ways to explore the work.
 
-## Featured product: ADVERSE
+## Live portfolio
 
-[ADVERSE](https://adverse-web.onrender.com/) is an independent public-source search and research product created by **AD3N1X**. Explore the live product, read its [source repository](https://github.com/Ad3n1x/ADVERSE), or visit the [AD3N1X portfolio](https://engnradeniran.com/) for more projects.
+- **Website:** https://engnradeniran.com/
+- **GitHub:** https://github.com/Ad3n1x
+- **LinkedIn:** https://www.linkedin.com/in/adeniran-victor-ba28a7432/
 
-## Structure
+## Featured projects
 
-- `client/` — React + Vite frontend
-- `server/` — Express REST API, Mongoose models, contact endpoint
-- `server/src/index.js` — API routes and MongoDB schemas
-- `render.yaml` — Render backend blueprint
-- `vercel.json` — Vercel frontend build configuration
+- **ADVERSE** — a website-first public-source search and research product, with destination discovery and evidence-oriented research workflows. [Live app](https://adverse-web.onrender.com/) · [Source](https://github.com/Ad3n1x/ADVERSE)
+- **QuickCart** — a WhatsApp-first commerce platform for small businesses, with storefronts, product catalogues, seller order management, customer tracking, and WhatsApp communication. [Live app](https://quick-cart-three-chi.vercel.app/) · [Source](https://github.com/Ad3n1x/QuickCart)
+- **UNI-TRACK** — a productivity and personal-tracking application exploring habits, goals, tasks, and privacy-conscious data handling. [Live app](https://unitrack-app.vercel.app/) · [Source](https://github.com/Ad3n1x/UNI-TRACK)
+- **Quiz App** — an interactive learning project. [Live app](https://quiz-app-henna-omega.vercel.app/) · [Source](https://github.com/Ad3n1x/Quiz-App)
 
-## Features
+## Repository structure
 
-- AD3N1X brand and responsive, technical-minimal visual system
-- Project cards loaded from `GET /api/projects` with local fallback content
-- Contact form validated on client and server and stored in MongoDB
-- Rate limiting on contact submissions, CORS allow-list, input length limits
-- Health endpoint at `GET /api/health`
+- `client/` — React and Vite frontend.
+- `server/` — Express API, MongoDB models, and contact endpoint.
+- `render.yaml` — Render backend blueprint.
+- `vercel.json` — Vercel frontend build configuration.
 
-## Local development
+## Technology
+
+- React and Vite
+- Node.js and Express
+- MongoDB and Mongoose
+- JavaScript
+- REST APIs
+
+## Run locally
 
 Requires Node.js 20+ and a MongoDB connection string.
 
-1. Install root tools: `npm install`
-2. Install dependencies: `npm run install:all`
-3. Copy `server/.env.example` to `server/.env` and set `MONGODB_URI`.
-4. Set `CLIENT_URL=http://localhost:5173` in `server/.env`.
-5. Run both apps: `npm run dev`
-6. Open the Vite URL shown in the terminal (usually `http://localhost:5173`).
+1. Install root tools:
 
-The React app uses local project fallback content if the API is not reachable. Contact submissions require the API and a connected MongoDB database.
+   ```bash
+   npm install
+   ```
 
-## Deploy
+2. Install frontend and backend dependencies:
 
-### Backend — Render
+   ```bash
+   npm run install:all
+   ```
 
-- Create a Web Service from this repository.
-- Set the Root Directory to `server`.
-- Build command: `npm install`
-- Start command: `npm start`
-- Add `MONGODB_URI` from MongoDB Atlas.
-- Add `CLIENT_URL` as the exact deployed Vercel frontend origin.
+3. Copy `server/.env.example` to `server/.env` and configure `MONGODB_URI` and `CLIENT_URL`.
 
-### Database — MongoDB Atlas
+4. Start both applications:
 
-Create a database user and database, allow Render's outbound access as required by your Atlas network configuration, and save the connection string as the Render environment variable `MONGODB_URI`. Never commit real credentials.
+   ```bash
+   npm run dev
+   ```
 
-### Frontend — Vercel
+The frontend can show local fallback project content when the API is unavailable. Contact submissions require the API and a working MongoDB connection.
 
-- Import this repository into Vercel.
-- Use the included `vercel.json` build configuration, or set the root build command to `npm run build --prefix client` and output directory to `client/dist`.
-- Add `VITE_API_URL` with the deployed Render API URL (no trailing slash).
-- Redeploy after setting environment variables.
+## Deployment
 
-## Important deployment note
+The repository is configured for a split deployment:
 
-GitHub Pages can serve the old static portfolio but cannot run the Express API or MongoDB. This branch keeps the existing `main` branch intact while the MERN edition is prepared. Deploy the frontend on Vercel and the API on Render for the full stack experience.
+- **Frontend:** Vercel
+- **Backend:** Render
+- **Database:** MongoDB Atlas
 
-## Scope / security
+Configure environment variables in the hosting providers. Do not commit database credentials, API keys, JWT secrets, or other private configuration.
 
-There is currently no admin dashboard or public write endpoint for project management. Project cards seed from the server's initial project list and are stored in MongoDB on first successful read. Contact messages are stored in MongoDB; add authentication before building any private message inbox or project editor.
+## Security and scope
+
+The contact form includes client- and server-side validation, rate limiting, CORS restrictions, and input length limits. Contact messages are stored in MongoDB. There is no admin dashboard or public project-management write endpoint in this repository.
+
+## About
+
+This portfolio is part of the ongoing AD3N1X software-development journey. Project descriptions distinguish working implementations from planned work; deployment and third-party service availability can change independently of the source code.
