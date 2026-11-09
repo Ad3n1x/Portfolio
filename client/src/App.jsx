@@ -14,17 +14,6 @@ const featuredOverrides = [
     code: "00"
   },
   {
-    name: "UNI-TRACK",
-    type: "PRODUCTIVITY / WEB APP",
-    description: "A privacy-first productivity and tracking ecosystem designed to help users organise activities, keep daily goals visible, and build a clearer picture of their progress through a straightforward digital experience.",
-    details: "UNI-TRACK brings everyday tracking and productivity workflows into one accessible web experience. Its aim is to help users organise activities, review progress, and approach daily goals with more structure, while keeping the interface practical and the product privacy-conscious. Rather than adding complexity for its own sake, the project explores how useful tools can support real routines and make personal productivity easier to manage. It reflects an interest in building digital experiences that balance clarity, usefulness, and thoughtful product design.",
-    focus: ["Productivity workflows", "Progress tracking", "Privacy-conscious design", "User experience"],
-    stack: ["React", "JavaScript", "Vite"],
-    live: "https://unitrack-app.vercel.app/unitrack",
-    repo: "https://github.com/Ad3n1x/UNI-TRACK",
-    code: "01"
-  },
-  {
     name: "QuickCart",
     type: "WHATSAPP-FIRST COMMERCE / FULL-STACK PRODUCT",
     description: "A WhatsApp-first commerce platform for small businesses, bringing storefronts, product catalogues, seller order management, customer tracking, and WhatsApp communication into one workflow.",
@@ -34,6 +23,17 @@ const featuredOverrides = [
     live: "https://quick-cart-three-chi.vercel.app/",
     repo: "https://github.com/Ad3n1x/QuickCart",
     code: "02"
+  },
+  {
+    name: "UNI-TRACK",
+    type: "PRODUCTIVITY / WEB APP",
+    description: "A privacy-first productivity and tracking ecosystem designed to help users organise activities, keep daily goals visible, and build a clearer picture of their progress through a straightforward digital experience.",
+    details: "UNI-TRACK brings everyday tracking and productivity workflows into one accessible web experience. Its aim is to help users organise activities, review progress, and approach daily goals with more structure, while keeping the interface practical and the product privacy-conscious. Rather than adding complexity for its own sake, the project explores how useful tools can support real routines and make personal productivity easier to manage. It reflects an interest in building digital experiences that balance clarity, usefulness, and thoughtful product design.",
+    focus: ["Productivity workflows", "Progress tracking", "Privacy-conscious design", "User experience"],
+    stack: ["React", "JavaScript", "Vite"],
+    live: "https://unitrack-app.vercel.app/unitrack",
+    repo: "https://github.com/Ad3n1x/UNI-TRACK",
+    code: "01"
   },
   {
     name: "Quiz App",
@@ -245,7 +245,7 @@ export default function App() {
     <main id="home">
       <section className="hero page-width">
         <div className="hero-main">
-          <div className="hero-kicker"><span className="pulse" /> JUNIOR FRONT-END DEVELOPER · NIGERIA</div>
+          <div className="hero-kicker"><span className="pulse" /> SOFTWARE DEVELOPER · NIGERIA</div>
           <h1>Curious by nature.<br /><span>Built to figure</span><br />things out<span className="acid">.</span></h1>
           <p className="hero-intro">I'm AD3N1X — a developer-in-progress who likes understanding how things work, solving problems, and turning ideas into useful digital experiences.</p>
           <div className="hero-actions"><a className="btn btn-primary" href="#work">EXPLORE MY WORK <span>↓</span></a><a className="btn btn-quiet" href={GITHUB} target="_blank" rel="noreferrer">GITHUB PROFILE <Arrow /></a></div>
