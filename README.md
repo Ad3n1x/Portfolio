@@ -4,7 +4,7 @@ The personal developer portfolio of **AD3N1X (Adeniran Victor)**, showcasing ind
 
 ## Live portfolio
 
-- **Website:** https://engnradeniran.com/
+- **Website:** https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
 - **GitHub:** https://github.com/Ad3n1x
 - **LinkedIn:** https://www.linkedin.com/in/adeniran-victor-ba28a7432/
 
