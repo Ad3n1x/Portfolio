@@ -11,7 +11,7 @@ My work spans commerce tools, search and research software, productivity applica
 - **Portfolio:** https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
 - **GitHub:** https://github.com/Ad3n1x
 - **LinkedIn:** https://www.linkedin.com/in/adeniran-victor-ba28a7432/
-- **Email:** aden​​ix271@gmail.com
+- **Email:** adenix271@gmail.com
 
 ## Featured work
 
@@ -19,7 +19,7 @@ My work spans commerce tools, search and research software, productivity applica
 |---|---|---|
 | **QuickCart** | A WhatsApp-first commerce platform for small businesses, with public storefronts, product catalogues, seller order management, customer tracking, and delivery-status communication. | [Live app](https://quick-cart-three-chi.vercel.app/) · [Source](https://github.com/Ad3n1x/QuickCart) |
 | **ADVERSE** | A search and research product for discovering public information, checking destination reachability, and keeping source context visible. Search coverage and verification are explicitly bounded. | [Live app](https://adverse-web.onrender.com/) · [Source](https://github.com/Ad3n1x/ADVERSE) |
-| **UNI-TRACK** | A privacy-conscious productivity and tracking application for organising goals, habits, and personal workflows. | [Live app](https://unitrack-app.vercel.app/) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
+| **UNI-TRACK** | A privacy-first productivity and tracking ecosystem for organising goals, habits, tasks, and workflows. | [Live app](https://unitrack-app.vercel.app/) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
 | **Quiz App** | An interactive learning application with STEM-focused quizzes and configurable question sets. | [Live app](https://quiz-app-henna-omega.vercel.app/) · [Source](https://github.com/Ad3n1x/Quiz-App) |
 | **Statecraft** | An independent software project exploring structured application state and interactive workflows. | [Source](https://github.com/Ad3n1x/Statecraft) |
 
