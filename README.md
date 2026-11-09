@@ -2,9 +2,9 @@
 
 **Full-Stack Developer | Software Engineering Student | Independent Builder**
 
-I’m Adeniran Victor, also known as **AD3N1X**. I build web applications that solve practical problems, with a focus on useful product workflows, responsive interfaces, backend systems, and reliable deployment.
+I’m Adeniran Victor, also known as **AD3N1X**. I build and ship full-stack web products, working across responsive interfaces, backend APIs, data workflows, authentication, testing, and deployment.
 
-My work spans commerce tools, search and research software, productivity applications, and interactive learning products. I care about making software understandable, usable, and maintainable—not just making demos look impressive.
+My work spans small-business commerce, evidence-led research software, productivity applications, and interactive learning. I care about solving the real workflow, keeping implementation maintainable, and verifying what works—not just making demos look impressive.
 
 ## Find me online
 
@@ -18,7 +18,7 @@ My work spans commerce tools, search and research software, productivity applica
 | Project | What it does | Links |
 |---|---|---|
 | **QuickCart** | A WhatsApp-first commerce platform for small businesses, with public storefronts, product catalogues, seller order management, customer tracking, and delivery-status communication. | [Live app](https://quick-cart-three-chi.vercel.app/) · [Source](https://github.com/Ad3n1x/QuickCart) |
-| **ADVERSE** | A search and research product for discovering public information, checking destination reachability, and keeping source context visible. Search coverage and verification are explicitly bounded. | [Live app](https://adverse-web.onrender.com/) · [Source](https://github.com/Ad3n1x/ADVERSE) |
+| **ADVERSE** | An evidence-led investigation workspace for organising research questions, public-source evidence, entities, relationships, and timelines. Its research tools are accessed after signing in. | [Live app](https://adverse-web.onrender.com/) · [Source](https://github.com/Ad3n1x/ADVERSE) |
 | **UNI-TRACK** | A privacy-first productivity and tracking ecosystem for organising goals, habits, tasks, and workflows. | [Live app](https://unitrack-app.vercel.app/) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
 | **Quiz App** | An interactive learning application with STEM-focused quizzes and configurable question sets. | [Live app](https://quiz-app-henna-omega.vercel.app/) · [Source](https://github.com/Ad3n1x/Quiz-App) |
 | **Cuewise** | A conversation-understanding and reply-coaching app with screenshot OCR, cautious alternative interpretations, and editable reply suggestions. | [Live app](https://ai-conv-help.vercel.app/) · [Source](https://github.com/Ad3n1x/AI-CONV-HELP) |
@@ -28,7 +28,7 @@ My work spans commerce tools, search and research software, productivity applica
 - **Frontend:** React, JavaScript, HTML, CSS, responsive UI
 - **Backend:** Node.js, Express, REST APIs
 - **Data:** MongoDB, Mongoose
-- **Engineering practices:** Authentication, API integration, validation, testing, Git, CI workflows
+- **Engineering practices:** Authentication, API design, data modelling, validation, security-conscious workflows, automated testing, Git, CI
 - **Deployment:** Vercel, Render, GitHub
 
 I’m currently strengthening my Python skills. My primary project work has focused on the JavaScript full-stack ecosystem.
