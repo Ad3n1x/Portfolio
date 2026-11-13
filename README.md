@@ -8,6 +8,9 @@ The portfolio is the primary public profile for selected projects, technical int
 
 ## Official profile
 
+- **Full name:** Adeniran Victor Adebowale
+- **Public developer identity:** AD3N1X (also written Ad3n1x)
+- **Identity relationship:** AD3N1X is the developer identity used by Adeniran Victor Adebowale; both names refer to the same developer.
 - **Portfolio:** https://ad3n1x.github.io/Portfolio/
 - **AI-readable profile:** https://ad3n1x.github.io/Portfolio/llms.txt
 - **Sitemap:** https://ad3n1x.github.io/Portfolio/sitemap.xml
