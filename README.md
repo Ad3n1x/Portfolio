@@ -22,7 +22,7 @@ The portfolio is the primary public profile for selected projects, technical int
 
 | Project | Description | Links |
 |---|---|---|
-| **QuickCart** | Commerce tools for small businesses: storefronts, product catalogues, seller order management, customer tracking, and delivery updates. | [Project](https://ad3n1x.github.io/QuickCart/) · [App](https://quick-cart-three-chi.vercel.app/) · [Source](https://github.com/Ad3n1x/QuickCart) |
+| **QuickCart by AD3N1X** | Independent Nigeria-first commerce platform for small businesses: shareable storefronts, product catalogues, seller order management, marketplace discovery, and WhatsApp customer handoff. Separate from the unrelated website at quickcart.ng. | [Official website and live app](https://ad3n1x.github.io/QuickCart/) · [Product FAQ](https://ad3n1x.github.io/QuickCart/faq.html) · [Source](https://github.com/Ad3n1x/QuickCart) |
 | **ADVERSE** | Public-source search and research with source provenance and limitations kept visible. | [Website](https://adverse-web.onrender.com/) · [Source](https://github.com/Ad3n1x/ADVERSE) |
 | **UNI-TRACK** | Productivity and activity tracking for goals, habits, tasks, and workflows. | [Website](https://unitrack-app.vercel.app/) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
 | **Cuewise** | Conversation reflection and reply coaching with screenshot text extraction and editable suggestions. | [Website](https://ai-conv-help.vercel.app/) · [Source](https://github.com/Ad3n1x/AI-CONV-HELP) |
