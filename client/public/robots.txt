@@ -1,21 +1,8 @@
+# GitHub Pages project site: this file is served under /Portfolio/.
+# Robots policies are origin-wide and are normally read from /robots.txt,
+# so these path-level rules cannot control crawler access for the whole
+# ad3n1x.github.io host. The portfolio itself declares index,follow metadata.
 User-agent: *
 Allow: /
-
-# AI search and answer engines
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-# Keep model-training crawler access separate from search discoverability.
-User-agent: GPTBot
-Disallow: /
 
 Sitemap: https://ad3n1x.github.io/Portfolio/sitemap.xml
