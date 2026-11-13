@@ -5,6 +5,6 @@ User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: GPTBot
-Allow: /
+Disallow: /
 
 Sitemap: https://ad3n1x.github.io/Portfolio/sitemap.xml
