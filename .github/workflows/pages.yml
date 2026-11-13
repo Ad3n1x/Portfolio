@@ -30,6 +30,35 @@ jobs:
         run: npm run build --prefix client
         env:
           GITHUB_PAGES: "true"
+      - name: Validate GitHub Pages SEO artifacts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root = Path("client/dist")
+          required = ["index.html", "robots.txt", "sitemap.xml", "llms.txt"]
+          missing = [name for name in required if not (root / name).is_file()]
+          if missing:
+              raise SystemExit(f"Missing Pages output files: {', '.join(missing)}")
+
+          html = (root / "index.html").read_text(encoding="utf-8")
+          robots = (root / "robots.txt").read_text(encoding="utf-8")
+          llms = (root / "llms.txt").read_text(encoding="utf-8")
+          sitemap = ET.parse(root / "sitemap.xml").getroot()
+
+          canonical = "https://ad3n1x.github.io/Portfolio/"
+          if canonical not in html:
+              raise SystemExit("Canonical portfolio URL missing from built HTML")
+          if f"Sitemap: {canonical}sitemap.xml" not in robots:
+              raise SystemExit("robots.txt sitemap directive is missing or incorrect")
+          if not any(node.text == canonical for node in sitemap.iter() if node.tag.endswith("loc")):
+              raise SystemExit("sitemap.xml does not contain the canonical portfolio URL")
+          if "AD3N1X" not in llms or "Adeniran Victor Adebowale" not in llms:
+              raise SystemExit("llms.txt is missing the public identity association")
+
+          print("SEO artifact validation passed: index, robots, sitemap, and llms.txt")
+          PY
       - name: Support direct navigation
         run: cp client/dist/index.html client/dist/404.html
       - name: Upload Pages artifact
