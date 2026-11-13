@@ -1,99 +1,81 @@
-# AD3N1X — Adeniran Victor
+# AD3N1X — Developer Profile & Portfolio
 
-**Full-Stack Developer | Software Engineering Student | Independent Builder**
+**Full-Stack Developer · Software Engineering Student · Independent Builder**
 
-I’m Adeniran Victor, also known as **AD3N1X**. I build and ship full-stack web products, working across responsive interfaces, backend APIs, data workflows, authentication, testing, and deployment.
+AD3N1X builds practical web applications and software projects, learning through hands-on implementation and iterative improvement. The work spans commerce workflows, public-source research, productivity tools, and interactive learning.
 
-My work spans small-business commerce, evidence-led research software, productivity applications, and interactive learning. I care about solving the real workflow, keeping implementation maintainable, and verifying what works—not just making demos look impressive.
+The portfolio is the primary public profile for selected projects, technical interests, education, and the developer's approach to building software.
 
-## Find me online
+## Official profile
 
-- **Portfolio:** https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
+- **Portfolio:** https://ad3n1x.github.io/Portfolio/
+- **AI-readable profile:** https://ad3n1x.github.io/Portfolio/llms.txt
+- **Sitemap:** https://ad3n1x.github.io/Portfolio/sitemap.xml
 - **GitHub:** https://github.com/Ad3n1x
 - **LinkedIn:** https://www.linkedin.com/in/adeniran-victor-ba28a7432/
-- **Email:** adenix271@gmail.com
+- **Public contact:** adenix271@gmail.com
 
-## Featured work
+## Featured projects
 
-| Project | What it does | Links |
+| Project | Description | Links |
 |---|---|---|
-| **QuickCart** | A WhatsApp-first commerce platform for small businesses, with public storefronts, product catalogues, seller order management, customer tracking, and delivery-status communication. | [Live app](https://quick-cart-three-chi.vercel.app/) · [Source](https://github.com/Ad3n1x/QuickCart) |
-| **ADVERSE** | An evidence-led investigation workspace for organising research questions, public-source evidence, entities, relationships, and timelines. Its research tools are accessed after signing in. | [Live app](https://adverse-web.onrender.com/) · [Source](https://github.com/Ad3n1x/ADVERSE) |
-| **UNI-TRACK** | A privacy-first productivity and tracking ecosystem for organising goals, habits, tasks, and workflows. | [Live app](https://unitrack-app.vercel.app/) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
-| **Quiz App** | An interactive learning application with STEM-focused quizzes and configurable question sets. | [Live app](https://quiz-app-henna-omega.vercel.app/) · [Source](https://github.com/Ad3n1x/Quiz-App) |
-| **Cuewise** | A conversation-understanding and reply-coaching app with screenshot OCR, cautious alternative interpretations, and editable reply suggestions. | [Live app](https://ai-conv-help.vercel.app/) · [Source](https://github.com/Ad3n1x/AI-CONV-HELP) |
+| **QuickCart** | Commerce tools for small businesses: storefronts, product catalogues, seller order management, customer tracking, and delivery updates. | [Project](https://ad3n1x.github.io/QuickCart/) · [App](https://quick-cart-three-chi.vercel.app/) · [Source](https://github.com/Ad3n1x/QuickCart) |
+| **ADVERSE** | Public-source search and research with source provenance and limitations kept visible. | [Website](https://adverse-web.onrender.com/) · [Source](https://github.com/Ad3n1x/ADVERSE) |
+| **UNI-TRACK** | Productivity and activity tracking for goals, habits, tasks, and workflows. | [Website](https://unitrack-app.vercel.app/) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
+| **Cuewise** | Conversation reflection and reply coaching with screenshot text extraction and editable suggestions. | [Website](https://ai-conv-help.vercel.app/) · [Source](https://github.com/Ad3n1x/AI-CONV-HELP) |
+| **Quiz App** | Interactive learning with STEM practice and configurable quizzes. | [Website](https://quiz-app-henna-omega.vercel.app/) · [Source](https://github.com/Ad3n1x/Quiz-App) |
 
 ## Technical focus
 
-- **Frontend:** React, JavaScript, HTML, CSS, responsive UI
+- **Frontend:** React, JavaScript, HTML, CSS, responsive interfaces
 - **Backend:** Node.js, Express, REST APIs
-- **Data:** MongoDB, Mongoose
-- **Engineering practices:** Authentication, API design, data modelling, validation, security-conscious workflows, automated testing, Git, CI
-- **Deployment:** Vercel, Render, GitHub
+- **Data:** MongoDB, Mongoose, SQL and relational data modelling
+- **Engineering:** Authentication, validation, API design, security-conscious workflows, testing, Git, CI, and deployment
+- **Hosting:** Vercel, Render, GitHub
 
-I’m currently strengthening my Python skills. My primary project work has focused on the JavaScript full-stack ecosystem.
+Python is the current learning focus. TypeScript is a planned next step.
 
 ## Education
 
 **Professional Diploma in Computer Software Engineering**  
-SQI College of ICT — expected November 2026
+SQI College of ICT — expected November 2026.
 
-## How I approach building
+## Engineering approach
 
-- Start with the actual user problem and the core workflow.
-- Make the interface clear on both mobile and desktop.
-- Keep authentication, data ownership, and server-side secrets in mind.
-- Test important user journeys instead of relying only on a successful build.
-- Document limitations honestly; a deployed feature is not automatically a validated product.
+- Start with the actual user problem and core workflow.
+- Build clear interfaces for mobile and desktop.
+- Consider authentication, data ownership, validation, and server-side secrets.
+- Test important user journeys rather than relying only on a successful build.
+- Document limitations honestly; deployment does not automatically prove product validation.
 
-## Repository notes
-
-This repository contains the source for my personal developer portfolio.
+## Repository structure
 
 - `client/` — React and Vite frontend.
 - `server/` — Express API, MongoDB models, and contact endpoint.
 - `render.yaml` — Render backend blueprint.
 - `vercel.json` — Vercel frontend configuration.
 
-## Run locally
+## Local development
 
 Requires Node.js 20+ and a MongoDB connection string.
 
-1. Install root tools:
-
-   ```bash
-   npm install
-   ```
-
-2. Install frontend and backend dependencies:
-
-   ```bash
-   npm run install:all
-   ```
-
+1. Install root tools: `npm install`.
+2. Install frontend and backend dependencies: `npm run install:all`.
 3. Copy `server/.env.example` to `server/.env` and configure `MONGODB_URI` and `CLIENT_URL`.
-
-4. Start both applications:
-
-   ```bash
-   npm run dev
-   ```
+4. Start both applications: `npm run dev`.
 
 The frontend can show local fallback project content when the API is unavailable. Contact submissions require the API and a working MongoDB connection.
 
 ## Deployment and security
 
-The portfolio uses a split deployment:
+- Frontend: Vercel and GitHub Pages.
+- Backend: Render.
+- Database: MongoDB Atlas.
 
-- **Frontend:** Vercel
-- **Backend:** Render
-- **Database:** MongoDB Atlas
-
-Configure secrets in the hosting providers. Never commit database credentials, API keys, JWT secrets, or other private configuration.
+Configure secrets in hosting-provider settings. Never commit database credentials, API keys, JWT secrets, or private configuration.
 
 The contact form includes client- and server-side validation, rate limiting, CORS restrictions, and input length limits. Contact messages are stored in MongoDB. There is no admin dashboard or public project-management write endpoint in this repository.
 
 ---
 
-**Built and maintained by AD3N1X.**  
-I’m interested in building practical software, learning through real projects, and improving the engineering behind every release.
+**Built and maintained by AD3N1X.**
