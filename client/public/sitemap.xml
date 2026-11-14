@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ad3n1x.github.io/Portfolio/</loc>
-  </url>
+  <url><loc>https://ad3n1x.github.io/Portfolio/</loc></url>
+  <url><loc>https://ad3n1x.github.io/Portfolio/projects/quickcart/</loc></url>
+  <url><loc>https://ad3n1x.github.io/Portfolio/projects/adverse/</loc></url>
+  <url><loc>https://ad3n1x.github.io/Portfolio/projects/unitrack/</loc></url>
+  <url><loc>https://ad3n1x.github.io/Portfolio/projects/cuewise/</loc></url>
+  <url><loc>https://ad3n1x.github.io/Portfolio/projects/quiz-app/</loc></url>
 </urlset>
