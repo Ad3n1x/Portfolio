@@ -37,7 +37,10 @@ jobs:
           import xml.etree.ElementTree as ET
 
           root = Path("client/dist")
-          required = ["index.html", "robots.txt", "sitemap.xml", "llms.txt"]
+          required = ["index.html", "robots.txt", "sitemap.xml", "llms.txt", "project-pages.css",
+                      "projects/quickcart/index.html", "projects/adverse/index.html",
+                      "projects/unitrack/index.html", "projects/cuewise/index.html",
+                      "projects/quiz-app/index.html"]
           missing = [name for name in required if not (root / name).is_file()]
           if missing:
               raise SystemExit(f"Missing Pages output files: {', '.join(missing)}")
@@ -57,7 +60,22 @@ jobs:
           if "AD3N1X" not in llms or "Adeniran Victor Adebowale" not in llms:
               raise SystemExit("llms.txt is missing the public identity association")
 
-          print("SEO artifact validation passed: index, robots, sitemap, and llms.txt")
+          expected_pages = [
+              "projects/quickcart/", "projects/adverse/", "projects/unitrack/",
+              "projects/cuewise/", "projects/quiz-app/"
+          ]
+          sitemap_urls = {node.text for node in sitemap.iter() if node.tag.endswith("loc")}
+          for page in expected_pages:
+              page_url = canonical + page
+              if page_url not in sitemap_urls:
+                  raise SystemExit(f"Sitemap is missing {page_url}")
+              page_html = (root / page / "index.html").read_text(encoding="utf-8")
+              if page_url not in page_html:
+                  raise SystemExit(f"Canonical URL missing from {page}/index.html")
+              if "<h1>" not in page_html or "<main" not in page_html:
+                  raise SystemExit(f"Main content missing from {page}/index.html")
+
+          print("SEO artifact validation passed: homepage, project pages, robots, sitemap, and llms.txt")
           PY
       - name: Support direct navigation
         run: cp client/dist/index.html client/dist/404.html
