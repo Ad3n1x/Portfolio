@@ -640,3 +640,5 @@ button,a{-webkit-tap-highlight-color:transparent}
   }
   .repo-row>.arrow{grid-column:3;grid-row:1;align-self:start}
 }
+
+.live-preview-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.live-preview-links a{font:9px var(--mono);color:var(--acid);white-space:nowrap}.live-preview-links a:hover{color:#fff}
