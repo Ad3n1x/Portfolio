@@ -4,6 +4,7 @@ const GITHUB = "https://github.com/Ad3n1x";
 const featuredOverrides = [
   {
     name: "ADVERSE",
+    projectPage: "/projects/adverse/",
     type: "PUBLIC-SOURCE SEARCH / RESEARCH TOOL",
     description: "A website-first search workspace built by AD3N1X to help people find useful public webpages, check destinations, follow research leads, and understand source evidence.",
     details: "ADVERSE is an independent product created by AD3N1X. It focuses on finding useful public-source destinations, exploring investigative leads, and organizing evidence with provenance and limitations kept visible. Search and destination discovery are the primary experience; relationship graphs and deeper investigative tools support the workflow when needed. The goal is to help people get to relevant, working sources faster instead of being buried in dead links or unsupported claims.",
@@ -15,6 +16,7 @@ const featuredOverrides = [
   },
   {
     name: "QuickCart",
+    projectPage: "/projects/quickcart/",
     type: "WHATSAPP-FIRST COMMERCE / FULL-STACK PRODUCT",
     description: "A WhatsApp-first commerce platform for small businesses, bringing storefronts, product catalogues, seller order management, customer tracking, and WhatsApp communication into one workflow.",
     details: "QuickCart is an independently built commerce product designed around how many small businesses already sell through messaging. Sellers can create a shareable storefront, manage products and orders, add orders manually, and communicate delivery updates through WhatsApp. Customers can browse a store, move through checkout, and follow order status. The product is in an early stage; real-world seller validation is still needed, so this description does not imply proven adoption or commercial traction.",
@@ -26,6 +28,7 @@ const featuredOverrides = [
   },
   {
     name: "UNI-TRACK",
+    projectPage: "/projects/unitrack/",
     type: "PRODUCTIVITY / WEB APP",
     description: "A privacy-first productivity and tracking ecosystem designed to help users organise activities, keep daily goals visible, and build a clearer picture of their progress through a straightforward digital experience.",
     details: "UNI-TRACK brings everyday tracking and productivity workflows into one accessible web experience. Its aim is to help users organise activities, review progress, and approach daily goals with more structure, while keeping the interface practical and the product privacy-conscious. Rather than adding complexity for its own sake, the project explores how useful tools can support real routines and make personal productivity easier to manage. It reflects an interest in building digital experiences that balance clarity, usefulness, and thoughtful product design.",
@@ -37,6 +40,7 @@ const featuredOverrides = [
   },
   {
     name: "Quiz App",
+    projectPage: "/projects/quiz-app/",
     type: "INTERACTIVE QUIZZING / LEARNING APP",
     description: "An interactive quiz platform with daily current-news challenges, Math, Physics and Chemistry practice, custom quiz creation, score sharing, and a separate live multiplayer mode.",
     details: "QZ brings several quiz formats into one learning experience: a daily general-knowledge challenge, subject-based practice in Math, Physics and Chemistry, and tools for creating and sharing custom quizzes. A separate live multiplayer app lets players host or join quiz rooms. The project explores accessible learning interactions, lightweight browser experiences, and friendly competition.",
@@ -48,6 +52,7 @@ const featuredOverrides = [
   },
   {
     name: "Cuewise",
+    projectPage: "/projects/cuewise/",
     type: "AI-ASSISTED CONVERSATION / REPLY COACHING",
     description: "A conversation-understanding tool that separates literal wording from assumptions and offers thoughtful, editable reply suggestions.",
     details: "Cuewise lets users paste a conversation excerpt or upload a screenshot, extract text with browser-based OCR, choose a communication goal, and review cautious alternative interpretations alongside editable reply suggestions. It is designed as a reflection and writing aid, not a mind-reading tool: its analysis cannot prove another person's feelings or intent. AI-powered analysis is optional, while local rule-based analysis remains available.",
@@ -97,7 +102,7 @@ function ProjectCard({ project }) {
       <div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
       <button className="case-study-toggle" type="button" aria-expanded={detailsOpen} onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "CLOSE CASE STUDY −" : "EXPLORE CASE STUDY +"}<span>{detailsOpen ? "LESS" : "OVERVIEW"}</span></button>
       {detailsOpen && <div className="case-study-details"><p>{project.details}</p><h4>PROJECT FOCUS</h4><ul>{project.focus.map((item) => <li key={item}>{item}</li>)}</ul></div>}
-      <div className="project-links">{project.live && <a href={project.live} target="_blank" rel="noreferrer">OPEN PROJECT <Arrow /></a>}<a href={project.repo} target="_blank" rel="noreferrer">VIEW SOURCE <Arrow /></a></div>
+      <div className="project-links">{project.projectPage && <a href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${project.projectPage}`}>READ CASE STUDY <Arrow /></a>}{project.live && <a href={project.live} target="_blank" rel="noreferrer">OPEN PROJECT <Arrow /></a>}<a href={project.repo} target="_blank" rel="noreferrer">VIEW SOURCE <Arrow /></a></div>
     </div>
   </article>;
 }
@@ -119,7 +124,7 @@ function LivePreviewCard({ project, index }) {
     <div className="live-preview-info">
       <div><span className="preview-number">{String(index + 1).padStart(2, "0")}</span><h3>{project.name}</h3></div>
       <p>{project.description}</p>
-      <div className="live-preview-bottom"><span>{project.stack?.slice(0, 3).join(" · ") || "WEB PROJECT"}</span><a href={project.repo} target="_blank" rel="noreferrer">SOURCE ↗</a></div>
+      <div className="live-preview-bottom"><span>{project.stack?.slice(0, 3).join(" · ") || "WEB PROJECT"}</span><span className="live-preview-links">{project.projectPage && <a href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${project.projectPage}`}>CASE STUDY ↗</a>}<a href={project.repo} target="_blank" rel="noreferrer">SOURCE ↗</a></span></div>
     </div>
   </article>;
 }
