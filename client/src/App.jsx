@@ -22,7 +22,7 @@ const featuredOverrides = [
     details: "QuickCart is an independently built commerce product designed around how many small businesses already sell through messaging. Sellers can create a shareable storefront, manage products and orders, add orders manually, and communicate delivery updates through WhatsApp. Customers can browse a store, move through checkout, and follow order status. The product is in an early stage; real-world seller validation is still needed, so this description does not imply proven adoption or commercial traction.",
     focus: ["Online storefronts", "Product and order management", "Customer order tracking", "WhatsApp communication"],
     stack: ["React", "Node.js", "Express", "MongoDB"],
-    live: "https://quick-cart-three-chi.vercel.app/",
+    live: "https://ad3n1x.github.io/QuickCart/",
     repo: "https://github.com/Ad3n1x/QuickCart",
     code: "02"
   },
@@ -34,7 +34,7 @@ const featuredOverrides = [
     details: "UNI-TRACK brings everyday tracking and productivity workflows into one accessible web experience. Its aim is to help users organise activities, review progress, and approach daily goals with more structure, while keeping the interface practical and the product privacy-conscious. Rather than adding complexity for its own sake, the project explores how useful tools can support real routines and make personal productivity easier to manage. It reflects an interest in building digital experiences that balance clarity, usefulness, and thoughtful product design.",
     focus: ["Productivity workflows", "Progress tracking", "Privacy-conscious design", "User experience"],
     stack: ["React", "JavaScript", "Vite"],
-    live: "https://unitrack-app.vercel.app/unitrack",
+    live: "https://unitrack-app.vercel.app/",
     repo: "https://github.com/Ad3n1x/UNI-TRACK",
     code: "01"
   },
