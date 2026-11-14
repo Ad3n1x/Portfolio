@@ -1,11 +1,9 @@
 {
-  "buildCommand": "npm run build --prefix client",
-  "outputDirectory": "client/dist",
-  "installCommand": "npm install --prefix client",
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/:path*",
+      "destination": "https://ad3n1x.github.io/Portfolio/:path*",
+      "permanent": true
     }
   ]
 }
