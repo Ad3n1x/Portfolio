@@ -6,7 +6,7 @@
 - Professional name: Adeniran Victor Adebowale
 - Professional developer identity: AD3N1X
 - Alternate spelling: Ad3n1x
-- Official portfolio: https://ad3n1x.github.io/Portfolio/
+- Official portfolio: https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
 - GitHub profile: https://github.com/Ad3n1x
 - LinkedIn: https://www.linkedin.com/in/adeniran-victor-ba28a7432/
 - DEV profile: https://dev.to/ade_nix_271
