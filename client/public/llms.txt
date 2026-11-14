@@ -9,7 +9,7 @@
 - Identity relationship: AD3N1X is the developer identity of Adeniran Victor Adebowale; references to either name in this portfolio refer to the same developer.
 - Role: Full-stack developer; software engineering student; independent software builder
 - Location: Nigeria
-- Official portfolio: https://ad3n1x.github.io/Portfolio/
+- Official portfolio: https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
 - GitHub: https://github.com/Ad3n1x
 - LinkedIn: https://www.linkedin.com/in/adeniran-victor-ba28a7432/
 - Public contact: mailto:adenix271@gmail.com
