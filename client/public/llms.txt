@@ -7,7 +7,7 @@
 - Full name: Adeniran Victor Adebowale
 - Public developer name / alias: AD3N1X (also written Ad3n1x)
 - Identity relationship: AD3N1X is the developer identity of Adeniran Victor Adebowale; references to either name in this portfolio refer to the same developer.
-- Role: Full-stack developer; software engineering student; independent software builder
+- Role: Software developer and independent software builder; currently pursuing a Professional Diploma in Computer Software Engineering; aspiring to study Mechatronics Engineering
 - Location: Nigeria
 - Official portfolio: https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
 - GitHub: https://github.com/Ad3n1x
@@ -22,7 +22,8 @@ Adeniran Victor Adebowale, publicly known as AD3N1X, is a Nigeria-based full-sta
 
 ## Education and learning
 
-- Professional Diploma in Computer Software Engineering, SQI College of ICT — expected November 2026.
+- Current programme: Professional Diploma in Computer Software Engineering, SQI College of ICT — expected November 2026.
+- Future academic aspiration: study Mechatronics Engineering. This is not the current diploma programme.
 - Completed Levels 1–3 of the SQI web development track; preparing for Level 4.
 - Current learning focus: Python.
 - Planned next step: TypeScript.
@@ -50,7 +51,7 @@ A commerce application designed for small businesses. It brings online storefron
 
 ### ADVERSE
 
-An independent public-source search and research product. Its focus is helping people discover useful web destinations, explore research leads, and review public-source evidence while keeping source provenance and limitations visible. Automated analysis is an aid to research, not a substitute for verification.
+An intent-first public-source search and research workspace. The public landing page introduces the product and its 3D visual interface; authenticated users enter the `/experience` workspace to shape tasks around intent, discover public sources, and review provenance. The legacy `/classic` workspace has been retired. Automated analysis is an aid to research, not a substitute for verification.
 
 - Website: https://adverse-web.onrender.com/
 - Source: https://github.com/Ad3n1x/ADVERSE
