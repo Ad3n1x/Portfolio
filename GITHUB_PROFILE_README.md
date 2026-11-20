@@ -4,7 +4,7 @@
 
 Official portfolio: https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
 
-I build practical full-stack web applications and learn through designing, implementing, testing, and refining real software workflows. My work spans small-business commerce, evidence-led public-source research, productivity tools, and interactive learning.
+I build practical software applications and learn through designing, implementing, testing, and refining real workflows. I am currently pursuing a Professional Diploma in Computer Software Engineering at SQI College of ICT and aspire to study Mechatronics Engineering in the future. My work spans small-business commerce, public-source research, productivity tools, and interactive learning.
 
 ## Featured projects
 
@@ -14,7 +14,7 @@ An independent Nigeria-first commerce platform for small businesses, covering st
 [Source code](https://github.com/Ad3n1x/QuickCart)
 
 ### [ADVERSE](https://adverse-web.onrender.com/)
-An independent public-source search and research workspace for discovering useful web destinations, exploring leads, and reviewing evidence provenance and limitations.
+An intent-first public-source search and research workspace with an interactive 3D public landing page and an authenticated `/experience` environment for task planning, source discovery and evidence organisation.
 
 [Source code](https://github.com/Ad3n1x/ADVERSE)
 
@@ -41,12 +41,12 @@ A conversation reflection and reply-coaching application with screenshot text ex
 - **Engineering:** Authentication, API design, data modelling, validation, security-conscious workflows, automated testing, CI
 - **Deployment:** GitHub, Vercel, Render
 
-I'm currently strengthening my Python skills while continuing to build with the JavaScript full-stack ecosystem.
+Python is my current learning focus; TypeScript is a planned next step while I continue building with the JavaScript full-stack ecosystem.
 
 ## Education
 
 **Professional Diploma in Computer Software Engineering**  
-SQI College of ICT · Expected November 2026
+SQI College of ICT · Expected November 2026\n\n**Future academic aspiration:** Mechatronics Engineering. This is a future study goal, not my current diploma programme.
 
 ## Writing
 
