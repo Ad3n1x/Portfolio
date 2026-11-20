@@ -12,8 +12,8 @@ AD3N1X is the professional developer identity used by Adeniran Victor Adebowale.
 - **Public developer identity:** AD3N1X (also written Ad3n1x)
 - **Identity relationship:** AD3N1X is the developer identity used by Adeniran Victor Adebowale; both names refer to the same developer.
 - **Portfolio:** https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
-- **AI-readable profile:** https://ad3n1x.github.io/Portfolio/llms.txt
-- **Sitemap:** https://ad3n1x.github.io/Portfolio/sitemap.xml
+- **AI-readable profile:** https://portfolio-sandy-seven-w0bgdmliak.vercel.app/llms.txt
+- **Sitemap:** https://portfolio-sandy-seven-w0bgdmliak.vercel.app/sitemap.xml
 - **GitHub:** https://github.com/Ad3n1x
 - **LinkedIn:** https://www.linkedin.com/in/adeniran-victor-ba28a7432/
 - **Public contact:** adenix271@gmail.com
