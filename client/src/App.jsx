@@ -22,7 +22,7 @@ const featuredOverrides = [
     details: "QuickCart is an independently built commerce product designed around how many small businesses already sell through messaging. Sellers can create a shareable storefront, manage products and orders, add orders manually, and communicate delivery updates through WhatsApp. Customers can browse a store, move through checkout, and follow order status. The product is in an early stage; real-world seller validation is still needed, so this description does not imply proven adoption or commercial traction.",
     focus: ["Online storefronts", "Product and order management", "Customer order tracking", "WhatsApp communication"],
     stack: ["React", "Node.js", "Express", "MongoDB"],
-    live: "https://ad3n1x.github.io/QuickCart/",
+    live: "https://quick-cart-three-chi.vercel.app/",
     repo: "https://github.com/Ad3n1x/QuickCart",
     code: "02"
   },
@@ -110,8 +110,16 @@ function ProjectCard({ project }) {
 
 function LivePreviewCard({ project, index }) {
   const [previewState, setPreviewState] = useState("loading");
+  const [refreshKey, setRefreshKey] = useState(0);
   const waitForQuickCart = /quickcart/i.test(project.name);
-  const screenshotUrl = "https://image.thum.io/get/width/1200/crop/720/" + (waitForQuickCart ? "wait/15/" : "") + project.live;
+  const previewTarget = new URL(project.live);
+  previewTarget.searchParams.set("__ad3n1x_preview", String(refreshKey));
+  const screenshotUrl = "https://image.thum.io/get/width/1200/crop/720/maxAge/" + (refreshKey === 0 ? "24" : "0") + "/" + (waitForQuickCart ? "wait/15/" : "") + previewTarget.toString();
+
+  const refreshPreview = () => {
+    setPreviewState("loading");
+    setRefreshKey((value) => value + 1);
+  };
 
   return <article className="live-preview-card">
     <a className="live-preview-image" href={project.live} target="_blank" rel="noreferrer" aria-label={"Open " + project.name + " live website"}>
@@ -124,7 +132,7 @@ function LivePreviewCard({ project, index }) {
     <div className="live-preview-info">
       <div><span className="preview-number">{String(index + 1).padStart(2, "0")}</span><h3>{project.name}</h3></div>
       <p>{project.description}</p>
-      <div className="live-preview-bottom"><span>{project.stack?.slice(0, 3).join(" · ") || "WEB PROJECT"}</span><span className="live-preview-links">{project.projectPage && <a href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${project.projectPage}`}>CASE STUDY ↗</a>}<a href={project.repo} target="_blank" rel="noreferrer">SOURCE ↗</a></span></div>
+      <div className="live-preview-bottom"><span>{project.stack?.slice(0, 3).join(" · ") || "WEB PROJECT"}</span><span className="live-preview-links">{project.projectPage && <a href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${project.projectPage}`}>CASE STUDY ↗</a>}<a href={project.repo} target="_blank" rel="noreferrer">SOURCE ↗</a><button className="preview-refresh" type="button" onClick={refreshPreview}>REFRESH PREVIEW ↻</button></span></div>
     </div>
   </article>;
 }
