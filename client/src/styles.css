@@ -642,3 +642,107 @@ button,a{-webkit-tap-highlight-color:transparent}
 }
 
 .live-preview-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.live-preview-links a{font:9px var(--mono);color:var(--acid);white-space:nowrap}.live-preview-links a:hover{color:#fff}
+
+
+/* AD3N1X visual cohesion pass — one consistent surface, type and interaction system. */
+:root{
+  --surface-1:#101411;
+  --surface-2:#141a14;
+  --surface-3:#192119;
+  --line-soft:rgba(190,210,174,.13);
+  --line-strong:rgba(213,255,69,.34);
+  --text-soft:#b4beb0;
+  --radius-card:8px;
+  --shadow-card:0 18px 55px rgba(0,0,0,.22);
+}
+::selection{background:var(--acid);color:#0b0d0c}
+.header{border-bottom-color:var(--line-soft);box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.brand{white-space:nowrap}
+.nav a{transition:color .2s ease}
+.nav a:hover,.nav a:focus-visible{color:var(--acid)}
+.header-contact{border:1px solid var(--line-soft);padding:11px 14px}
+.header-contact:hover{border-color:var(--line-strong);background:rgba(213,255,69,.055)}
+.hero{position:relative}
+.hero-main{max-width:690px}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line-soft);background:rgba(16,20,17,.72);color:#c4d0bd}
+.hero h1{letter-spacing:-.075em}
+.hero-intro{max-width:620px;color:var(--text-soft);line-height:1.95}
+.identity-card{background:linear-gradient(145deg,rgba(23,30,22,.98),rgba(13,17,14,.98));border:1px solid var(--line-strong);border-radius:var(--radius-card);box-shadow:var(--shadow-card)}
+.identity-head,.identity-bottom{color:#9eaa98}
+.identity-rule{background:linear-gradient(90deg,var(--acid),rgba(213,255,69,.08))}
+.btn{border-radius:4px}
+.btn-primary{box-shadow:0 8px 24px rgba(213,255,69,.09)}
+.btn-primary:hover{box-shadow:0 12px 30px rgba(213,255,69,.16)}
+.btn-quiet{border:1px solid var(--line-soft)}
+.btn-quiet:hover{border-color:var(--line-strong);background:rgba(213,255,69,.045)}
+.ticker{border-block:1px solid var(--line-soft);background:rgba(17,22,17,.72)}
+.section{scroll-margin-top:88px}
+.section-head{align-items:end}
+.section-head h2,.approach-heading h2,.github-layout h2,.contact-layout h2{letter-spacing:-.075em}
+.section-note{color:var(--text-soft);line-height:1.9}
+.project-card,.live-preview-card,.repo-panel,.contact-card,.education-card{
+  background:linear-gradient(155deg,var(--surface-1),#0e120f);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow-card);
+  overflow:hidden;
+}
+.project-card{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.project-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 22px 58px rgba(0,0,0,.3)}
+.project-card-top{background:rgba(213,255,69,.025)}
+.project-art{background:radial-gradient(ellipse at 50% 45%,rgba(213,255,69,.12),transparent 54%),linear-gradient(135deg,#172017,#0b0f0c)}
+.art-mark{text-shadow:0 0 36px rgba(213,255,69,.16)}
+.project-content h3,.live-preview-info h3{letter-spacing:-.055em}
+.project-description,.live-preview-info>p{color:var(--text-soft);line-height:1.85}
+.tag-list span,.case-study-details li{border-radius:3px;background:rgba(213,255,69,.035)}
+.case-study-toggle{border-radius:3px}
+.project-links a{padding:8px 0}
+.live-preview-card{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.live-preview-card:hover{border-color:var(--line-strong);box-shadow:0 22px 58px rgba(0,0,0,.3)}
+.live-preview-image{background:radial-gradient(ellipse at 50% 40%,rgba(213,255,69,.13),#0d100d 72%)}
+.live-preview-info{background:linear-gradient(180deg,rgba(20,26,20,.96),rgba(14,18,15,.98))}
+.approach-section,.github-section{border-block:1px solid var(--line-soft);background:linear-gradient(110deg,rgba(18,24,18,.92),rgba(11,13,12,.97))}
+.approach-copy p{color:var(--text-soft);line-height:1.95}
+.approach-copy .approach-lead{color:var(--text);font-size:clamp(17px,1.8vw,21px);line-height:1.7}
+.approach-copy a{color:var(--acid);text-decoration:underline;text-decoration-color:rgba(213,255,69,.35);text-underline-offset:3px}
+.principles>div{border:1px solid var(--line-soft);border-radius:5px;background:rgba(255,255,255,.012);padding:13px}
+.capability{border-bottom-color:var(--line-soft)}
+.capability:hover{background:rgba(213,255,69,.025)}
+.capability p{color:var(--text-soft)}
+.education-card{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:34px;padding:24px 26px}
+.education-card h3{letter-spacing:-.04em}
+.learning-pill{border:1px solid var(--line-strong);border-radius:4px;background:rgba(213,255,69,.06);padding:10px 12px;color:var(--acid)}
+.repo-panel{border-color:var(--line-soft)}
+.repo-panel-head,.repo-search-wrap{background:var(--surface-2);border-bottom-color:var(--line-soft)}
+.repo-row{border-bottom-color:var(--line-soft)}
+.repo-row:hover{background:rgba(213,255,69,.045)}
+.repo-search{border-radius:4px;background:#0b0f0c}
+.repo-language-list .repo-language{border-radius:3px;background:rgba(213,255,69,.035)}
+.contact-card{padding:clamp(20px,3vw,30px)}
+.contact-email{color:var(--text)}
+.contact-social{border-bottom-color:var(--line-soft)}
+.copy-email{border-radius:3px}
+.copy-email:hover{background:rgba(213,255,69,.045)}
+.footer{border-top-color:var(--line-soft)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
+@media(max-width:800px){
+  .hero{padding-top:68px}
+  .identity-card{box-shadow:0 14px 38px rgba(0,0,0,.24)}
+  .education-card{padding:20px}
+}
+@media(max-width:650px){
+  .header{box-shadow:0 8px 24px rgba(0,0,0,.22)}
+  .nav.nav-open{border-bottom-color:var(--line-strong);background:rgba(11,13,12,.985)}
+  .hero{padding-top:58px}
+  .hero-kicker{font-size:8px;letter-spacing:.025em}
+  .hero-intro{font-size:13px}
+  .section{padding-block:68px}
+  .project-card:hover,.live-preview-card:hover{transform:none}
+  .live-work-head{padding-top:24px}
+  .education-card{align-items:flex-start}
+  .learning-pill{white-space:nowrap}
+  .contact-card{padding:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .project-card,.live-preview-card,.identity-card,.btn{transition:none!important}
+}
