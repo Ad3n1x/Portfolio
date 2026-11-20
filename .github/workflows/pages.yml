@@ -50,7 +50,7 @@ jobs:
           llms = (root / "llms.txt").read_text(encoding="utf-8")
           sitemap = ET.parse(root / "sitemap.xml").getroot()
 
-          canonical = "https://ad3n1x.github.io/Portfolio/"
+          canonical = "https://portfolio-sandy-seven-w0bgdmliak.vercel.app/"
           if canonical not in html:
               raise SystemExit("Canonical portfolio URL missing from built HTML")
           if f"Sitemap: {canonical}sitemap.xml" not in robots:
