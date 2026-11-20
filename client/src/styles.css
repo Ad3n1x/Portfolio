@@ -746,3 +746,21 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 @media(prefers-reduced-motion:reduce){
   .project-card,.live-preview-card,.identity-card,.btn{transition:none!important}
 }
+
+
+/* Live project preview freshness and manual recapture control. */
+.preview-refresh{
+  appearance:none;
+  border:1px solid rgba(213,255,69,.34);
+  border-radius:3px;
+  background:rgba(213,255,69,.045);
+  color:var(--acid);
+  padding:7px 9px;
+  font:8px var(--mono);
+  letter-spacing:.035em;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.preview-refresh:hover{background:rgba(213,255,69,.12);border-color:var(--acid);color:#fff}
+.preview-refresh:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+@media(max-width:650px){.preview-refresh{padding:8px 9px}}
