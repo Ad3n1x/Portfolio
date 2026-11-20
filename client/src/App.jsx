@@ -261,9 +261,9 @@ export default function App() {
     <main id="home">
       <section className="hero page-width">
         <div className="hero-main">
-          <div className="hero-kicker"><span className="pulse" /> SOFTWARE DEVELOPER · NIGERIA</div>
-          <h1>Curious by nature.<br /><span>Built to figure</span><br />things out<span className="acid">.</span></h1>
-          <p className="hero-intro">I'm AD3N1X — a developer-in-progress who likes understanding how things work, solving problems, and turning ideas into useful digital experiences.</p>
+          <div className="hero-kicker"><span className="pulse" /> SOFTWARE ENGINEERING · ASPIRING MECHATRONICS</div>
+          <h1>Software by craft.<br /><span>Systems by curiosity.</span><br />Built to connect<span className="acid">.</span></h1>
+          <p className="hero-intro">I'm AD3N1X — currently pursuing a Professional Diploma in Computer Software Engineering at SQI College of ICT, while working toward a future in Mechatronics Engineering. I build software and explore how intelligent systems connect code with the physical world.</p>
           <div className="hero-actions"><a className="btn btn-primary" href="#work">EXPLORE MY WORK <span>↓</span></a><a className="btn btn-quiet" href={GITHUB} target="_blank" rel="noreferrer">GITHUB PROFILE <Arrow /></a></div>
           <div className="hero-meta"><span>BASED IN OSOGBO, NIGERIA</span><span>LEARN / BUILD / REFINE</span></div>
         </div>
