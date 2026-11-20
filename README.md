@@ -1,6 +1,6 @@
 # AD3N1X — Developer Profile & Portfolio
 
-**Adeniran Victor Adebowale (AD3N1X) · Full-Stack Software Developer · Software Engineering Student**
+**Adeniran Victor Adebowale (AD3N1X) · Software Developer · Professional Diploma in Computer Software Engineering · Aspiring Mechatronics Engineering Student**
 
 AD3N1X builds practical web applications and software projects, learning through hands-on implementation and iterative improvement. The work spans commerce workflows, public-source research, productivity tools, and interactive learning.
 
@@ -11,7 +11,7 @@ AD3N1X is the professional developer identity used by Adeniran Victor Adebowale.
 - **Full name:** Adeniran Victor Adebowale
 - **Public developer identity:** AD3N1X (also written Ad3n1x)
 - **Identity relationship:** AD3N1X is the developer identity used by Adeniran Victor Adebowale; both names refer to the same developer.
-- **Portfolio:** https://ad3n1x.github.io/Portfolio/
+- **Portfolio:** https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
 - **AI-readable profile:** https://ad3n1x.github.io/Portfolio/llms.txt
 - **Sitemap:** https://ad3n1x.github.io/Portfolio/sitemap.xml
 - **GitHub:** https://github.com/Ad3n1x
@@ -40,8 +40,9 @@ Python is the current learning focus. TypeScript is a planned next step.
 
 ## Education
 
-**Professional Diploma in Computer Software Engineering**  
-SQI College of ICT — expected November 2026.
+**Current programme:** Professional Diploma in Computer Software Engineering  
+SQI College of ICT — expected November 2026.  
+**Future academic aspiration:** Study Mechatronics Engineering. This is an intended next academic direction, not the current diploma programme.
 
 ## Engineering approach
 
@@ -71,7 +72,7 @@ The frontend can show local fallback project content when the API is unavailable
 
 ## Deployment and security
 
-- Frontend: Vercel and GitHub Pages.
+- Frontend: Vercel (primary production portfolio).
 - Backend: Render.
 - Database: MongoDB Atlas.
 
