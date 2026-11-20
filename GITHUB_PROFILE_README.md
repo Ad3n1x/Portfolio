@@ -2,7 +2,7 @@
 
 **AD3N1X is the public developer identity of Adeniran Victor Adebowale.** This file is the maintained profile README source for the GitHub account [@Ad3n1x](https://github.com/Ad3n1x).
 
-Official portfolio: https://ad3n1x.github.io/Portfolio/
+Official portfolio: https://portfolio-sandy-seven-w0bgdmliak.vercel.app/
 
 I build practical full-stack web applications and learn through designing, implementing, testing, and refining real software workflows. My work spans small-business commerce, evidence-led public-source research, productivity tools, and interactive learning.
 
@@ -54,7 +54,7 @@ SQI College of ICT · Expected November 2026
 
 ## Connect
 
-- **Portfolio:** [AD3N1X Portfolio](https://ad3n1x.github.io/Portfolio/)
+- **Portfolio:** [AD3N1X Portfolio](https://portfolio-sandy-seven-w0bgdmliak.vercel.app/)
 - **GitHub:** [@Ad3n1x](https://github.com/Ad3n1x)
 - **LinkedIn:** [Adeniran Victor](https://www.linkedin.com/in/adeniran-victor-ba28a7432/)
 - **Email:** [adenix271@gmail.com](mailto:adenix271@gmail.com)
