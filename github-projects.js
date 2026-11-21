@@ -18,7 +18,7 @@
   function card(item, index) {
     const href = item.live || item.html_url;
     const preview = item.preview
-      ? '<img class="live-project-preview" src="./multimedia/previews/' + esc(item.preview) + '.png?v=' + encodeURIComponent(window.PORTFOLIO_PREVIEW_VERSION || 'latest') + '" alt="Latest captured live preview of ' + esc(item.title) + '" loading="lazy" onerror="this.remove();">'
+      ? '<img class="live-project-preview" src="./multimedia/previews/' + esc(item.preview) + '.png?v=' + Date.now() + '" alt="Latest captured live preview of ' + esc(item.title) + '" loading="lazy" onerror="this.remove();">'
       : '<div class="thought-art"><span>AD3N1X / ' + String(index + 1).padStart(2, '0') + '</span><span class="thought-arrow">↗</span><span>' + esc(item.title).replace(/\s+/g, '<br>') + '<span class="accent">.</span></span></div>';
     return `
       <a class="project-card ${index < 3 ? 'project-card-wide' : ''}" href="${esc(href)}" target="_blank" rel="noopener noreferrer">
