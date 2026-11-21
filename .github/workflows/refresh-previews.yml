@@ -1,0 +1,51 @@
+name: Refresh live portfolio previews
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh-previews.yml'
+      - '.github/scripts/capture-previews.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-live-previews
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out portfolio
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Capture current deployed applications
+        run: node .github/scripts/capture-previews.mjs
+
+      - name: Commit refreshed screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add multimedia/previews/*.png
+          if git diff --cached --quiet; then
+            echo "Previews are already current."
+          else
+            git commit -m "chore: refresh live project previews"
+            git push
+          fi
