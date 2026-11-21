@@ -47,5 +47,18 @@ jobs:
             echo "Previews are already current."
           else
             git commit -m "chore: refresh live project previews"
-            git push
+            # Other portfolio workflows may update main while screenshots are being captured.
+            # Rebase the screenshot commit on the newest main before pushing.
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              echo "Push raced with another main update; retrying ($attempt/5)."
+              git rebase --abort || true
+              sleep 2
+            done
+            echo "Could not push refreshed screenshots after 5 attempts."
+            exit 1
           fi
