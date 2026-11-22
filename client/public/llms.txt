@@ -45,7 +45,7 @@ These are areas of study and project experience, not a claim of expert-level mas
 
 A commerce application designed for small businesses. It brings online storefronts, product catalogues, seller order management, customer order tracking, and delivery updates into one workflow. It is designed around practical small-business selling workflows; real-world seller adoption should not be assumed.
 
-- Official project page: https://ad3n1x.github.io/QuickCart/
+- Official project page: https://quick-cart-three-chi.vercel.app/
 - Application: https://quick-cart-three-chi.vercel.app/
 - Source: https://github.com/Ad3n1x/QuickCart
 
