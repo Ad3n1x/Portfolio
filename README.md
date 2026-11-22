@@ -22,10 +22,10 @@ AD3N1X is the professional developer identity used by Adeniran Victor Adebowale.
 
 | Project | Description | Links |
 |---|---|---|
-| **QuickCart by AD3N1X** | Independent Nigeria-first commerce platform for small businesses: shareable storefronts, product catalogues, seller order management, marketplace discovery, and WhatsApp customer handoff. Separate from the unrelated website at quickcart.ng. | [Official website and live app](https://ad3n1x.github.io/QuickCart/) · [Product FAQ](https://ad3n1x.github.io/QuickCart/faq.html) · [Source](https://github.com/Ad3n1x/QuickCart) |
-| **ADVERSE by AD3N1X** | Evidence-led public-source search and research workspace with source provenance and limitations kept visible. | [Website](https://adverse-web.onrender.com/) · [FAQ](https://adverse-web.onrender.com/faq.html) · [Source](https://github.com/Ad3n1x/ADVERSE) |
-| **UNI-TRACK by AD3N1X** | Independent productivity and activity tracking for goals, habits, tasks, and metrics. | [Website](https://unitrack-app.vercel.app/) · [FAQ](https://unitrack-app.vercel.app/faq.html) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
-| **Cuewise** | Conversation reflection and reply coaching with screenshot text extraction and editable suggestions. | [Website](https://ai-conv-help.vercel.app/) · [Source](https://github.com/Ad3n1x/AI-CONV-HELP) |
+| **QuickCart by AD3N1X** | Nigeria-first business and shopping platform connecting buyers with independent sellers, with a wider Business OS vision spanning storefronts, orders, inventory, finance, delivery, marketing and seller-approved recommendations. Current implementation and release gaps are documented separately. | [Official website and live app](https://ad3n1x.github.io/QuickCart/) · [Product FAQ](https://ad3n1x.github.io/QuickCart/faq.html) · [Source](https://github.com/Ad3n1x/QuickCart) |
+| **ADVERSE by AD3N1X** | Intent-to-action assistant intended to turn complete objectives into cited procedures, relevant destinations and resumable next steps, grounded in public-source discovery and evidence provenance. | [Website](https://adverse-web.onrender.com/) · [FAQ](https://adverse-web.onrender.com/faq.html) · [Source](https://github.com/Ad3n1x/ADVERSE) |
+| **UNI-TRACK by AD3N1X** | User-controlled productivity and tracking for habits, goals, tasks, activities and metrics. Current private-key recovery/export limitations are documented in its repository. | [Website](https://unitrack-app.vercel.app/) · [FAQ](https://unitrack-app.vercel.app/faq.html) · [Source](https://github.com/Ad3n1x/UNI-TRACK) |
+| **Cuewise** | Privacy-conscious conversation reflection and reply coaching that separates observable wording from assumptions, with local analysis and optional consent-based multi-provider AI. | [Website](https://ai-conv-help.vercel.app/) · [Source](https://github.com/Ad3n1x/AI-CONV-HELP) |
 | **Quiz App** | Interactive learning with STEM practice and configurable quizzes. | [Website](https://quiz-app-henna-omega.vercel.app/) · [Source](https://github.com/Ad3n1x/Quiz-App) |
 
 ## Technical focus
@@ -43,6 +43,10 @@ Python is the current learning focus. TypeScript is a planned next step.
 **Current programme:** Professional Diploma in Computer Software Engineering  
 SQI College of ICT — expected November 2026.  
 **Future academic aspiration:** Study Mechatronics Engineering. This is an intended next academic direction, not the current diploma programme.
+
+## Project descriptions and implementation truth
+
+The portfolio distinguishes each product's target vision from what its current main branch and release evidence demonstrate. Read the project-specific case studies and repositories before treating planned capabilities as shipped. In particular, ADVERSE's persistent task-guidance workflow, QuickCart's full Business OS, and UNI-TRACK's user-facing encrypted-key recovery are not to be represented as complete without release evidence.
 
 ## Engineering approach
 
