@@ -8,7 +8,7 @@ I build practical software applications and learn through designing, implementin
 
 ## Featured projects
 
-### [QuickCart by AD3N1X](https://ad3n1x.github.io/QuickCart/)
+### [QuickCart by AD3N1X](https://quick-cart-three-chi.vercel.app/)
 An independent Nigeria-first commerce platform for small businesses, covering storefronts, product catalogues, seller order management, customer tracking, and delivery updates.
 
 [Source code](https://github.com/Ad3n1x/QuickCart)
